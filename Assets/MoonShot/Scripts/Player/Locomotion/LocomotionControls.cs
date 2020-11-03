@@ -1,0 +1,102 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LocomotionControls : MonoBehaviour
+{
+	public Vector3 MoveInstructionWS => transform.TransformDirection(new Vector3(Move.x, 0.0f, Move.y));
+
+	public Vector2 m_mouseSensitivity = Vector2.one;
+	public float m_jumpStoreTime = 1.0f;
+
+	private bool m_jumpStored = false;
+	private float m_jumpStoreTimer = 0.0f;
+
+	public Vector2 Move
+	{
+		get
+		{
+			return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		}
+	}
+	public Vector2 Look
+	{
+		get
+		{
+			return ControllerLook + MouseLook;
+		}
+	}
+
+	public bool PullJump()
+	{
+		bool res = m_jumpStored && m_jumpStoreTimer < m_jumpStoreTime;
+		m_jumpStored = false;
+		return res;
+	}
+
+	public bool PullInteract()
+	{
+		return Input.GetButtonDown("Interact");
+	}
+
+	public bool Jump
+	{
+		get
+		{
+			return Input.GetButton("Jump");
+		}
+	}
+
+	public bool Sprint
+	{
+		get
+		{
+			return Input.GetButton("Sprint");
+		}
+	}
+
+	public bool Crouch
+	{
+		get
+		{
+			return Input.GetButton("Crouch");
+		}
+	}
+
+	public bool Interact
+	{
+		get
+		{
+			return Input.GetButton("Interact");
+		}
+	}
+
+	private Vector2 ControllerLook
+	{
+		get
+		{
+			return new Vector2(Input.GetAxis("RHorz"), Input.GetAxis("RVert"));
+		}
+	}
+
+	private Vector2 MouseLook
+	{
+		get
+		{
+			return Vector2.Scale(m_mouseSensitivity, new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y")));
+		}
+	}
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("Jump"))
+		{
+			m_jumpStored = true;
+			m_jumpStoreTimer = 0.0f;
+		}
+		else
+		{
+			m_jumpStoreTimer += Time.deltaTime;
+		}
+	}
+}
