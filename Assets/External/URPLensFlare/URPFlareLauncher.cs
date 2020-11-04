@@ -17,7 +17,10 @@ public class URPFlareLauncher : MonoBehaviour
     {
         lightSource = GetComponent<Light>();
         // Add self to awake function: AddLight in URPLensFlare.cs on camera in render;
-        Camera.main.GetComponent<URPLensFlare>().AddLight(this);
+		foreach (var ulf in FindObjectsOfType<URPLensFlare>())
+		{
+			ulf.AddLight(this);
+		}
         tex = Resources.Load("Lensflare/"+asset.flareSprite.name) as Texture2D;
     }
     

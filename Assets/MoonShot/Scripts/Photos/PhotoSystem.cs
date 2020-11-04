@@ -13,11 +13,12 @@ namespace Moonshot.Photos
 
 		public void TakePhoto(Camera i_camera)
 		{
+			bool wasEnabled = i_camera.enabled;
 			i_camera.enabled = true;
-			StartCoroutine(TakePhotoCoroutine(i_camera));
+			StartCoroutine(TakePhotoCoroutine(i_camera, wasEnabled));
 		}
 
-		public IEnumerator TakePhotoCoroutine(Camera i_camera)
+		public IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled)
 		{
 			yield return new WaitForEndOfFrame();
 
@@ -26,7 +27,7 @@ namespace Moonshot.Photos
 			EditorSavePicture(readableSaveTexture);
 
 			Destroy(readableSaveTexture);
-			i_camera.enabled = false;
+			i_camera.enabled = i_wasEnabled;
 		}
 
 		private Texture2D RecordCameraToNewReadableTexture(Camera i_camera)
