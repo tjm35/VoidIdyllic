@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MoonShot/Scenes/WalkingTest.unity
-    guid: d5310a2c5e9aa9640bfe17b9bab846dc
+    path: Assets/MoonShot/Scenes/Moonshot.unity
+    guid: 4d6861c1bc0162745a879b0493383b5d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: cdf93d6de4a0d214f81431455faf33de, type: 2}

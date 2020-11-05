@@ -9,6 +9,22 @@ namespace Moonshot.World
 		public float m_radius;
 		public float m_surfaceGravityGs;
 
+		void Start()
+		{
+			if (GlobalGravityProvider.Instance)
+			{
+				GlobalGravityProvider.Instance.PlanetProviders.Add(this);
+			}
+		}
+
+		void OnDestroy()
+		{
+			if (GlobalGravityProvider.Instance)
+			{
+				GlobalGravityProvider.Instance.PlanetProviders.Remove(this);
+			}
+		}
+
 		public bool GetUp(Vector3 i_point, out Vector3 o_up)
 		{
 			Vector3 gravity = GetGravity(i_point);
@@ -27,7 +43,7 @@ namespace Moonshot.World
 
 				return -inverseSquare * m_surfaceGravityGs * transform.TransformDirection(localPoint.normalized);
 			}
-			if (localPoint.sqrMagnitude > 0.1f)
+			else if (localPoint.sqrMagnitude > 0.1f)
 			{
 				float distance = localPoint.magnitude;
 				float distanceRatio = distance / m_radius;
@@ -38,6 +54,21 @@ namespace Moonshot.World
 			{
 				return Vector3.zero;
 			}
+		}
+
+		public float GetGravityProminence(Vector3 i_point)
+		{
+			Vector3 localPoint = transform.InverseTransformPoint(i_point);
+			float distance = Mathf.Max(localPoint.magnitude, m_radius);
+			float distanceRatio = distance / m_radius;
+			float inverseSquare = (1.0f / (distanceRatio * distanceRatio));
+
+			return inverseSquare * m_surfaceGravityGs;
+		}
+
+		public IGravityProvider GetMostProminent(Vector3 i_point)
+		{
+			return this;
 		}
 	}
 }

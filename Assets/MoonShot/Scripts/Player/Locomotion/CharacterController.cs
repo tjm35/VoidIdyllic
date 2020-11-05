@@ -78,7 +78,14 @@ namespace Moonshot.Player
 		// See Unity Docs
 		void Start()
 		{
-			m_gravityProvider = m_gravityProviderObject?.GetComponent<IGravityProvider>();
+			if (m_gravityProviderObject)
+			{
+				m_gravityProvider = m_gravityProviderObject?.GetComponent<IGravityProvider>();
+			}
+			else
+			{
+				m_gravityProvider = GlobalGravityProvider.Instance;
+			}
 			m_characterPhysics = GetComponent<ICharacterPhysics>();
 			if (m_characterPhysics == null)
 			{
