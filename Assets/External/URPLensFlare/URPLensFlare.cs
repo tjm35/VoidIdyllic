@@ -151,7 +151,10 @@ public class URPLensFlare : MonoBehaviour
                     break;
             }
         }
-        CreateMesh();
+		if (_totalMesh.Count > 0)
+		{
+			CreateMesh();
+		}
 
         if (DebugMode)
         {
