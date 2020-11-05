@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Moonshot.Orrery
+{
+	public class RotatingFrame : MonoBehaviour
+	{
+		public Vector3 m_axis = Vector3.up;
+		public float m_period = 10.0f;
+
+		// Start is called before the first frame update
+		void Start()
+		{
+			Transform t = transform;
+			while (t != null && m_timeSource == null)
+			{
+				m_timeSource = t.GetComponent<OrreryTimeSource>();
+				t = t.parent;
+			}
+			m_initialRotation = transform.localRotation;
+		}
+
+		// Update is called once per frame
+		void Update()
+		{
+			float angle = m_timeSource.TimeElapsed * 360.0f / m_period;
+
+			transform.localRotation = Quaternion.AngleAxis(angle, m_axis) * m_initialRotation;
+		}
+
+		private OrreryTimeSource m_timeSource;
+		private Quaternion m_initialRotation;
+	}
+}
