@@ -7,6 +7,7 @@ namespace Moonshot.World
 	public class LocalFrame : MonoBehaviour
 	{
 		public Transform GlobalLocation;
+		public bool GlobalLocationIsTemporary = false;
 
 		public Vector3 TransformPointToGlobal(Vector3 i_localPoint)
 		{

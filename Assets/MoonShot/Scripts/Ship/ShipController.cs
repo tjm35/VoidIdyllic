@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Moonshot.World;
 using Totality;
 
 namespace Moonshot.Ship
@@ -37,6 +38,16 @@ namespace Moonshot.Ship
 			Vector3 newPos = transform.position + delta;
 			
 			transform.position = newPos;
+		}
+
+		public void OnExitLocalFrame(LocalFrame i_frame)
+		{
+			WorldVelocity = i_frame.TransformVectorToGlobal(WorldVelocity);
+		}
+
+		public void OnEnterLocalFrame(LocalFrame i_frame)
+		{
+			WorldVelocity = i_frame.TransformVectorToLocal(WorldVelocity);
 		}
 
 		private void DoDeembedReaction(Object i_collider, Vector3 i_deembedDirection)

@@ -9,7 +9,9 @@ namespace Moonshot.Player
 {
 	public class PlayerFrameManager : MonoBehaviour
 	{
+		public Transform SpaceFrameContext;
 		public float m_planetFrameRange = 300.0f;
+		public float m_switchSpaceFrameDistance = 100.0f;
 
 		void Start()
 		{
@@ -28,22 +30,47 @@ namespace Moonshot.Player
 			if (ShouldSwitchFrames(currentFrame))
 			{
 				LocalFrame newFrame = CreateSuitableLocalFrame(currentFrame);
-				ExitFrame(currentFrame);
+				ExitAndDestroyFrame(currentFrame);
 				EnterFrame(newFrame);
-				if (currentFrame)
-				{
-					Destroy(currentFrame);
-				}
 			}
 		}
 
 		private bool ShouldSwitchFrames(LocalFrame currentFrame)
 		{
-			// TODO - Other reasons
-			return currentFrame == null;
+			if (currentFrame == null)
+			{
+				return true;
+			}
+
+			var idealFrame = GetIdealFramePlanet(currentFrame);
+
+			if (idealFrame == null && !currentFrame.GlobalLocationIsTemporary)
+			{
+				// We shouldn't be in a planet frame any more.
+				return true;
+			}
+
+			if (idealFrame != null && currentFrame.GlobalLocation != idealFrame.transform)
+			{
+				// We should switch to this ideal frame.
+				return true;
+			}
+
+			if (idealFrame == null && currentFrame.GlobalLocationIsTemporary)
+			{
+				// We might want to change our space frame?
+				Vector3 globalPos = LocalFrame.TransformPointToGlobal(currentFrame, transform.position);
+				Vector3 framePos = currentFrame.GlobalLocation.position;
+				if ((globalPos - framePos).sqrMagnitude > m_switchSpaceFrameDistance * m_switchSpaceFrameDistance)
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
-		private LocalFrame CreateSuitableLocalFrame(LocalFrame currentFrame)
+		private OrreryPlanet GetIdealFramePlanet(LocalFrame currentFrame)
 		{
 			IEnumerable<OrreryPlanet> planets = FindObjectsOfType<OrreryPlanet>();
 
@@ -56,31 +83,60 @@ namespace Moonshot.Player
 
 				if (distanceToSurface < m_planetFrameRange)
 				{
-					var newFrame = nearestPlanet.ConstructLocalFrame();
-					if (newFrame)
-					{
-						return newFrame;
-					}
+					return nearestPlanet;
 				}
 			}
 
-			return ConstructSpaceFrame();
-		}
-
-		private LocalFrame ConstructSpaceFrame()
-		{
-			// TODO
 			return null;
 		}
 
-		private void ExitFrame(LocalFrame oldFrame)
+		private LocalFrame CreateSuitableLocalFrame(LocalFrame currentFrame)
+		{
+			var nearestPlanet = GetIdealFramePlanet(currentFrame);
+
+			if (nearestPlanet)
+			{
+				var newFrame = nearestPlanet.ConstructLocalFrame();
+				if (newFrame)
+				{
+					return newFrame;
+				}
+			}
+
+			return ConstructSpaceFrame(currentFrame);
+		}
+
+		private LocalFrame ConstructSpaceFrame(LocalFrame currentFrame)
+		{
+			Vector3 globalPos = LocalFrame.TransformPointToGlobal(currentFrame, transform.position);
+
+			GameObject globalHook = new GameObject("Temporary Global Hook");
+			globalHook.transform.SetParent(SpaceFrameContext);
+			globalHook.transform.position = globalPos;
+			// TODO: Construct suitable orbital frame.
+
+			GameObject frameObject = new GameObject("Space Local Frame");
+			var frame = frameObject.AddComponent<LocalFrame>();
+			frame.GlobalLocation = globalHook.transform;
+			frame.GlobalLocationIsTemporary = true;
+
+			return frame;
+		}
+
+		private void ExitAndDestroyFrame(LocalFrame oldFrame)
 		{
 			if (oldFrame)
 			{
+				BroadcastMessage("OnExitLocalFrame", oldFrame);
 				Vector3 globalPos = oldFrame.TransformPointToGlobal(transform.position);
 				Quaternion globalRot = oldFrame.TransformRotationToGlobal(transform.rotation);
 				transform.SetParent(null);
 				transform.SetPositionAndRotation(globalPos, globalRot);
+				if (oldFrame.GlobalLocationIsTemporary)
+				{
+					Destroy(oldFrame.GlobalLocation.gameObject);
+				}
+				Destroy(oldFrame.gameObject);
 			}
 		}
 
@@ -93,6 +149,7 @@ namespace Moonshot.Player
 				transform.SetParent(newFrame.transform);
 				transform.localPosition = localPos;
 				transform.localRotation = localRot;
+				BroadcastMessage("OnEnterLocalFrame", newFrame);
 			}
 		}
 	}

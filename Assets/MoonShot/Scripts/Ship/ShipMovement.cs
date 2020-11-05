@@ -89,8 +89,9 @@ namespace Moonshot.Ship
 
 			// Button pressed, so accelerate.
 			//Debug.Log($"Gravity prominence = {m_gravityProvider.GetGravityProminence(transform.position)}");
-			float approxBodyDistance = Mathf.Sqrt(1.0f / m_gravityProvider.GetGravityProminence(transform.position));
-			Debug.Log($"Approx body distance: {approxBodyDistance}");
+			Vector3 globalPos = LocalFrame.TransformPointToGlobal(LocalFrame.Get(transform), transform.position);
+			float approxBodyDistance = Mathf.Sqrt(1.0f / m_gravityProvider.GetGravityProminence(globalPos));
+			//Debug.Log($"Approx body distance: {approxBodyDistance}");
 			float accelMultiplier = Mathf.Clamp(m_maxAccelScaleMultiplier * approxBodyDistance / m_maxAccelScaleMultiplierDistance, 1.0f, m_maxAccelScaleMultiplier);
 
 			// For now, just naive
