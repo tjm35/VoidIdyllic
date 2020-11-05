@@ -9,7 +9,6 @@ namespace Moonshot.Player
 	public class CharacterController : MonoBehaviour
 	{
 		#region Editor Fields
-		public GameObject m_gravityProviderObject;
 		public string[] m_collisionLayers;
 		public Vector3 m_up = Vector3.up;
 		public float m_minHeight = 0.5f;
@@ -78,14 +77,7 @@ namespace Moonshot.Player
 		// See Unity Docs
 		void Start()
 		{
-			if (m_gravityProviderObject)
-			{
-				m_gravityProvider = m_gravityProviderObject?.GetComponent<IGravityProvider>();
-			}
-			else
-			{
-				m_gravityProvider = GlobalGravityProvider.Instance;
-			}
+			m_gravityProvider = GlobalGravityProvider.Instance;
 			m_characterPhysics = GetComponent<ICharacterPhysics>();
 			if (m_characterPhysics == null)
 			{
@@ -140,8 +132,10 @@ namespace Moonshot.Player
 			if (m_gravityProvider != null)
 			{
 				Vector3 newUpWS;
-				if (m_gravityProvider.GetUp(transform.position, out newUpWS))
+				var localFrame = LocalFrame.Get(transform);
+				if (m_gravityProvider.GetUp(LocalFrame.TransformPointToGlobal(localFrame, transform.position), out newUpWS))
 				{
+					newUpWS = LocalFrame.TransformVectorToLocal(localFrame, newUpWS);
 					Vector3 adjustedForward = Vector3.Cross(transform.right, newUpWS);
 					transform.rotation = Quaternion.LookRotation(adjustedForward, newUpWS);
 				}

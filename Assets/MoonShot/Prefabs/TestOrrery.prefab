@@ -120,14 +120,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3401877103232127096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.5497519, z: 0, w: 0.835328}
   m_LocalPosition: {x: 41.648304, y: 0, z: -297.09497}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3401877104661466886}
   m_Father: {fileID: 3401877102915753440}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -66.7, z: 0}
 --- !u!114 &3401877103232127102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_axis: {x: 0, y: 1, z: 0}
-  m_period: 10
+  m_period: 100
 --- !u!1 &3401877103322641712
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 3401877103322641718}
   - component: {fileID: 3401877103322641719}
   - component: {fileID: 3401877103322641717}
-  - component: {fileID: 3401877103322641716}
   m_Layer: 0
   m_Name: Sun Light
   m_TagString: Untagged
@@ -241,7 +240,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -272,23 +271,6 @@ LookAtConstraint:
   m_Sources:
   - sourceTransform: {fileID: 3401877104661466886}
     weight: 1
---- !u!114 &3401877103322641716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401877103322641712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efd88862294d8b742bf633af0f0e9c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directionalLight: 0
-  useLightIntensity: 0
-  asset: {fileID: 11400000, guid: ca5902e82e87c004db767d459b833e11, type: 2}
-  lightSource: {fileID: 3401877103322641719}
-  tex: {fileID: 0}
 --- !u!1 &3401877103340182530
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3401877103340182530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1195.4336, y: 0, z: -104.586876}
+  m_LocalPosition: {x: 1156.4125, y: 0, z: -320.48413}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3401877104794127530}
@@ -337,7 +319,7 @@ MonoBehaviour:
   m_period: 180
   m_eccentricity: 0
   m_semimajorAxis: {x: 1200, y: 0, z: 0}
-  m_offsetAngle: 5
+  m_offsetAngle: 15.49
 --- !u!1 &3401877104065025930
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_radius: 200
-  m_surfaceGravityGs: 2
+  m_surfaceGravityGs: 0.5
 --- !u!1 &3401877104501705288
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,14 +663,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3401877104661466887}
-  m_LocalRotation: {x: -0, y: -0.5497519, z: -0, w: 0.835328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2936166976378604525}
   m_Father: {fileID: 3401877103232127103}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -66.7, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7251666766831123039
 MonoBehaviour:
   m_ObjectHideFlags: 0
