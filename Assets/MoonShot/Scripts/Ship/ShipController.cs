@@ -57,6 +57,7 @@ namespace Moonshot.Ship
 			{
 				collider.attachedRigidbody.AddForceAtPosition(m_shipCollideForceMultiplier * Vector3.Dot(WorldVelocity - collider.attachedRigidbody.velocity, i_deembedDirection) * i_deembedDirection, transform.position);
 			}
+			SendMessage("OnShipCollided", i_collider);
 		}
 
 		private int m_layerMask;
