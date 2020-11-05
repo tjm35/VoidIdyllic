@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlareAsset
   m_EditorClassIdentifier: 
   flareSprite: {fileID: 2800000, guid: 4ec72aaf0f037d44cb56f2870ef693cd, type: 3}
-  fadeWithScale: 0
+  fadeWithScale: 1
   fadeWithAlpha: 0
   spriteBlocks:
   - useLightColor: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
       height: 0.25
     scale: 1
     offset: -0.5
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0.6320754, g: 0.15801886, b: 0.15801886, a: 1}
   - useLightColor: 0
     useRotation: 0
     index: 1
@@ -50,6 +50,18 @@ MonoBehaviour:
       width: 0.5
       height: 0.25
     scale: 1
-    offset: -1.08
+    offset: -1.079
+    color: {r: 0.93949944, g: 1, b: 0.9386792, a: 1}
+  - useLightColor: 1
+    useRotation: 1
+    index: 0
+    block:
+      serializedVersion: 2
+      x: 0
+      y: 0.5
+      width: 1
+      height: 0.5
+    scale: 4.17
+    offset: 1
     color: {r: 1, g: 1, b: 1, a: 1}
   flareTexModel: 3
