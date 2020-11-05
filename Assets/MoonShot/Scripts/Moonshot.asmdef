@@ -2,7 +2,8 @@
     "name": "Moonshot",
     "references": [
         "GUID:39f89aec21c6a8345a6c38bf83ef5f3f",
-        "GUID:15fc0a57446b3144c949da3e2b9737a9"
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

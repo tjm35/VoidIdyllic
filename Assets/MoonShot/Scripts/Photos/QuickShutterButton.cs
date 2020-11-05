@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Moonshot.Photos
 {
@@ -8,14 +9,21 @@ namespace Moonshot.Photos
 	{
 		public PhotoSystem m_photoSystem;
 		public Camera m_camera;
+		public InputActionReference m_shutterButton;
 
 		// Update is called once per frame
-		void Update()
+		void Start()
 		{
-			if (Input.GetButtonDown("Fire1"))
+			InputAction action = m_shutterButton?.action;
+			if (action != null)
 			{
-				m_photoSystem.TakePhoto(m_camera);
+				action.performed += TakePhoto;
 			}
+		}
+
+		void TakePhoto(InputAction.CallbackContext i_context)
+		{ 
+			m_photoSystem.TakePhoto(m_camera);
 		}
 	}
 }

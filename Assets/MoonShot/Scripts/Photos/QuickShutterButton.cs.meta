@@ -3,7 +3,10 @@ guid: 536497a3dcf7ab04b9e3aeefa194853f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_photoSystem: {instanceID: 0}
+  - m_camera: {instanceID: 0}
+  - m_shutterButton: {fileID: 3912085375190452758, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

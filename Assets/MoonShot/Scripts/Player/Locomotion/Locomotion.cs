@@ -72,7 +72,7 @@ namespace Moonshot.Player.Locomotion
 				{
 					lookUp += 360.0f;
 				}
-				lookUp += lookTurn.y * m_xRotSpeed * Time.fixedDeltaTime;
+				lookUp += -lookTurn.y * m_xRotSpeed * Time.fixedDeltaTime;
 				lookUp = Mathf.Clamp(lookUp, -90.0f, 90.0f);
 				m_cameraBone.localRotation = Quaternion.Euler(lookUp, 0.0f, 0.0f);
 			}

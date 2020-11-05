@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LocomotionControls : MonoBehaviour
 {
@@ -12,21 +13,25 @@ public class LocomotionControls : MonoBehaviour
 	private bool m_jumpStored = false;
 	private float m_jumpStoreTimer = 0.0f;
 
+	public InputActionReference MoveAction;
+	public InputActionReference LookAction;
+
 	public Vector2 Move
 	{
 		get
 		{
-			return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+			return MoveAction.action.ReadValue<Vector2>();
 		}
 	}
 	public Vector2 Look
 	{
 		get
 		{
-			return ControllerLook + MouseLook;
+			return LookAction.action.ReadValue<Vector2>();
 		}
 	}
 
+	/*
 	public bool PullJump()
 	{
 		bool res = m_jumpStored && m_jumpStoreTimer < m_jumpStoreTime;
@@ -99,4 +104,5 @@ public class LocomotionControls : MonoBehaviour
 			m_jumpStoreTimer += Time.deltaTime;
 		}
 	}
+	*/
 }
