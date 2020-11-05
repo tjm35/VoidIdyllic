@@ -76,18 +76,19 @@ public class URPLensFlare : MonoBehaviour
         _totalMesh.Add(new Mesh());
     }
 
-    // public void RemoveLight(URPFlareLauncher urpFlareLauncher)
-    // {
-    //     if(DebugMode)Debug.Log("Remove Light " + urpFlareLauncher.gameObject.name + " from FlareList");
-    //     int t = lightSource.IndexOf(urpFlareLauncher);
-    //     lightSource.RemoveAt(t);
-    //     flareDatas.RemoveAt(t);
-    //     while (_totalMesh.Count > lightSource.Count)
-    //     {
-    //         _totalMesh.RemoveAt(0);
-    //     }
-    // }
-    private void Update()
+	public void RemoveLight(URPFlareLauncher urpFlareLauncher)
+	{
+		if (DebugMode) Debug.Log("Remove Light " + urpFlareLauncher.gameObject.name + " from FlareList");
+		int t = lightSource.IndexOf(urpFlareLauncher);
+		lightSource.RemoveAt(t);
+		flareDatas.RemoveAt(t);
+		while (_totalMesh.Count > lightSource.Count)
+		{
+			_totalMesh.RemoveAt(0);
+		}
+	}
+
+	private void Update()
     {
         _halfScreen = new Vector2(_camera.scaledPixelWidth / 2 + _camera.pixelRect.xMin, _camera.scaledPixelHeight / 2 + _camera.pixelRect.yMin);
         foreach (Mesh mesh in _totalMesh)

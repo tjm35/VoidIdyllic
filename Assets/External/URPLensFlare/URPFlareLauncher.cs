@@ -41,7 +41,10 @@ public class URPFlareLauncher : MonoBehaviour
     private void OnDestroy()
     {
         // Add self to awake function: RemoveLight in URPLensFlare.cs on camera in render;
-        //Camera.main.GetComponent<URPLensFlare>().RemoveLight(this);
+		foreach (var ulf in FindObjectsOfType<URPLensFlare>())
+		{
+			ulf.RemoveLight(this);
+		}
     }
     
 }
