@@ -237,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6086851539833660967}
   - component: {fileID: 1716008647193293160}
+  - component: {fileID: 2328951838398798292}
   m_Layer: 11
   m_Name: MenuTabToggle
   m_TagString: Untagged
@@ -311,3 +312,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &2328951838398798292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275479793528943261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa69fbec1b3778b45893642a8e77c4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
