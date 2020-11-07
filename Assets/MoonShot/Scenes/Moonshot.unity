@@ -3169,7 +3169,7 @@ MonoBehaviour:
   Move2DAction: {fileID: -5611333553130600924, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   Look2DAction: {fileID: 2973176047258717476, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   RollAction: {fileID: 6819529812888444438, guid: 7238048b838239646848c0cf66c4b930, type: 3}
-  VerticalAction: {fileID: 0}
+  VerticalAction: {fileID: -5330203213034852168, guid: 7238048b838239646848c0cf66c4b930, type: 3}
 --- !u!114 &1815387525
 MonoBehaviour:
   m_ObjectHideFlags: 0

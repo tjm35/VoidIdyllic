@@ -10,12 +10,14 @@ namespace Moonshot.Ship
 		public InputActionReference Move2DAction;
 		public InputActionReference Look2DAction;
 		public InputActionReference RollAction;
+		public InputActionReference VerticalAction;
 
-		public Vector3 Move => new Vector3(Move2D.x, 0.0f, Move2D.y);
+		public Vector3 Move => new Vector3(Move2D.x, Vertical, Move2D.y);
 		public Vector3 Look => new Vector3(Look2D.y, Look2D.x, Roll);
 
 		public Vector2 Move2D => Move2DAction.action.ReadValue<Vector2>();
 		public Vector2 Look2D => Look2DAction.action.ReadValue<Vector2>();
 		public float Roll => RollAction.action.ReadValue<float>();
+		public float Vertical => VerticalAction.action.ReadValue<float>();
 	}
 }
