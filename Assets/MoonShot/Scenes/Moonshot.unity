@@ -287,6 +287,52 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 7972906218460607115, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
   m_PrefabInstance: {fileID: 7972906218674873430}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &281149530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281149532}
+  - component: {fileID: 281149531}
+  m_Layer: 0
+  m_Name: POIDebug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281149531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281149530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb186f7f2a7a43b408a4425b7c16bc0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_targetPOI: {fileID: 607918385}
+  m_evaluator: {fileID: 696039047}
+  m_testCamera: {fileID: 7972906218674873434}
+--- !u!4 &281149532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281149530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &297728795
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +466,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4526006896129044003, guid: 559246d3a0e30f846a6ee4fd1b0c09f7, type: 3}
   m_PrefabInstance: {fileID: 4526006896595654956}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &607918382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3401877104417829503, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+  m_PrefabInstance: {fileID: 3401877103718964715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &607918385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607918382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41dbd83eee0da3d4884644451a3b1a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &611951695
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +574,7 @@ GameObject:
   - component: {fileID: 696039046}
   - component: {fileID: 696039045}
   - component: {fileID: 696039044}
+  - component: {fileID: 696039047}
   m_Layer: 0
   m_Name: PhotoSystem
   m_TagString: Untagged
@@ -560,6 +624,18 @@ Transform:
   m_Father: {fileID: 1869605221}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &696039047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696039043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e767c9cf2c80d349aa6b7a89bfd5905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &698394844 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 3401877103322641719, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
@@ -3093,6 +3169,7 @@ MonoBehaviour:
   Move2DAction: {fileID: -5611333553130600924, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   Look2DAction: {fileID: 2973176047258717476, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   RollAction: {fileID: 6819529812888444438, guid: 7238048b838239646848c0cf66c4b930, type: 3}
+  VerticalAction: {fileID: 0}
 --- !u!114 &1815387525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4326,3 +4403,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+--- !u!20 &7972906218674873434 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7972906218347609627, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+  m_PrefabInstance: {fileID: 7972906218674873430}
+  m_PrefabAsset: {fileID: 0}

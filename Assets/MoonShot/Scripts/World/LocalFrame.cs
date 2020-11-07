@@ -59,9 +59,19 @@ namespace Moonshot.World
 			return i_frame ? i_frame.TransformPointToLocal(i_globalPoint) : i_globalPoint;
 		}
 
+		public static Vector3 TransformVectorToGlobal(LocalFrame i_frame, Vector3 i_localVector)
+		{
+			return i_frame ? i_frame.TransformVectorToGlobal(i_localVector) : i_localVector;
+		}
+
 		public static Vector3 TransformVectorToLocal(LocalFrame i_frame, Vector3 i_globalVector)
 		{
 			return i_frame ? i_frame.TransformVectorToLocal(i_globalVector) : i_globalVector;
+		}
+
+		public static Vector3 GetGlobalPosition(Transform i_transform)
+		{
+			return TransformPointToGlobal(Get(i_transform), i_transform.position);
 		}
 	}
 }
