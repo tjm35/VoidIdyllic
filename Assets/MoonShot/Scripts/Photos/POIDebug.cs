@@ -15,10 +15,18 @@ namespace Moonshot.Photos
 		{
 			if (m_targetPOI && m_evaluator)
 			{
-				var context = new PhotoEvaluator.Context();
-				context.m_camera = m_testCamera;
-				Debug.Log($"{m_targetPOI.gameObject.name} visibility: {m_evaluator.GetVisibility(m_targetPOI, context)}");
+				if (m_context == null)
+				{
+					m_context = m_evaluator.ConstructContext(m_testCamera);
+				}
+				if (m_context.m_ready)
+				{
+					Debug.Log($"{m_targetPOI.gameObject.name} visibility: {m_evaluator.GetVisibility(m_targetPOI, m_context)}");
+					m_context = null;
+				}
 			}
 		}
+
+		private PhotoEvaluator.Context m_context;
 	}
 }
