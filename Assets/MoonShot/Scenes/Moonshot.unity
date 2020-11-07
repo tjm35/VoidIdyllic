@@ -369,8 +369,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 3
-  far clip plane: 30000
+  near clip plane: 0.1
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -4841,6 +4841,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7972906218641567251, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7972906218641567253, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -4964,6 +4968,10 @@ PrefabInstance:
     - target: {fileID: 7972906218871615804, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906218962469589, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: field of view
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7972906219054693122, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_AnchorMin.y
