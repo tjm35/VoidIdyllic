@@ -9,7 +9,6 @@ namespace Moonshot.Player
 {
 	public class PlayerFrameManager : MonoBehaviour
 	{
-		public Transform SpaceFrameContext;
 		public float m_planetFrameRange = 300.0f;
 		public float m_switchSpaceFrameDistance = 100.0f;
 
@@ -111,7 +110,6 @@ namespace Moonshot.Player
 			Vector3 globalPos = LocalFrame.TransformPointToGlobal(currentFrame, transform.position);
 
 			GameObject globalHook = new GameObject("Temporary Global Hook");
-			globalHook.transform.SetParent(SpaceFrameContext);
 			globalHook.transform.position = globalPos;
 			// TODO: Construct suitable orbital frame.
 

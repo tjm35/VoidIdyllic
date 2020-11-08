@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2568280818149458754}
   - component: {fileID: 2568280818149458755}
   - component: {fileID: 2568280818149458767}
+  - component: {fileID: 7587668659071221099}
   m_Layer: 0
   m_Name: PlayerOnFoot
   m_TagString: Untagged
@@ -157,3 +158,16 @@ MonoBehaviour:
   SpaceFrameContext: {fileID: 0}
   m_planetFrameRange: 300
   m_switchSpaceFrameDistance: 100
+--- !u!114 &7587668659071221099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2568280818149458756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01391a8332ef9454e8da1046c7392ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InFlightPrefab: {fileID: 3937345481483510295, guid: 1175fe02d7e16534fb2df793083a2cf7, type: 3}
