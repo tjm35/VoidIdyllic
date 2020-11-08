@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.IO;
+using System.Linq;
 using System;
 
 namespace Moonshot.Photos
@@ -12,6 +13,13 @@ namespace Moonshot.Photos
 		public static PhotoSystem Instance { get; private set; }
 		public PhotoEvaluator m_evaluator;
 		public Material m_linearToGammaMat;
+
+		public interface IPhotoData
+		{
+			Texture2D PreviewTexture { get; }
+			Texture2D FullTexture { get; }
+			IEnumerable<Goal> GoalsMet { get; }
+		}
 
 		public void TakePhoto(Camera i_camera)
 		{
@@ -26,7 +34,22 @@ namespace Moonshot.Photos
 			return m_completedGoals.Contains(i_goal);
 		}
 
-		public IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled, PhotoEvaluator.Context i_context)
+		public IEnumerable<IPhotoData> GetPhotos()
+		{
+			return m_photos.Cast<IPhotoData>();
+		}
+
+		public void DeletePhoto(IPhotoData i_data)
+		{
+			if (i_data.PreviewTexture != i_data.FullTexture)
+			{
+				Destroy(i_data.PreviewTexture);
+			}
+			Destroy(i_data.FullTexture);
+			m_photos.Remove((PhotoData)i_data);
+		}
+
+		private IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled, PhotoEvaluator.Context i_context)
 		{
 			yield return new WaitForEndOfFrame();
 
@@ -44,9 +67,19 @@ namespace Moonshot.Photos
 				m_completedGoals.Add(goal);
 			}
 
-			EditorSavePicture(readableSaveTexture);
+			var data = new PhotoData();
+			data.PreviewTexture = readableSaveTexture;
+			data.FullTexture = readableSaveTexture;
+			data.GoalsMet = completedGoals.ToArray();
 
-			Destroy(readableSaveTexture);
+			EditorSavePicture(readableSaveTexture);
+		}
+
+		private class PhotoData : IPhotoData
+		{
+			public Texture2D PreviewTexture { get; set; }
+			public Texture2D FullTexture { get; set; }
+			public IEnumerable<Goal> GoalsMet { get; set; }
 		}
 
 		private void Awake()
@@ -57,6 +90,11 @@ namespace Moonshot.Photos
 
 		private void OnDestroy()
 		{
+			while (m_photos.Any())
+			{
+				DeletePhoto(m_photos.First());
+			}
+
 			Debug.Assert(Instance == this);
 			Instance = null;
 		}
@@ -99,5 +137,6 @@ namespace Moonshot.Photos
 		}
 
 		private HashSet<Goal> m_completedGoals = new HashSet<Goal>();
+		private List<PhotoData> m_photos = new List<PhotoData>();
 	}
 }
