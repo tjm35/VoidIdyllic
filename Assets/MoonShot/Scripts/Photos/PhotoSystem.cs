@@ -9,6 +9,7 @@ namespace Moonshot.Photos
 {
 	public class PhotoSystem : MonoBehaviour
 	{
+		public static PhotoSystem Instance { get; private set; }
 		public PhotoEvaluator m_evaluator;
 		public Material m_linearToGammaMat;
 
@@ -18,6 +19,11 @@ namespace Moonshot.Photos
 			i_camera.enabled = true;
 			var context = m_evaluator.ConstructContext(i_camera);
 			StartCoroutine(TakePhotoCoroutine(i_camera, wasEnabled, context));
+		}
+
+		public bool IsGoalComplete(Goal i_goal)
+		{
+			return m_completedGoals.Contains(i_goal);
 		}
 
 		public IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled, PhotoEvaluator.Context i_context)
@@ -32,11 +38,27 @@ namespace Moonshot.Photos
 				yield return new WaitForEndOfFrame();
 			}
 
-			m_evaluator.EvaluateGoals(i_context);
+			var completedGoals = m_evaluator.EvaluateGoals(i_context);
+			foreach (var goal in completedGoals)
+			{
+				m_completedGoals.Add(goal);
+			}
 
 			EditorSavePicture(readableSaveTexture);
 
 			Destroy(readableSaveTexture);
+		}
+
+		private void Awake()
+		{
+			Debug.Assert(Instance == null);
+			Instance = this;
+		}
+
+		private void OnDestroy()
+		{
+			Debug.Assert(Instance == this);
+			Instance = null;
 		}
 
 		private Texture2D RecordCameraToNewReadableTexture(Camera i_camera)
@@ -75,5 +97,7 @@ namespace Moonshot.Photos
 				File.WriteAllBytes(savePath, pngData);
 			}
 		}
+
+		private HashSet<Goal> m_completedGoals = new HashSet<Goal>();
 	}
 }
