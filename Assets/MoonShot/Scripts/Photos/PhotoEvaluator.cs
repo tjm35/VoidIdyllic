@@ -3,28 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Moonshot.World;
 using UnityEngine;
+using System.Linq;
 
 namespace Moonshot.Photos
 {
 	public class PhotoEvaluator : MonoBehaviour
 	{
+		public Transform m_globalGoals;
+
 		public class Context
 		{
-			public Camera m_camera;
+			public Camera m_analysisCamera;
 			public bool m_ready;
 			public Dictionary<PointOfInterest, int> m_visibility;
 		}
 
-		public Context ConstructContext(Camera i_camera)
+		public Context ConstructContext(Camera i_viewCamera)
 		{
 			var context = new Context();
-			context.m_camera = i_camera;
+			context.m_analysisCamera = i_viewCamera.GetComponent<POIAnalysisCameraRef>().m_poiAnalysisCamera;
 			context.m_ready = false;
 			StartCoroutine(PrepareContextCoroutine(context));
 			return context;
 		}
 
-		public float GetVisibility(PointOfInterest i_poi, Context i_context)
+		public int GetVisibility(PointOfInterest i_poi, Context i_context)
 		{
 			if (i_context.m_visibility.ContainsKey(i_poi))
 			{
@@ -32,15 +35,33 @@ namespace Moonshot.Photos
 			}
 			else
 			{
-				return 0.0f;
+				return 0;
 			}
+		}
+
+		public IEnumerable<PointOfInterest> GetVisiblePOIs(int i_minVisibility, Context i_context)
+		{
+			return i_context.m_visibility.Where(kvp => kvp.Value >= i_minVisibility).Select(kvp => kvp.Key);
+		}
+
+		public IEnumerable<Goal> EvaluateGoals(Context i_context)
+		{
+			var goals = m_globalGoals.GetComponentsInChildren<Goal>();
+
+			// Debugging
+			foreach (var goal in goals)
+			{
+				Debug.Log($"Goal \"{goal.m_description}\": " + (goal.Check(this, i_context) ? "Succeeded" : "Failed"));
+			}
+
+			return goals.Where(goal => goal.Check(this, i_context));
 		}
 
 		private IEnumerator PrepareContextCoroutine(Context i_context)
 		{
 			yield return new WaitForEndOfFrame();
 
-			Texture2D readableSaveTexture = RecordCameraToNewReadableTexture(i_context.m_camera);
+			Texture2D readableSaveTexture = RecordCameraToNewReadableTexture(i_context.m_analysisCamera);
 
 			yield return new WaitForEndOfFrame();
 			yield return new WaitForEndOfFrame();

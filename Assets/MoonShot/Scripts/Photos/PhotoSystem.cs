@@ -9,25 +9,34 @@ namespace Moonshot.Photos
 {
 	public class PhotoSystem : MonoBehaviour
 	{
+		public PhotoEvaluator m_evaluator;
 		public Material m_linearToGammaMat;
 
 		public void TakePhoto(Camera i_camera)
 		{
 			bool wasEnabled = i_camera.enabled;
 			i_camera.enabled = true;
-			StartCoroutine(TakePhotoCoroutine(i_camera, wasEnabled));
+			var context = m_evaluator.ConstructContext(i_camera);
+			StartCoroutine(TakePhotoCoroutine(i_camera, wasEnabled, context));
 		}
 
-		public IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled)
+		public IEnumerator TakePhotoCoroutine(Camera i_camera, bool i_wasEnabled, PhotoEvaluator.Context i_context)
 		{
 			yield return new WaitForEndOfFrame();
 
 			Texture2D readableSaveTexture = RecordCameraToNewReadableTexture(i_camera);
+			i_camera.enabled = i_wasEnabled;
+
+			while (!i_context.m_ready)
+			{
+				yield return new WaitForEndOfFrame();
+			}
+
+			m_evaluator.EvaluateGoals(i_context);
 
 			EditorSavePicture(readableSaveTexture);
 
 			Destroy(readableSaveTexture);
-			i_camera.enabled = i_wasEnabled;
 		}
 
 		private Texture2D RecordCameraToNewReadableTexture(Camera i_camera)

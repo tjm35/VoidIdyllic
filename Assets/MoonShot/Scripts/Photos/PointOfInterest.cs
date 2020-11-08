@@ -6,6 +6,19 @@ namespace Moonshot.Photos
 {
 	public class PointOfInterest : MonoBehaviour
 	{
+		[System.Flags]
+		public enum Class
+		{
+			None = 0,
+			CelestialBody = 1,
+			Planet = 2 | CelestialBody,
+			Moon = 4 | CelestialBody,
+			Sun = 8 | CelestialBody,
+			Artifact = 16,
+		}
+
+		public Class m_class = Class.None;
+
 		public void Start()
 		{
 			m_color = s_colorGenerator.GetNextColor();
