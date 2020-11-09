@@ -71,6 +71,7 @@ namespace Moonshot.Photos
 			data.PreviewTexture = readableSaveTexture;
 			data.FullTexture = readableSaveTexture;
 			data.GoalsMet = completedGoals.ToArray();
+			m_photos.Add(data);
 
 			EditorSavePicture(readableSaveTexture);
 		}

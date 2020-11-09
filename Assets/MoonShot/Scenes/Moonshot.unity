@@ -3177,6 +3177,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orrery
       objectReference: {fileID: 0}
+    - target: {fileID: 3401877104567619194, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2670.4187
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401877104567619194, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 739.6888
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
 --- !u!1001 &3937345481820405653

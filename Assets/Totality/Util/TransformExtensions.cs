@@ -71,6 +71,20 @@ public static class TransformExtensions
 		}
 	}
 
+	public static bool IsDescendentOf(this Transform i_transform, Transform i_potentialAncestor)
+	{
+		Transform parent = i_transform.parent;
+		while (parent)
+		{
+			if (parent == i_potentialAncestor)
+			{
+				return true;
+			}
+			parent = parent.parent;
+		}
+		return false;
+	}
+
 	public static void ReparentChildren(this Transform i_transform, Transform i_newParent)
 	{
 		i_transform.GetChildren().ToList().ForEach(child => child.SetParent(i_newParent));
