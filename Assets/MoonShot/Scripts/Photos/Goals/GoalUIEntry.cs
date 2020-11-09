@@ -21,14 +21,27 @@ namespace Moonshot.Photos
 			}
 		}
 
+		private void Start()
+		{
+			m_cloudUI = transform.GetComponentInAncestors<CloudUploadUI>();
+		}
+
 		private void Update()
 		{
 			if (m_goal)
 			{
-				m_toggle.isOn = PhotoSystem.Instance.IsGoalComplete(m_goal);
+				if (m_cloudUI)
+				{
+					m_toggle.isOn = m_cloudUI.IsGoalMetBySelectedPhotos(m_goal);
+				}
+				else
+				{
+					m_toggle.isOn = PhotoSystem.Instance.IsGoalComplete(m_goal);
+				}
 			}
 		}
 
 		private Goal m_goal;
+		private CloudUploadUI m_cloudUI;
 	}
 }
