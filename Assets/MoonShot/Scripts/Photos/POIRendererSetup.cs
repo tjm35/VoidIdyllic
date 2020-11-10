@@ -18,13 +18,13 @@ namespace Moonshot.Photos
 			if (m_poi == null)
 			{
 				Transform t = transform;
-				while (t != null && t.GetComponent<PointOfInterest>() == null)
+				while (t != null && t.GetComponent<IPOIContext>() == null)
 				{
 					t = t.parent;
 				}
 				if (t != null)
 				{
-					m_poi = t.GetComponent<PointOfInterest>();
+					m_poi = t.GetComponent<IPOIContext>();
 				}
 				if (m_poi == null)
 				{
@@ -42,7 +42,7 @@ namespace Moonshot.Photos
 			m_poi?.SetupMaterial(m_block);
 		}
 
-		private PointOfInterest m_poi = null;
+		private IPOIContext m_poi = null;
 		private Renderer m_renderer = null;
 		private MaterialPropertyBlock m_block = null;
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moonshot.Photos
 {
-	public class PointOfInterest : MonoBehaviour
+	public class PointOfInterest : MonoBehaviour, IPOIContext
 	{
 		[System.Flags]
 		public enum Class

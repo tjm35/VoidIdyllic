@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Moonshot.Photos;
 using Moonshot.World;
 
 namespace Moonshot.Props
@@ -8,6 +9,7 @@ namespace Moonshot.Props
 	public class OrreryProp : MonoBehaviour
 	{
 		public GameObject m_highResPrefab;
+		public PointOfInterest m_pointOfInterest;
 
 		public void EnableHighRes(HighResProp i_highResObject)
 		{
@@ -21,7 +23,7 @@ namespace Moonshot.Props
 			m_highResProps.Remove(i_highResObject);
 			if (m_highResProps.Count == 0)
 			{
-				gameObject.SetActive(false);
+				gameObject.SetActive(true);
 			}
 		}
 
@@ -33,6 +35,14 @@ namespace Moonshot.Props
 			Debug.Assert(go.GetComponent<HighResProp>());
 			go.GetComponent<HighResProp>().OrreryProp = this;
 			return go;
+		}
+
+		private void Start()
+		{
+			if (m_pointOfInterest == null)
+			{
+				m_pointOfInterest = GetComponent<PointOfInterest>();
+			}
 		}
 
 		private HashSet<HighResProp> m_highResProps = new HashSet<HighResProp>();

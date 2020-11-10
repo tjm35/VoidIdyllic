@@ -3545,6 +3545,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8372707468859664303, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8952776237376197020, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: GoalsList
       value: 
