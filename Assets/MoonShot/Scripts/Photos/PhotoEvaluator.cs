@@ -15,6 +15,7 @@ namespace Moonshot.Photos
 		{
 			public Camera m_analysisCamera;
 			public bool m_ready;
+			public Transform m_globalLocation;
 			public Dictionary<PointOfInterest, int> m_visibility;
 		}
 
@@ -22,6 +23,11 @@ namespace Moonshot.Photos
 		{
 			var context = new Context();
 			context.m_analysisCamera = i_viewCamera.GetComponent<POIAnalysisCameraRef>().m_poiAnalysisCamera;
+			var lf = LocalFrame.Get(i_viewCamera.transform);
+			if (lf)
+			{
+				context.m_globalLocation = lf.GlobalLocation;
+			}
 			context.m_ready = false;
 			StartCoroutine(PrepareContextCoroutine(context));
 			return context;
