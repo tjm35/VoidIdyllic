@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Moonshot.World;
+using Moonshot.Props;
 using System;
 using UnityEngine.Animations;
 
@@ -17,6 +18,8 @@ namespace Moonshot.Planet
 		public GameObject LightPrefab;
 
 		public List<OrreryPlanet> LightSources;
+
+		public List<OrreryProp> OrreryProps;
 
 		public bool CanConstructFrame => HighResPlanetPrefab != null;
 
@@ -38,6 +41,13 @@ namespace Moonshot.Planet
 			return frame;
 		}
 
+		[ContextMenu("Rebuild Prop List")]
+		private void RebuildPropList()
+		{
+			OrreryProps.Clear();
+			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>());
+		}
+
 		private void CreateHighResPlanet(LocalFrame frame)
 		{
 			Instantiate(HighResPlanetPrefab, frame.transform, false);
@@ -55,7 +65,13 @@ namespace Moonshot.Planet
 
 		private void PopulateObjects(LocalFrame frame)
 		{
-			// Nothing right now
+			foreach (var prop in OrreryProps)
+			{
+				if (prop != null)
+				{
+					prop.CreateHighResProp(frame);
+				}
+			}
 		}
 
 		private void SetupLightForOtherLocalFrame(LocalFrame frame)
