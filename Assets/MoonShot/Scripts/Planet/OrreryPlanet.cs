@@ -8,7 +8,7 @@ using UnityEngine.Animations;
 
 namespace Moonshot.Planet
 {
-	public class OrreryPlanet : MonoBehaviour
+	public class OrreryPlanet : MonoBehaviour, PlanetMeshTools.IMeshBuildContext
 	{
 		public Color PlanetColor = Color.white;
 		public float PlanetIntensity = 1;
@@ -16,6 +16,10 @@ namespace Moonshot.Planet
 
 		public GameObject HighResPlanetPrefab;
 		public GameObject LightPrefab;
+
+		public MeshFilter OrreryMeshFilter;
+		public int OrrerySubDivs = 4;
+		public float OrreryMeshSmoothness = 0.0f;
 
 		public List<OrreryPlanet> LightSources;
 
@@ -115,5 +119,38 @@ namespace Moonshot.Planet
 			return obj;
 		}
 
+		public void NudgeDirection(ref Vector3 io_direction)
+		{
+			// Do nothing
+		}
+
+		public float GetRadiusInDirection(Vector3 i_direction)
+		{
+			float radius = Radius;
+			//radius *= (1.0f + 0.02f * Mathf.Sin(6.0f * i_direction.y));
+			AdjustRadiusForCutaways(ref radius, i_direction);
+			return radius;
+		}
+
+		private bool AdjustRadiusForCutaways(ref float io_radius, Vector3 i_direction)
+		{
+			if (Physics.Raycast(transform.TransformPoint(Vector3.zero), transform.TransformDirection(i_direction), out RaycastHit hitInfo, io_radius, LayerMask.GetMask("PlanetCutaway"), QueryTriggerInteraction.Collide))
+			{
+				io_radius = hitInfo.distance;
+				return true;
+			}
+			return false;
+		}
+
+		public float SmoothNormals(Vector3 i_direction)
+		{
+			return OrreryMeshSmoothness;
+		}
+
+		[ContextMenu("Rebuild Orrery Mesh")]
+		private void RebuildOrreryMesh()
+		{
+			OrreryMeshFilter.sharedMesh = PlanetMeshTools.BuildFullPlanetMesh(this, i_subdivs: OrrerySubDivs, i_name: gameObject.name + " Orrery Mesh");
+		}
 	}
 }
