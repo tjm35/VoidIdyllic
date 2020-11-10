@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayMaker;
 using UnityEngine;
 
 namespace Moonshot.Photos
@@ -8,6 +9,8 @@ namespace Moonshot.Photos
 	{
 		public GameObject m_photoEntryPrefab;
 		public GameObject m_noPhotosMessage;
+		public PlayMakerFSM m_fsm;
+		public FullPhotoUI m_fullPhotoUI;
 
 		public void RefreshList()
 		{
@@ -22,6 +25,7 @@ namespace Moonshot.Photos
 				if (gue)
 				{
 					gue.Photo = photo;
+					gue.List = this;
 				}
 				m_entries.Add(entry);
 			}

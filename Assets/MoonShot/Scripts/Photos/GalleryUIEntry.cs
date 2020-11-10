@@ -16,6 +16,8 @@ namespace Moonshot.Photos
 			set { m_photo = value; m_image.texture = m_photo.PreviewTexture; UpdateGoals(); UpdateToggle(); }
 		}
 
+		public GalleryUIList List { get; set; }
+
 		private void Start()
 		{
 			m_cloudUI = transform.GetComponentInAncestors<CloudUploadUI>();
@@ -23,6 +25,23 @@ namespace Moonshot.Photos
 			if (m_toggle)
 			{
 				m_toggle.onValueChanged.AddListener(OnToggleChanged);
+			}
+			var button = GetComponent<Button>();
+			button.onClick.AddListener(OnButtonPressed);
+		}
+
+		private void OnButtonPressed()
+		{
+			if (List != null)
+			{
+				if (List.m_fullPhotoUI != null)
+				{
+					List.m_fullPhotoUI.Photo = Photo;
+				}
+				if (List.m_fsm != null)
+				{
+					List.m_fsm.SendEvent("ViewPhoto");
+				}
 			}
 		}
 

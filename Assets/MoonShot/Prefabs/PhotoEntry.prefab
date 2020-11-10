@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_image: {fileID: 336093319551331274}
   m_checkSpot: {fileID: 1405932500867411646}
+  m_previewMaterial: {fileID: 2100000, guid: 9a2df87f5d845ef49b83ad9a544b7289, type: 2}
 --- !u!1 &5545501780097074754
 GameObject:
   m_ObjectHideFlags: 0
