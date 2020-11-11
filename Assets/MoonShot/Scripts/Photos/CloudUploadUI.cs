@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Moonshot.Photos
@@ -12,6 +13,7 @@ namespace Moonshot.Photos
 		public Button m_uploadButton;
 		public TMP_Text m_uploadButtonText;
 		public int m_photosNeeded = 2;
+		public UnityEvent m_onUpload = new UnityEvent();
 
 		public int MaxPhotos => m_photosNeeded;
 
@@ -53,7 +55,7 @@ namespace Moonshot.Photos
 
 		public void DoUpload()
 		{
-			// TODO
+			m_onUpload.Invoke();
 		}
 
 		private void Update()
