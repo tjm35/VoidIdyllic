@@ -13,6 +13,7 @@ namespace Moonshot.Planet
 		public Color PlanetColor = Color.white;
 		public float PlanetIntensity = 1;
 		public float Radius = 100.0f;
+		public Material SurfaceMaterial;
 
 		public GameObject HighResPlanetPrefab;
 		public GameObject LightPrefab;
@@ -54,9 +55,11 @@ namespace Moonshot.Planet
 
 		private void CreateHighResPlanet(LocalFrame frame)
 		{
-			Instantiate(HighResPlanetPrefab, frame.transform, false);
+			var go = Instantiate(HighResPlanetPrefab, frame.transform, false);
 
-			// TODO - Initialise high res planet
+			var hrp = go.GetComponent<HighResPlanet>();
+
+			hrp.OrreryPlanet = this;
 		}
 
 		private void SetupLighting(LocalFrame frame)

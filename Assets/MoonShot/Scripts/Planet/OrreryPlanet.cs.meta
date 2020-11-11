@@ -4,8 +4,10 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - HighResPlanetPrefab: {instanceID: 0}
+  - SurfaceMaterial: {instanceID: 0}
+  - HighResPlanetPrefab: {fileID: 4526006896129044001, guid: 559246d3a0e30f846a6ee4fd1b0c09f7, type: 3}
   - LightPrefab: {fileID: 1425007914231666427, guid: 1cb5947706094e94f87f6fd9a825dce1, type: 3}
+  - OrreryMeshFilter: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
