@@ -1585,11 +1585,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1979305835172732477, guid: 6a97ecb2feede3844a060390eccfe891, type: 3}
   m_PrefabInstance: {fileID: 380664765}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &466386366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3468585586274349978, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-  m_PrefabInstance: {fileID: 7972906218674873430}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &473001987 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6206702687527597753, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
@@ -2879,7 +2874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 466386366}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1001687789
@@ -7717,7 +7712,7 @@ MonoBehaviour:
         - 
         - 
         actionEnabled: 0101010101
-        actionIsOpen: 0000000001
+        actionIsOpen: 0101010101
         actionStartIndex: 0000000004000000080000000b00000010000000
         actionHashCodes: 35a0cb0335a0cb036ec3470168fece054166d801
         unityObjectParams:
@@ -9739,6 +9734,10 @@ PrefabInstance:
     - target: {fileID: 1888583167090361292, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_SizeDelta.y
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460935429720889762, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2603473482606698863, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_onUpload.m_PersistentCalls.m_Calls.Array.size
