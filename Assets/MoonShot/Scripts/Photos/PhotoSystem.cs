@@ -13,6 +13,15 @@ namespace Moonshot.Photos
 		public static PhotoSystem Instance { get; private set; }
 		public PhotoEvaluator m_evaluator;
 		public Material m_linearToGammaMat;
+		public bool m_usePrefillPhotos;
+		public List<PrefillPhoto> m_prefillPhotos;
+
+		[Serializable]
+		public struct PrefillPhoto
+		{
+			public Texture2D m_image;
+			public List<Goal> m_goals;
+		}
 
 		public interface IPhotoData
 		{
@@ -41,11 +50,15 @@ namespace Moonshot.Photos
 
 		public void DeletePhoto(IPhotoData i_data)
 		{
-			if (i_data.PreviewTexture != i_data.FullTexture)
+			Debug.Assert(i_data is PhotoData);
+			if (!((PhotoData)i_data).IsAsset)
 			{
-				Destroy(i_data.PreviewTexture);
+				if (i_data.PreviewTexture != i_data.FullTexture)
+				{
+					Destroy(i_data.PreviewTexture);
+				}
+				Destroy(i_data.FullTexture);
 			}
-			Destroy(i_data.FullTexture);
 			m_photos.Remove((PhotoData)i_data);
 		}
 
@@ -81,12 +94,29 @@ namespace Moonshot.Photos
 			public Texture2D PreviewTexture { get; set; }
 			public Texture2D FullTexture { get; set; }
 			public IEnumerable<Goal> GoalsMet { get; set; }
+			public bool IsAsset = false;
 		}
 
 		private void Awake()
 		{
 			Debug.Assert(Instance == null);
 			Instance = this;
+		}
+
+		private void Start()
+		{
+			if (m_usePrefillPhotos)
+			{
+				foreach (var pf in m_prefillPhotos)
+				{
+					PhotoData pd = new PhotoData();
+					pd.FullTexture = pf.m_image;
+					pd.PreviewTexture = pf.m_image;
+					pd.GoalsMet = pf.m_goals ?? new List<Goal>();
+					pd.IsAsset = true;
+					m_photos.Add(pd);
+				}
+			}
 		}
 
 		private void OnDestroy()

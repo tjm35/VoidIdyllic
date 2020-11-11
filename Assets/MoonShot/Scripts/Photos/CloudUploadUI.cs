@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using Moonshot.UI;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -14,6 +14,7 @@ namespace Moonshot.Photos
 		public TMP_Text m_uploadButtonText;
 		public int m_photosNeeded = 2;
 		public UnityEvent m_onUpload = new UnityEvent();
+		public Brochure m_brochure;
 
 		public int MaxPhotos => m_photosNeeded;
 
@@ -55,7 +56,17 @@ namespace Moonshot.Photos
 
 		public void DoUpload()
 		{
+			if (m_brochure)
+			{
+				m_brochure.Build(m_selectedPhotos, CalcRating());
+			}
 			m_onUpload.Invoke();
+		}
+
+		private float CalcRating()
+		{
+			var goalsMet = m_selectedPhotos.SelectMany(p => p.GoalsMet).Distinct();
+			return 1.0f + 0.5f * goalsMet.Count();
 		}
 
 		private void Update()
