@@ -2792,7 +2792,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 0
     EnableDebugFlow: 0
@@ -5956,6 +5956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046e5b364542ad9449a5ae7790ec2e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_menuFSM: {fileID: 0}
 --- !u!1 &5864310184650626656
 GameObject:
   m_ObjectHideFlags: 0
@@ -7977,6 +7978,10 @@ MonoBehaviour:
   m_uploadButton: {fileID: 4802401919706460961}
   m_uploadButtonText: {fileID: 706940924010279222}
   m_photosNeeded: 2
+  m_onUpload:
+    m_PersistentCalls:
+      m_Calls: []
+  m_brochure: {fileID: 0}
 --- !u!1 &8749072486715690454
 GameObject:
   m_ObjectHideFlags: 0
