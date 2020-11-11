@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Moonshot.Photos;
+using NaughtyAttributes;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -13,10 +14,12 @@ namespace Moonshot.UI
 		[Serializable]
 		public struct PhotoSlot
 		{
+			[Required]
 			public RawImage m_slot;
 			public List<Goal> m_matchingGoals;
 		}
 
+		[ReorderableList]
 		public List<PhotoSlot> m_slots;
 		public StarRating m_starRating;
 

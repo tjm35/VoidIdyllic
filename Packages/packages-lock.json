@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtyattributes": {
+      "version": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6610c4be31942e323a3be910ac567ec528c78d0b"
+    },
     "com.unity.ide.visualstudio": {
       "version": "2.0.2",
       "depth": 0,
