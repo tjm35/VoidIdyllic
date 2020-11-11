@@ -7587,16 +7587,18 @@ MonoBehaviour:
         - Totality.PlayMakerIntegration.InputSystem.GetButtonDown
         - HutongGames.PlayMaker.Actions.SetFsmBool
         - HutongGames.PlayMaker.Actions.EnumSwitch
+        - HutongGames.PlayMaker.Actions.SetMouseCursor
         customNames:
         - 
         - 
         - 
         - 
         - 
-        actionEnabled: 0101010101
-        actionIsOpen: 0101010101
-        actionStartIndex: 0000000004000000080000000b00000010000000
-        actionHashCodes: 35a0cb0335a0cb036ec3470168fece054166d801
+        - 
+        actionEnabled: 010101010101
+        actionIsOpen: 010101010101
+        actionStartIndex: 0000000004000000080000000b0000001000000016000000
+        actionHashCodes: 35a0cb0335a0cb036ec3470168fece054166d801798f5c04
         unityObjectParams:
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
@@ -7630,7 +7632,14 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: MenuActive
-        fsmObjectParams: []
+        fsmObjectParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: 
+          value: {fileID: 0}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams:
@@ -7687,6 +7696,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -7704,7 +7725,7 @@ MonoBehaviour:
         - HutongGames.PlayMaker.FsmEvent
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000000300000011000000110000000500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000
+        paramDataType: 050000000300000011000000110000000500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000210000001100000011000000
         paramName:
         - inputAsset
         - actionMap
@@ -7728,8 +7749,11 @@ MonoBehaviour:
         - sendEvent
         - 
         - everyFrame
-        paramDataPos: 00000000000000000000000001000000010000000100000002000000030000000200000002000000040000000000000000000000010000000500000000000000000000000000000001000000010000000300000001000000
-        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
+        - cursorTexture
+        - hideCursor
+        - lockCursor
+        paramDataPos: 00000000000000000000000001000000010000000100000002000000030000000200000002000000040000000000000000000000010000000500000000000000000000000000000001000000010000000300000001000000000000000600000007000000
+        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000000000000000000000000000
     - name: InMenu_OnFoot
       description: 
       colorIndex: 0
@@ -7765,15 +7789,17 @@ MonoBehaviour:
         - Totality.PlayMakerIntegration.InputSystem.GetButtonDown
         - HutongGames.PlayMaker.Actions.SetFsmBool
         - HutongGames.PlayMaker.Actions.EnumSwitch
+        - HutongGames.PlayMaker.Actions.SetMouseCursor
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 01010101
-        actionIsOpen: 01010101
-        actionStartIndex: 0000000004000000070000000c000000
-        actionHashCodes: 35a0cb036ec3470168fece054166d801
+        - 
+        actionEnabled: 0101010101
+        actionIsOpen: 0101010101
+        actionStartIndex: 0000000004000000070000000c00000012000000
+        actionHashCodes: 35a0cb036ec3470168fece054166d801798f5c04
         unityObjectParams:
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         - {fileID: 7843953734159412457, guid: 7238048b838239646848c0cf66c4b930, type: 3}
@@ -7806,7 +7832,14 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: MenuActive
-        fsmObjectParams: []
+        fsmObjectParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: 
+          value: {fileID: 0}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams:
@@ -7851,6 +7884,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -7867,7 +7912,7 @@ MonoBehaviour:
         - HutongGames.PlayMaker.FsmEvent
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000
+        paramDataType: 0500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000210000001100000011000000
         paramName:
         - inputAsset
         - actionMap
@@ -7887,8 +7932,11 @@ MonoBehaviour:
         - sendEvent
         - 
         - everyFrame
-        paramDataPos: 000000000000000000000000010000000100000001000000020000000000000000000000010000000300000000000000000000000000000001000000010000000200000001000000
-        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
+        - cursorTexture
+        - hideCursor
+        - lockCursor
+        paramDataPos: 000000000000000000000000010000000100000001000000020000000000000000000000010000000300000000000000000000000000000001000000010000000200000001000000000000000400000005000000
+        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000000000000000000000000000
     - name: InFlight
       description: 
       colorIndex: 0
@@ -7925,16 +7973,18 @@ MonoBehaviour:
         - Totality.PlayMakerIntegration.InputSystem.GetButtonDown
         - HutongGames.PlayMaker.Actions.SetFsmBool
         - HutongGames.PlayMaker.Actions.EnumSwitch
+        - HutongGames.PlayMaker.Actions.SetMouseCursor
         customNames:
         - 
         - 
         - 
         - 
         - 
-        actionEnabled: 0101010101
-        actionIsOpen: 0101010101
-        actionStartIndex: 0000000004000000080000000b00000010000000
-        actionHashCodes: 35a0cb0335a0cb036ec3470168fece054166d801
+        - 
+        actionEnabled: 010101010101
+        actionIsOpen: 010101010101
+        actionStartIndex: 0000000004000000080000000b0000001000000016000000
+        actionHashCodes: 35a0cb0335a0cb036ec3470168fece054166d801798f5c04
         unityObjectParams:
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
@@ -7968,7 +8018,14 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: MenuActive
-        fsmObjectParams: []
+        fsmObjectParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: 
+          value: {fileID: 0}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams:
@@ -8025,6 +8082,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -8042,7 +8111,7 @@ MonoBehaviour:
         - HutongGames.PlayMaker.FsmEvent
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000000300000011000000110000000500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000
+        paramDataType: 050000000300000011000000110000000500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000210000001100000011000000
         paramName:
         - inputAsset
         - actionMap
@@ -8066,8 +8135,11 @@ MonoBehaviour:
         - sendEvent
         - 
         - everyFrame
-        paramDataPos: 00000000000000000000000001000000010000000100000002000000030000000200000002000000040000000000000000000000010000000500000000000000000000000000000001000000010000000300000001000000
-        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
+        - cursorTexture
+        - hideCursor
+        - lockCursor
+        paramDataPos: 00000000000000000000000001000000010000000100000002000000030000000200000002000000040000000000000000000000010000000500000000000000000000000000000001000000010000000300000001000000000000000600000007000000
+        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000000000000000000000000000
     - name: InMenu_InFlight
       description: 
       colorIndex: 0
@@ -8103,15 +8175,17 @@ MonoBehaviour:
         - Totality.PlayMakerIntegration.InputSystem.GetButtonDown
         - HutongGames.PlayMaker.Actions.SetFsmBool
         - HutongGames.PlayMaker.Actions.EnumSwitch
+        - HutongGames.PlayMaker.Actions.SetMouseCursor
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 01010101
-        actionIsOpen: 01010101
-        actionStartIndex: 0000000004000000070000000c000000
-        actionHashCodes: 35a0cb036ec3470168fece054166d801
+        - 
+        actionEnabled: 0101010101
+        actionIsOpen: 0101010101
+        actionStartIndex: 0000000004000000070000000c00000012000000
+        actionHashCodes: 35a0cb036ec3470168fece054166d801798f5c04
         unityObjectParams:
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         - {fileID: 7843953734159412457, guid: 7238048b838239646848c0cf66c4b930, type: 3}
@@ -8144,7 +8218,14 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: MenuActive
-        fsmObjectParams: []
+        fsmObjectParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: 
+          value: {fileID: 0}
         fsmVarParams: []
         fsmArrayParams: []
         fsmEnumParams:
@@ -8189,6 +8270,18 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -8205,7 +8298,7 @@ MonoBehaviour:
         - HutongGames.PlayMaker.FsmEvent
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 0500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000
+        paramDataType: 0500000003000000110000001100000005000000170000001100000014000000120000001200000011000000010000002a0000000c0000002a0000000c0000001700000001000000210000001100000011000000
         paramName:
         - inputAsset
         - actionMap
@@ -8225,8 +8318,11 @@ MonoBehaviour:
         - sendEvent
         - 
         - everyFrame
-        paramDataPos: 000000000000000000000000010000000100000001000000020000000000000000000000010000000300000000000000000000000000000001000000010000000200000001000000
-        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000
+        - cursorTexture
+        - hideCursor
+        - lockCursor
+        paramDataPos: 000000000000000000000000010000000100000001000000020000000000000000000000010000000300000000000000000000000000000001000000010000000200000001000000000000000400000005000000
+        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001000000000000000000000000000000
     - name: EndSequence
       description: 
       colorIndex: 0
@@ -8244,13 +8340,17 @@ MonoBehaviour:
         actionNames:
         - Totality.PlayMakerIntegration.InputSystem.ActivateActionMap
         - HutongGames.PlayMaker.Actions.SetFsmBool
+        - Totality.PlayMakerIntegration.InputSystem.SetCursorLock
+        - HutongGames.PlayMaker.Actions.SetMouseCursor
         customNames:
         - 
         - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000004000000
-        actionHashCodes: 35a0cb0368fece05
+        - 
+        - 
+        actionEnabled: 01010101
+        actionIsOpen: 01010101
+        actionStartIndex: 0000000004000000090000000b000000
+        actionHashCodes: 35a0cb0368fece05347abc00798f5c04
         unityObjectParams:
         - {fileID: -944628639613478452, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         fsmGameObjectParams: []
@@ -8282,10 +8382,24 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: MenuActive
-        fsmObjectParams: []
+        fsmObjectParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          typeName: 
+          value: {fileID: 0}
         fsmVarParams: []
         fsmArrayParams: []
-        fsmEnumParams: []
+        fsmEnumParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          enumName: UnityEngine.CursorLockMode
+          intValue: 0
         fsmFloatParams: []
         fsmIntParams: []
         fsmBoolParams:
@@ -8307,6 +8421,24 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -8319,7 +8451,7 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000000300000011000000110000001400000012000000120000001100000001000000
+        paramDataType: 0500000003000000110000001100000014000000120000001200000011000000010000002a00000011000000210000001100000011000000
         paramName:
         - inputAsset
         - actionMap
@@ -8330,8 +8462,13 @@ MonoBehaviour:
         - variableName
         - setValue
         - everyFrame
-        paramDataPos: 000000000000000000000000010000000000000000000000010000000200000000000000
-        paramByteDataSize: 000000000000000000000000000000000000000000000000000000000000000001000000
+        - lockMode
+        - visible
+        - cursorTexture
+        - hideCursor
+        - lockCursor
+        paramDataPos: 0000000000000000000000000100000000000000000000000100000002000000000000000000000003000000000000000400000005000000
+        paramByteDataSize: 0000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
