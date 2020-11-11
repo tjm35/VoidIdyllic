@@ -3895,6 +3895,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8433685995282037295, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_menuFSM
+      value: 
+      objectReference: {fileID: 1797956536}
     - target: {fileID: 8952776237376197020, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: GoalsList
       value: 
