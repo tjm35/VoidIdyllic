@@ -18,6 +18,8 @@ namespace Moonshot.Player.Locomotion
 		public float m_xRotSpeed = 120.0f;
 		public float m_yRotSpeed = 270.0f;
 		public float m_dragTurnMultiplier = 1.0f;
+		public float m_jumpBoostTime = 3.0f;
+		public float m_jumpBoostSpeed = 3.0f;
 
 		public string debug_State = "Unset";
 
@@ -39,7 +41,7 @@ namespace Moonshot.Player.Locomotion
 			m_stateMachine.FixedUpdate(this);
 		}
 
-		public void UpdateStickMovement(bool i_falling)
+		public void UpdateStickMovement(bool i_falling, bool i_jumpBoost)
 		{
 			Vector3 moveInputVector = LocomotionControls.MoveInstructionWS;
 			Vector3 flattenedMoveInput = moveInputVector - CharacterController.UpWS * Vector3.Dot(CharacterController.UpWS, moveInputVector);
@@ -48,6 +50,10 @@ namespace Moonshot.Player.Locomotion
 			if (i_falling)
 			{
 				moveVelocity -= CharacterController.UpWS * m_fallSpeed;
+			}
+			if (i_jumpBoost)
+			{
+				moveVelocity += CharacterController.UpWS * m_jumpBoostSpeed;
 			}
 
 			CharacterController.MoveWorldVelocity(moveVelocity);

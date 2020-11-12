@@ -15,6 +15,7 @@ public class LocomotionControls : MonoBehaviour
 
 	public InputActionReference MoveAction;
 	public InputActionReference LookAction;
+	public InputActionReference JumpAction;
 
 	public Vector2 Move
 	{
@@ -31,7 +32,6 @@ public class LocomotionControls : MonoBehaviour
 		}
 	}
 
-	/*
 	public bool PullJump()
 	{
 		bool res = m_jumpStored && m_jumpStoreTimer < m_jumpStoreTime;
@@ -39,17 +39,18 @@ public class LocomotionControls : MonoBehaviour
 		return res;
 	}
 
-	public bool PullInteract()
-	{
-		return Input.GetButtonDown("Interact");
-	}
-
 	public bool Jump
 	{
 		get
 		{
-			return Input.GetButton("Jump");
+			return JumpAction.action.ReadValue<float>() > 0.5f;
 		}
+	}
+
+	/*
+	public bool PullInteract()
+	{
+		return Input.GetButtonDown("Interact");
 	}
 
 	public bool Sprint
@@ -91,18 +92,21 @@ public class LocomotionControls : MonoBehaviour
 			return Vector2.Scale(m_mouseSensitivity, new Vector2(Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y")));
 		}
 	}
+	*/
+
+	private void Start()
+	{
+		JumpAction.action.started += OnJumpPressed;
+	}
+
+	private void OnJumpPressed(InputAction.CallbackContext i_context)
+	{
+		m_jumpStored = true;
+		m_jumpStoreTimer = 0.0f;
+	}
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Jump"))
-		{
-			m_jumpStored = true;
-			m_jumpStoreTimer = 0.0f;
-		}
-		else
-		{
-			m_jumpStoreTimer += Time.deltaTime;
-		}
+		m_jumpStoreTimer += Time.deltaTime;
 	}
-	*/
 }

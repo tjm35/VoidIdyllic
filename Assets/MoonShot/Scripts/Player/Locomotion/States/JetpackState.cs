@@ -1,28 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Totality.StateMachine;
+using UnityEngine;
 
 namespace Moonshot.Player.Locomotion
 {
-	public class FreefallState : State<Locomotion>
+	public class JetpackState : State<Locomotion>
 	{
+		public JetpackState(bool i_fromJump, Locomotion i_locomotion)
+		{
+			m_remainingBoostTime = (i_fromJump? i_locomotion.m_jumpBoostTime : 0.0f);
+		}
+
 		public override void UpdateState(StateMachine<Locomotion> i_machine, Locomotion i_locomotion)
 		{
-			if (i_locomotion.CharacterController.IsGrounded)
+			if (i_locomotion.CharacterController.IsGrounded && m_remainingBoostTime <= 0.0f)
 			{
 				i_machine.SwitchToState(new LocomotingState(), i_locomotion);
 			}
-			if (i_locomotion.LocomotionControls.Jump == true)
+			if (i_locomotion.LocomotionControls.Jump == false)
 			{
-				i_machine.SwitchToState(new JetpackState(false, i_locomotion), i_locomotion);
+				i_machine.SwitchToState(new FreefallState(), i_locomotion);
 			}
 		}
 
 		public override void FixedUpdate(Locomotion i_locomotion)
 		{
+			m_remainingBoostTime -= Time.fixedDeltaTime;
+
 			//i_locomotion.UpdateDragTurning();
-			i_locomotion.UpdateStickMovement(true, false);
+			i_locomotion.UpdateStickMovement(false, m_remainingBoostTime > 0.0f);
 
 			//i_fpc.FixedUpdatePlayerLook();
 			//i_fpc.FixedUpdatePlayerMove(i_fpc.Cfg.m_inAirMoveAccel);
@@ -44,5 +51,7 @@ namespace Moonshot.Player.Locomotion
 			//	i_fpc.FixedUpdateApplyFalling(false);
 			//}
 		}
+
+		private float m_remainingBoostTime;
 	}
 }

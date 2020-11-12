@@ -13,12 +13,16 @@ namespace Moonshot.Player.Locomotion
 			{
 				i_machine.SwitchToState(new FreefallState(), i_locomotion);
 			}
+			if (i_locomotion.LocomotionControls.PullJump())
+			{
+				i_machine.SwitchToState(new JetpackState(true, i_locomotion), i_locomotion);
+			}
 		}
 
 		public override void FixedUpdate(Locomotion i_locomotion)
 		{
 			//i_locomotion.UpdateDragTurning();
-			i_locomotion.UpdateStickMovement(false);
+			i_locomotion.UpdateStickMovement(false, false);
 
 			//i_fpc.FixedUpdatePlayerLook();
 			//i_fpc.FixedUpdatePlayerMove(i_fpc.Cfg.m_moveAccel);

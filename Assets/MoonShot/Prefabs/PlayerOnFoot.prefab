@@ -83,6 +83,7 @@ MonoBehaviour:
   m_jumpStoreTime: 1
   MoveAction: {fileID: 699577980741504567, guid: 7238048b838239646848c0cf66c4b930, type: 3}
   LookAction: {fileID: 6367445633076174829, guid: 7238048b838239646848c0cf66c4b930, type: 3}
+  JumpAction: {fileID: 6388770217094038401, guid: 7238048b838239646848c0cf66c4b930, type: 3}
 --- !u!114 &2686705428790965555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +143,8 @@ MonoBehaviour:
   m_xRotSpeed: 90
   m_yRotSpeed: 90
   m_dragTurnMultiplier: 1
+  m_jumpBoostTime: 3
+  m_jumpBoostSpeed: 3
   debug_State: Unset
 --- !u!114 &2568280818149458767
 MonoBehaviour:
@@ -155,9 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4fa1a2b7d5f3e4f874ebe6899e4a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceFrameContext: {fileID: 0}
   m_planetFrameRange: 300
   m_switchSpaceFrameDistance: 100
+  m_shiftDiscrepancyWarningThreshold: 0.01
 --- !u!114 &7587668659071221099
 MonoBehaviour:
   m_ObjectHideFlags: 0
