@@ -12,12 +12,14 @@ namespace Moonshot.Player
 		public float m_planetFrameRange = 300.0f;
 		public float m_switchSpaceFrameDistance = 100.0f;
 
+		public float m_shiftDiscrepancyWarningThreshold = 0.01f;
+
 		void Start()
 		{
 			UpdateFrame(true);
 		}
 
-		void Update()
+		void FixedUpdate()
 		{
 			UpdateFrame(false);
 		}
@@ -28,9 +30,22 @@ namespace Moonshot.Player
 
 			if (ShouldSwitchFrames(currentFrame))
 			{
+				var oldGlobalPos = LocalFrame.TransformPointToGlobal(currentFrame, transform.position);
+
 				LocalFrame newFrame = CreateSuitableLocalFrame(currentFrame);
 				ExitAndDestroyFrame(currentFrame);
+
+				var midGlobalPos = transform.position;
+
 				EnterFrame(newFrame);
+
+				var newGlobalPos = LocalFrame.TransformPointToGlobal(newFrame, transform.position);
+
+				var oldMidShift = (midGlobalPos - oldGlobalPos).magnitude;
+				var oldNewShift = (newGlobalPos - oldGlobalPos).magnitude;
+
+				//Debug.Log($"PlayerFrameManager: Frame shift occurred! Position errors {oldMidShift}, {oldNewShift}");
+				Debug.Assert(oldNewShift < m_shiftDiscrepancyWarningThreshold, "PlayerFrameManager: Unacceptably large error when shifting frames.");
 			}
 		}
 
