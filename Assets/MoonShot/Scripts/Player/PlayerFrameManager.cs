@@ -140,7 +140,7 @@ namespace Moonshot.Player
 		{
 			if (oldFrame)
 			{
-				BroadcastMessage("OnExitLocalFrame", oldFrame);
+				BroadcastMessage("OnExitLocalFrame", oldFrame, SendMessageOptions.DontRequireReceiver);
 				Vector3 globalPos = oldFrame.TransformPointToGlobal(transform.position);
 				Quaternion globalRot = oldFrame.TransformRotationToGlobal(transform.rotation);
 				transform.SetParent(null);
@@ -162,7 +162,7 @@ namespace Moonshot.Player
 				transform.SetParent(newFrame.transform);
 				transform.localPosition = localPos;
 				transform.localRotation = localRot;
-				BroadcastMessage("OnEnterLocalFrame", newFrame);
+				BroadcastMessage("OnEnterLocalFrame", newFrame, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
