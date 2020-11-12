@@ -15,6 +15,11 @@ namespace Moonshot.UI
 			m_toggle = GetComponent<Toggle>();
 		}
 
+		void OnDisable()
+		{
+			m_toggle.isOn = false;
+		}
+
 		public void OnSelect(BaseEventData eventData)
 		{
 			m_toggle.isOn = true;
