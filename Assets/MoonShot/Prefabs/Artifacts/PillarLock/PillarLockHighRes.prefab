@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2866166568148397122}
   - component: {fileID: 8906833490787579525}
   - component: {fileID: 753337609605953032}
+  - component: {fileID: 4948955915715331655}
   m_Layer: 8
   m_Name: PillarLockHighRes
   m_TagString: Untagged
@@ -93,6 +94,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c55e6913673eb94188db89a63873d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &4948955915715331655
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866166568148397125}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a74109afe01ff8a4a8f78f58d9291abd, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a74109afe01ff8a4a8f78f58d9291abd, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &6138745315070385174
 MonoBehaviour:
   m_ObjectHideFlags: 0
