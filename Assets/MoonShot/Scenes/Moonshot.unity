@@ -5015,7 +5015,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: 893f6dc020ebaae4fa0cbb03ef790a6c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d04f461eab40a834f8363e372238ebd6, type: 2}
 --- !u!1 &1552487089 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7972906219806881511, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
@@ -9756,6 +9756,10 @@ PrefabInstance:
       propertyPath: GoalsList
       value: 
       objectReference: {fileID: 1758316365}
+    - target: {fileID: 6285085021412584862, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 7972906218347609624, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9803,6 +9807,10 @@ PrefabInstance:
     - target: {fileID: 7972906218347609629, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_Name
       value: PlayerCameraSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906218641567251, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: field of view
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8433685995282037295, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_menuFSM
