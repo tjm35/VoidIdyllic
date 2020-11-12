@@ -27,7 +27,10 @@ namespace Moonshot.Photos
 				m_toggle.onValueChanged.AddListener(OnToggleChanged);
 			}
 			var button = GetComponent<Button>();
-			button.onClick.AddListener(OnButtonPressed);
+			if (button)
+			{
+				button.onClick.AddListener(OnButtonPressed);
+			}
 		}
 
 		private void OnButtonPressed()

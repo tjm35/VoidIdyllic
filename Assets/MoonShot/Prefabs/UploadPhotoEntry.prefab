@@ -245,7 +245,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -56
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2820978367802526670, guid: bec570f6d1195e549b04a3b00c964963, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bec570f6d1195e549b04a3b00c964963, type: 3}
 --- !u!1 &6459189709734318678 stripped
 GameObject:

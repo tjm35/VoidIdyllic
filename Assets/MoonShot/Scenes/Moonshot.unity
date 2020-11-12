@@ -1993,6 +1993,10 @@ MonoBehaviour:
   m_photoSystem: {fileID: 696039045}
   m_camera: {fileID: 222729949}
   m_shutterButton: {fileID: -3134597477165451993, guid: 7238048b838239646848c0cf66c4b930, type: 3}
+  m_onShutterClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  m_shutterAnimation: {fileID: 0}
 --- !u!114 &696039045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3230,6 +3234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121105580}
+  - component: {fileID: 1121105581}
   m_Layer: 0
   m_Name: ThanksForPlaying
   m_TagString: Untagged
@@ -3257,6 +3262,22 @@ RectTransform:
   m_AnchoredPosition: {x: -24, y: 24}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &1121105581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121105579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e06eee4180f4a4094b6c7532978873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_candidateSelectables:
+  - {fileID: 925249721}
+  m_lastResortRandom: 0
+  m_noSelectionWaitCount: 0
 --- !u!1 &1194974776
 GameObject:
   m_ObjectHideFlags: 0
