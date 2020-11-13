@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: POIDataWrite
-  m_Shader: {fileID: -6465566751694194690, guid: 931ae60ae01f33748a0e895ee4515905, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6fdf63fd6eb0aab4e89674802a6b8c44, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -81,6 +81,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
+    - _WriteInt: 0
     - _ZWrite: 1
     m_Colors:
     - Color_1160B403: {r: 0, g: 0.09729431, b: 1, a: 0}

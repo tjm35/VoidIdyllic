@@ -21,27 +21,27 @@ namespace Moonshot.Photos
 
 		public void Start()
 		{
-			m_color = s_colorGenerator.GetNextColor();
-			if (s_dictionary.ContainsKey(m_color))
+			m_id = s_intGenerator.GetNextInt();
+			if (s_dictionary.ContainsKey(m_id))
 			{
-				Debug.LogError($"PointOfInterest: Duplicate color {m_color}");
+				Debug.LogError($"PointOfInterest: Duplicate id {m_id}");
 			}
-			s_dictionary[m_color] = this;
+			s_dictionary[m_id] = this;
 		}
 
 		public void OnDestroy()
 		{
-			s_dictionary[m_color] = null;
+			s_dictionary[m_id] = null;
 		}
 
 		public void SetupMaterial(MaterialPropertyBlock i_block)
 		{
-			i_block.SetColor("WriteColor", m_color);
+			i_block.SetInt("_WriteInt", m_id);
 		}
 
-		public static PointOfInterest FindForColor(Color32 i_color)
+		public static PointOfInterest FindForId(int i_id)
 		{
-			if (s_dictionary.TryGetValue(i_color, out var poi))
+			if (s_dictionary.TryGetValue(i_id, out var poi))
 			{
 				return poi;
 			}
@@ -51,38 +51,23 @@ namespace Moonshot.Photos
 			}
 		}
 
-		private class ColorGenerator
+		private class IntGenerator
 		{
-			public Color32 GetNextColor()
+			private int m_id = 1;
+
+			public int GetNextInt()
 			{
-				if (m_colorID < m_colors.Length)
+				if (m_id == int.MaxValue)
 				{
-					return m_colors[m_colorID++];
+					m_id = 1;
 				}
-				else
-				{
-					Debug.LogError("PointOfInterest.ColorGenerator: Out of colours");
-					return new Color32(0, 0, 0, 0);
-				}
+				return m_id++;
 			}
-
-			private int m_colorID = 0;
-
-			private Color32[] m_colors = new Color32[]
-			{
-				new Color32(255,0,0,255),
-				new Color32(0,255,0,255),
-				new Color32(255,255,0,255),
-				new Color32(0,0,255,255),
-				new Color32(255,0,255,255),
-				new Color32(0,255,255,255),
-				new Color32(255,255,255,255),
-			};
 		}
 
-		private Color32 m_color = Color.white;
+		private int m_id = 0;
 
-		private static Dictionary<Color, PointOfInterest> s_dictionary = new Dictionary<Color, PointOfInterest>();
-		private static ColorGenerator s_colorGenerator = new ColorGenerator();
+		private static Dictionary<int, PointOfInterest> s_dictionary = new Dictionary<int, PointOfInterest>();
+		private static IntGenerator s_intGenerator = new IntGenerator();
 	}
 }

@@ -9764,6 +9764,22 @@ PrefabInstance:
       propertyPath: GoalsList
       value: 
       objectReference: {fileID: 1758316365}
+    - target: {fileID: 1631156201689490712, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631156201689490712, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631156201689490712, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631156201689490712, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2603473482606698863, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_onUpload.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9823,6 +9839,26 @@ PrefabInstance:
     - target: {fileID: 7972906218347609629, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_Name
       value: PlayerCameraSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906218460607112, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906218460607112, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906218460607112, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972906219806881511, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8372707468859664303, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8433685995282037295, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_menuFSM

@@ -54,10 +54,13 @@ namespace Moonshot.Photos
 		{
 			var goals = m_globalGoals.GetComponentsInChildren<Goal>();
 
-			// Debugging
-			foreach (var goal in goals)
+			if (c_verboseDebug)
 			{
-				Debug.Log($"Goal \"{goal.m_description}\": " + (goal.Check(this, i_context) ? "Succeeded" : "Failed"));
+				// Debugging
+				foreach (var goal in goals)
+				{
+					Debug.Log($"Goal \"{goal.m_description}\": " + (goal.Check(this, i_context) ? "Succeeded" : "Failed"));
+				}
 			}
 
 			return goals.Where(goal => goal.Check(this, i_context));
@@ -82,33 +85,42 @@ namespace Moonshot.Photos
 
 		private void AnalysePOIs(Texture2D i_readableTexture, Context i_context)
 		{
-			var lookup = new Dictionary<Color32, int>();
+			var lookup = new Dictionary<int, int>();
 
-			var pixels = i_readableTexture.GetPixels32();
-			for (int i = 0; i < pixels.Length; ++i)
+			var pixels = i_readableTexture.GetRawTextureData<int>();
+			int pixelCount = i_readableTexture.height * i_readableTexture.width;
+			int stride = pixels.Length / pixelCount;
+			for (int y = 0; y < i_readableTexture.height; ++y)
 			{
-				var px = pixels[i];
-				if (px.r > 0 || px.g > 0 || px.b > 0)
+				for (int x = 0; x < i_readableTexture.width; ++x)
 				{
-					if (!lookup.ContainsKey(px))
+					var px = pixels[((y * i_readableTexture.width) + x) * stride];
+					if (px != 0)
 					{
-						lookup[px] = 0;
+						if (!lookup.ContainsKey(px))
+						{
+							lookup[px] = 0;
+						}
+						lookup[px]++;
 					}
-					lookup[px]++;
 				}
 			}
 
 			i_context.m_visibility = new Dictionary<PointOfInterest, int>();
 			foreach (var kvp in lookup)
 			{
-				var poi = PointOfInterest.FindForColor(kvp.Key);
+				var poi = PointOfInterest.FindForId(kvp.Key);
 				if (poi != null)
 				{
 					i_context.m_visibility[poi] = kvp.Value;
+					if (c_verboseDebug)
+					{
+						Debug.Log($"PhotoEvaluator: {kvp.Value} pixels of {poi.gameObject.name} found.");
+					}
 				}
 				else
 				{
-					Debug.LogError($"PhotoEvaluator: Could not find point of interest for color {kvp.Key}");
+					Debug.LogError($"PhotoEvaluator: Could not find point of interest for id {kvp.Key} ({kvp.Value} pixels)");
 				}
 
 			}
@@ -128,5 +140,6 @@ namespace Moonshot.Photos
 			return readableSaveTexture;
 		}
 
+		private const bool c_verboseDebug = false;
 	}
 }
