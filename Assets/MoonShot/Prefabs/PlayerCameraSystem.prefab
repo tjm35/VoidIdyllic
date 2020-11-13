@@ -242,7 +242,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 123136
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_CameraType: 1
   m_Cameras:
   - {fileID: 7972906218641567251}
-  - {fileID: 7972906218347609627, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
+  - {fileID: 0}
   - {fileID: 7972906218644768497}
   m_RendererIndex: -1
   m_VolumeLayerMask:

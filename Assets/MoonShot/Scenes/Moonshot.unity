@@ -9622,6 +9622,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2542587971642512666, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590850589930052457, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590850589930052457, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3401877103149851880, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9669,6 +9681,10 @@ PrefabInstance:
     - target: {fileID: 3401877103149851881, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
       propertyPath: m_Name
       value: Orrery
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922852471301565188, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39151b97fcbe0b649b969ccce40a0c9a, type: 3}
@@ -9748,10 +9764,6 @@ PrefabInstance:
       propertyPath: GoalsList
       value: 
       objectReference: {fileID: 1758316365}
-    - target: {fileID: 1650537892756374442, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 123136
-      objectReference: {fileID: 0}
     - target: {fileID: 2603473482606698863, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_onUpload.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9764,10 +9776,6 @@ PrefabInstance:
       propertyPath: GoalsList
       value: 
       objectReference: {fileID: 1758316365}
-    - target: {fileID: 6285085021412584862, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 7972906218347609624, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9815,18 +9823,6 @@ PrefabInstance:
     - target: {fileID: 7972906218347609629, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_Name
       value: PlayerCameraSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 7972906218641567251, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7972906218641567251, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 123136
-      objectReference: {fileID: 0}
-    - target: {fileID: 7972906218804684163, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 123136
       objectReference: {fileID: 0}
     - target: {fileID: 8433685995282037295, guid: c6742f31d74d08140acef1e39d0191ae, type: 3}
       propertyPath: m_menuFSM
