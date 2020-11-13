@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4526006896129044003}
   - component: {fileID: 7289469675276372122}
+  - component: {fileID: 5057250509296822562}
   m_Layer: 0
   m_Name: HighResPlanet
   m_TagString: Untagged
@@ -46,6 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_highResMeshFilter: {fileID: 7271938036920968591}
   m_highResMeshCollider: {fileID: 3855200921113786699}
+--- !u!114 &5057250509296822562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526006896129044001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c55e6913673eb94188db89a63873d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8030562432333895448
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +71,7 @@ GameObject:
   - component: {fileID: 7271938036920968591}
   - component: {fileID: 5353610160591231813}
   - component: {fileID: 3855200921113786699}
+  - component: {fileID: 7626156800729100220}
   m_Layer: 0
   m_Name: PlanetGeom
   m_TagString: Untagged
@@ -142,3 +156,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7626156800729100220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8030562432333895448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

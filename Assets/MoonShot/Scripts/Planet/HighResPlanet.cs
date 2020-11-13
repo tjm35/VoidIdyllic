@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Moonshot.Photos;
 
 namespace Moonshot.Planet
 {
@@ -27,6 +28,10 @@ namespace Moonshot.Planet
 			if (m_highResMeshCollider)
 			{
 				m_highResMeshCollider.sharedMesh = OrreryPlanet.OrreryMeshFilter.sharedMesh;
+			}
+			if (GetComponent<POIReference>())
+			{
+				GetComponent<POIReference>().m_referencedPOI = OrreryPlanet.m_pointOfInterest;
 			}
 
 		}

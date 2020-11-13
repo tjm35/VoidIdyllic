@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Moonshot.World;
+using Moonshot.Photos;
 using Moonshot.Props;
 using System;
 using UnityEngine.Animations;
@@ -21,6 +22,7 @@ namespace Moonshot.Planet
 		public MeshFilter OrreryMeshFilter;
 		public int OrrerySubDivs = 4;
 		public float OrreryMeshSmoothness = 0.0f;
+		public PointOfInterest m_pointOfInterest;
 
 		public List<OrreryPlanet> LightSources;
 
@@ -228,6 +230,14 @@ namespace Moonshot.Planet
 		private void RebuildOrreryMesh()
 		{
 			OrreryMeshFilter.sharedMesh = PlanetMeshTools.BuildFullPlanetMesh(this, i_subdivs: OrrerySubDivs, i_name: gameObject.name + " Orrery Mesh");
+		}
+
+		private void Start()
+		{
+			if (m_pointOfInterest == null)
+			{
+				m_pointOfInterest = GetComponent<PointOfInterest>();
+			}
 		}
 	}
 }
