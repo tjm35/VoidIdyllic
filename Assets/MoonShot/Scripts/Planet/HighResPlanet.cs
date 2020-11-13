@@ -18,11 +18,17 @@ namespace Moonshot.Planet
 		private void OnPlanetSet()
 		{
 			// For now just share the orrery mesh.
-			m_highResMeshFilter.sharedMesh = OrreryPlanet.OrreryMeshFilter.sharedMesh;
-			m_highResMeshCollider.sharedMesh = OrreryPlanet.OrreryMeshFilter.sharedMesh;
+			if (m_highResMeshFilter)
+			{
+				m_highResMeshFilter.sharedMesh = OrreryPlanet.OrreryMeshFilter.sharedMesh;
+				var mr = m_highResMeshFilter.GetComponent<MeshRenderer>();
+				mr.sharedMaterial = OrreryPlanet.SurfaceMaterial;
+			}
+			if (m_highResMeshCollider)
+			{
+				m_highResMeshCollider.sharedMesh = OrreryPlanet.OrreryMeshFilter.sharedMesh;
+			}
 
-			var mr = m_highResMeshFilter.GetComponent<MeshRenderer>();
-			mr.sharedMaterial = OrreryPlanet.SurfaceMaterial;
 		}
 
 		private OrreryPlanet m_orreryPlanet;
