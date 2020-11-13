@@ -12,12 +12,12 @@ namespace Moonshot.Photos
 
 		private void OnEnable()
 		{
-			PreviewMaterial.SetTexture("_EmissionMap", Photo.FullTexture);
+			PreviewMaterial.SetTexture("_BaseMap", Photo.FullTexture);
 		}
 
 		private void OnDisable()
 		{
-			PreviewMaterial.SetTexture("_EmissionMap", ViewfinderTexture);
+			PreviewMaterial.SetTexture("_BaseMap", ViewfinderTexture);
 		}
 	}
 }

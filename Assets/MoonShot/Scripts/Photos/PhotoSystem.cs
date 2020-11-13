@@ -25,8 +25,8 @@ namespace Moonshot.Photos
 
 		public interface IPhotoData
 		{
-			Texture2D PreviewTexture { get; }
-			Texture2D FullTexture { get; }
+			Texture PreviewTexture { get; }
+			Texture FullTexture { get; }
 			IEnumerable<Goal> GoalsMet { get; }
 		}
 
@@ -66,7 +66,7 @@ namespace Moonshot.Photos
 		{
 			yield return new WaitForEndOfFrame();
 
-			Texture2D readableSaveTexture = RecordCameraToNewReadableTexture(i_camera);
+			RenderTexture gpuTexture = RecordCameraToNewGPUTexture(i_camera);
 			i_camera.enabled = i_wasEnabled;
 
 			while (!i_context.m_ready)
@@ -81,18 +81,21 @@ namespace Moonshot.Photos
 			}
 
 			var data = new PhotoData();
-			data.PreviewTexture = readableSaveTexture;
-			data.FullTexture = readableSaveTexture;
+			data.PreviewTexture = gpuTexture;
+			data.FullTexture = gpuTexture;
 			data.GoalsMet = completedGoals.ToArray();
 			m_photos.Add(data);
 
-			EditorSavePicture(readableSaveTexture);
+			{
+				Texture2D readableSaveTexture = GammaCorrectAndRecordTextureToNewReadableTexture(gpuTexture);
+				EditorSavePicture(readableSaveTexture);
+			}
 		}
 
 		private class PhotoData : IPhotoData
 		{
-			public Texture2D PreviewTexture { get; set; }
-			public Texture2D FullTexture { get; set; }
+			public Texture PreviewTexture { get; set; }
+			public Texture FullTexture { get; set; }
 			public IEnumerable<Goal> GoalsMet { get; set; }
 			public bool IsAsset = false;
 		}
@@ -130,13 +133,24 @@ namespace Moonshot.Photos
 			Instance = null;
 		}
 
-		private Texture2D RecordCameraToNewReadableTexture(Camera i_camera)
+		private RenderTexture RecordCameraToNewGPUTexture(Camera i_camera)
 		{
 			int width = i_camera.targetTexture.width;
 			int height = i_camera.targetTexture.height;
+			RenderTexture gpuTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGBFloat);
+
+			Graphics.Blit(i_camera.targetTexture, gpuTexture);
+
+			return gpuTexture;
+		}
+
+		private Texture2D GammaCorrectAndRecordTextureToNewReadableTexture(Texture i_source)
+		{
+			int width = i_source.width;
+			int height = i_source.height;
 			RenderTexture gammaTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGBFloat);
 
-			Graphics.Blit(i_camera.targetTexture, gammaTexture, m_linearToGammaMat);
+			Graphics.Blit(i_source, gammaTexture, m_linearToGammaMat);
 
 			Texture2D readableSaveTexture = new Texture2D(width, height, TextureFormat.RGBAFloat, false);
 
