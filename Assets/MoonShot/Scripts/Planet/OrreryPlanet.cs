@@ -53,6 +53,29 @@ namespace Moonshot.Planet
 			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>());
 		}
 
+		[ContextMenu("Rebuild Orrery Lighting")]
+		private void RebuildOrreryLighting()
+		{
+			var lightContainer = transform.Find("OrreryLights");
+			if (lightContainer == null)
+			{
+				lightContainer = CreateObject("OrreryLights",transform).transform;
+				lightContainer.SetParent(transform);
+			}
+			while (lightContainer.childCount > 0)
+			{
+				var oldLight = lightContainer.GetChild(0);
+				oldLight.SetParent(null);
+				DestroyImmediate(oldLight.gameObject);
+			}
+			foreach (var planet in LightSources)
+			{
+				planet.SetupLightForOrrery(this, lightContainer);
+			}
+			SetupSelfLightForOrrery(lightContainer);
+		}
+
+
 		private void CreateHighResPlanet(LocalFrame frame)
 		{
 			var go = Instantiate(HighResPlanetPrefab, frame.transform, false);
@@ -109,6 +132,49 @@ namespace Moonshot.Planet
 			cfpc.m_target = transform;
 		}
 
+		private void SetupSelfLightForOrrery(Transform i_lightContainer)
+		{
+			GameObject lightObject = CreateObject(gameObject.name + " Self Light", i_lightContainer.transform);
+
+			Light light = lightObject.AddComponent<Light>();
+			light.type = LightType.Point;
+			light.range = 2.0f * Radius;
+			light.color = PlanetColor;
+			light.intensity = PlanetIntensity * Radius * Radius;
+			light.shadows = LightShadows.None;
+			light.renderMode = LightRenderMode.ForceVertex;
+			light.cullingMask = 1 << gameObject.layer;
+		}
+
+		private void SetupLightForOrrery(OrreryPlanet i_litPlanet, Transform i_lightContainer)
+		{
+			GameObject lightObject = CreateObject(gameObject.name + " Light", i_lightContainer.transform);
+
+			Light light = lightObject.AddComponent<Light>();
+			light.type = LightType.Directional;
+			light.color = PlanetColor;
+			light.intensity = PlanetIntensity; // TODO: Intensity falloff by distance
+			light.shadows = LightShadows.None;
+			light.renderMode = LightRenderMode.Auto;
+			light.cullingMask = 1 << i_lightContainer.gameObject.layer;
+
+			PositionConstraint pc = lightObject.AddComponent<PositionConstraint>();
+			ConstraintSource pcs = new ConstraintSource();
+			pcs.sourceTransform = transform;
+			pcs.weight = 1.0f;
+			pc.AddSource(pcs);
+			pc.translationOffset = Vector3.zero;
+			pc.locked = true;
+			pc.constraintActive = true;
+
+			LookAtConstraint lac = lightObject.AddComponent<LookAtConstraint>();
+			ConstraintSource lacs = new ConstraintSource();
+			lacs.sourceTransform = i_litPlanet.transform;
+			lacs.weight = 1.0f;
+			lac.AddSource(lacs);
+			lac.constraintActive = true;
+		}
+
 		private GameObject CreateObject(string i_name, Transform i_parent)
 		{
 			var obj = new GameObject(i_name);
@@ -119,6 +185,14 @@ namespace Moonshot.Planet
 			obj.transform.localPosition = Vector3.zero;
 			obj.transform.localRotation = Quaternion.identity;
 			obj.transform.localScale = Vector3.one;
+			if (i_parent)
+			{
+				obj.layer = i_parent.gameObject.layer;
+			}
+			else
+			{
+				obj.layer = gameObject.layer;
+			}
 			return obj;
 		}
 
