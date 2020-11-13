@@ -15,7 +15,7 @@ namespace Moonshot.UI
 			var takeoff = transform.GetComponentInAncestors<ShipTakeoff>();
 			if (takeoff)
 			{
-				takeoff.PerformTakeoff();
+				takeoff.RequestTakeoff();
 			}
 			if (m_menuFSM)
 			{

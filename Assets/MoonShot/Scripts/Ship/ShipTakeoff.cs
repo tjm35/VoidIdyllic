@@ -9,6 +9,8 @@ namespace Moonshot.Ship
 	public class ShipTakeoff : MonoBehaviour
 	{
 		public GameObject InFlightPrefab;
+		public GameObject ShipPhantomPrefab;
+		public float ShipSummonHeight = 15.0f;
 
 		public bool CanTakeoff()
 		{
@@ -17,8 +19,19 @@ namespace Moonshot.Ship
 		}
 
 		[ContextMenu("Debug Perform Takeoff")]
-		public void PerformTakeoff()
+		public void RequestTakeoff()
 		{
+			var go = Instantiate(ShipPhantomPrefab, transform.parent);
+			go.transform.position = transform.position + ShipSummonHeight * transform.up;
+			go.transform.localRotation = transform.localRotation;
+
+			var fsm = go.GetComponent<PlayMakerFSM>();
+			fsm.FsmVariables.FindFsmGameObject	("TargetPlayer").Value = gameObject;
+			fsm.SetState("Summon");
+		}
+
+		public void Embark()
+		{ 
 			var go = Instantiate(InFlightPrefab, transform.parent);
 			go.transform.localPosition = transform.localPosition;
 			go.transform.localRotation = transform.localRotation;

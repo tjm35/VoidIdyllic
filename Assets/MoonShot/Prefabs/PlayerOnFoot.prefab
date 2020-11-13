@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc91745c7e45c4b4baab892d437c4e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSoul: {fileID: 0}
   SoulHook: {fileID: 2568280817859697864}
   m_type: 0
+  m_playerSoul: {fileID: 0}
 --- !u!114 &2568280818149458754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InFlightPrefab: {fileID: 3937345481483510295, guid: 1175fe02d7e16534fb2df793083a2cf7, type: 3}
+  ShipPhantomPrefab: {fileID: 6199313811483764843, guid: 7abfe2424fc144e4d8fd4c1c11ca42ca, type: 3}
+  ShipSummonHeight: 15
