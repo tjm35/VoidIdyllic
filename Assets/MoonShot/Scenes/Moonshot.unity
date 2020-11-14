@@ -1939,7 +1939,6 @@ GameObject:
   m_Component:
   - component: {fileID: 696039046}
   - component: {fileID: 696039045}
-  - component: {fileID: 696039044}
   - component: {fileID: 696039047}
   m_Layer: 0
   m_Name: PhotoSystem
@@ -1948,25 +1947,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &696039044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696039043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536497a3dcf7ab04b9e3aeefa194853f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_photoSystem: {fileID: 696039045}
-  m_camera: {fileID: 222729949}
-  m_shutterButton: {fileID: -3134597477165451993, guid: 7238048b838239646848c0cf66c4b930, type: 3}
-  m_onShutterClicked:
-    m_PersistentCalls:
-      m_Calls: []
-  m_shutterAnimation: {fileID: 7972906218674873431}
 --- !u!114 &696039045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2587,6 +2567,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925249719}
   m_CullTransparentMesh: 0
+--- !u!1 &996104907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996104908}
+  - component: {fileID: 996104909}
+  m_Layer: 0
+  m_Name: PhotoShutterButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &996104908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996104907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1869605221}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &996104909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996104907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536497a3dcf7ab04b9e3aeefa194853f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_photoSystem: {fileID: 696039045}
+  m_camera: {fileID: 222729949}
+  m_shutterButton: {fileID: -3134597477165451993, guid: 7238048b838239646848c0cf66c4b930, type: 3}
+  m_onShutterClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  m_shutterAnimation: {fileID: 7972906218674873431}
+  m_minPhotoInterval: 0.5
 --- !u!1 &1001687786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3794,7 +3825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5009,14 +5040,16 @@ MonoBehaviour:
         - Totality.PlayMakerIntegration.InputSystem.GetButton
         - HutongGames.PlayMaker.Actions.SetFsmBool
         - HutongGames.PlayMaker.Actions.SetFsmBool
+        - HutongGames.PlayMaker.Actions.ActivateGameObject
         customNames:
         - 
         - 
         - 
-        actionEnabled: 010101
-        actionIsOpen: 010101
-        actionStartIndex: 000000000200000007000000
-        actionHashCodes: b916410368fece0568fece05
+        - 
+        actionEnabled: 01010101
+        actionIsOpen: 01010101
+        actionStartIndex: 0000000002000000070000000c000000
+        actionHashCodes: b916410368fece0568fece05b2cf1000
         unityObjectParams:
         - {fileID: 4625504456842729344, guid: 7238048b838239646848c0cf66c4b930, type: 3}
         fsmGameObjectParams: []
@@ -5037,6 +5070,14 @@ MonoBehaviour:
             showInInspector: 0
             networkSync: 0
             value: {fileID: 1867628649}
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 996104907}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -5093,18 +5134,30 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 1
+          name: Aiming
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 0101
+        byteData: 01010001
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 050000001100000014000000120000001200000011000000010000001400000012000000120000001100000001000000
+        paramDataType: 0500000011000000140000001200000012000000110000000100000014000000120000001200000011000000010000001400000011000000110000000100000001000000
         paramName:
         - buttonName
         - storeResult
@@ -5118,8 +5171,13 @@ MonoBehaviour:
         - variableName
         - setValue
         - everyFrame
-        paramDataPos: 000000000000000000000000000000000100000001000000000000000100000002000000030000000200000001000000
-        paramByteDataSize: 000000000000000000000000000000000000000000000000010000000000000000000000000000000000000001000000
+        - gameObject
+        - activate
+        - recursive
+        - resetOnExit
+        - everyFrame
+        paramDataPos: 0000000000000000000000000000000001000000010000000000000001000000020000000300000002000000010000000200000003000000040000000200000003000000
+        paramByteDataSize: 0000000000000000000000000000000000000000000000000100000000000000000000000000000000000000010000000000000000000000000000000100000001000000
     events: []
     globalTransitions: []
     variables:
@@ -11837,6 +11895,7 @@ Transform:
   - {fileID: 345055751}
   - {fileID: 297728796}
   - {fileID: 129018112}
+  - {fileID: 996104908}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
