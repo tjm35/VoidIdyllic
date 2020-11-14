@@ -28,6 +28,8 @@ namespace Moonshot.Ship
 			var fsm = go.GetComponent<PlayMakerFSM>();
 			fsm.FsmVariables.FindFsmGameObject	("TargetPlayer").Value = gameObject;
 			fsm.SetState("Summon");
+
+			Tutorial.TutorialHelper.SetBool("HasLaunched");
 		}
 
 		public void Embark()

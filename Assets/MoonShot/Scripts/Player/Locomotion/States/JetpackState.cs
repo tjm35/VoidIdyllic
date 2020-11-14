@@ -10,6 +10,11 @@ namespace Moonshot.Player.Locomotion
 		public JetpackState(bool i_fromJump, Locomotion i_locomotion)
 		{
 			m_remainingBoostTime = (i_fromJump? i_locomotion.m_jumpBoostTime : 0.0f);
+
+			if (i_fromJump)
+			{
+				Tutorial.TutorialHelper.SetBool("HasBoosted");
+			}
 		}
 
 		public override void UpdateState(StateMachine<Locomotion> i_machine, Locomotion i_locomotion)

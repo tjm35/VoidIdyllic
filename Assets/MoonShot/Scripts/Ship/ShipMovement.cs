@@ -35,6 +35,7 @@ namespace Moonshot.Ship
 			{
 				m_gravityProvider = GlobalGravityProvider.Instance;
 			}
+			m_startForward = transform.forward;
 		}
 		// Update is called once per frame
 		void Update()
@@ -48,12 +49,15 @@ namespace Moonshot.Ship
 			Vector3 lookLS = m_controls.Look;
 			Quaternion turnAmount = Quaternion.Euler(-lookLS.x * m_pitchSpeed * Time.deltaTime, lookLS.y * m_yawSpeed * Time.deltaTime, -lookLS.z * m_rollSpeed * Time.deltaTime);
 			transform.localRotation = transform.localRotation * turnAmount;
+
+			if (Vector3.Angle(transform.forward, m_startForward) > 45.0f)
+			{
+				Tutorial.TutorialHelper.SetBool("HasTurnedMuch");
+			}
 		}
 
 		void UpdateMove()
 		{
-			Vector3 moveLS = m_controls.Move;
-
 			Vector3 accel = GetAccel();
 			Vector3 accelDelta = accel * Time.deltaTime;
 
@@ -87,6 +91,11 @@ namespace Moonshot.Ship
 		{
 			Vector3 moveLS = m_controls.Move;
 
+			if (moveLS.z > 0.2f)
+			{
+				Tutorial.TutorialHelper.SetBool("HasFlownForwards");
+			}
+
 			// Button pressed, so accelerate.
 			//Debug.Log($"Gravity prominence = {m_gravityProvider.GetGravityProminence(transform.position)}");
 			Vector3 globalPos = LocalFrame.TransformPointToGlobal(LocalFrame.Get(transform), transform.position);
@@ -103,5 +112,6 @@ namespace Moonshot.Ship
 		private IGravityProvider m_gravityProvider;
 		private ShipControls m_controls;
 		private ShipController m_controller;
+		private Vector3 m_startForward;
 	}
 }

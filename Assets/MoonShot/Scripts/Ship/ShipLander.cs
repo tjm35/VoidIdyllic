@@ -50,6 +50,8 @@ namespace Moonshot.Ship
 			MakeOnFootPlayer();
 			MakeShipPhantom();
 
+			Tutorial.TutorialHelper.SetBool("HasLanded");
+
 			Destroy(gameObject);
 		}
 

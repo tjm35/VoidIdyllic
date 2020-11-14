@@ -37,6 +37,8 @@ namespace Moonshot.Photos
 			i_camera.enabled = true;
 			var context = m_evaluator.ConstructContext(i_camera);
 			StartCoroutine(TakePhotoCoroutine(i_camera, wasEnabled, context));
+
+			Tutorial.TutorialHelper.SetBool("HasTakenPhoto");
 		}
 
 		public bool IsGoalComplete(Goal i_goal)
@@ -87,6 +89,11 @@ namespace Moonshot.Photos
 			data.FullTexture = gpuTexture;
 			data.GoalsMet = completedGoals.ToArray();
 			m_photos.Add(data);
+
+			if (m_photos.Count >= 4)
+			{
+				Tutorial.TutorialHelper.SetBool("IsHasMultiplePhotos");
+			}
 
 			{
 				Texture2D readableSaveTexture = GammaCorrectAndRecordTextureToNewReadableTexture(gpuTexture);

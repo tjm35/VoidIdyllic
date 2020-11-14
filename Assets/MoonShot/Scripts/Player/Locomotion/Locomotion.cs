@@ -31,6 +31,16 @@ namespace Moonshot.Player.Locomotion
 			m_stateMachine = new StateMachine<Locomotion>(new InitialState(), this);
 		}
 
+		private void OnEnable()
+		{
+			Tutorial.TutorialHelper.SetBool("IsOnPlanet", true);
+		}
+
+		private void OnDisable()
+		{
+			Tutorial.TutorialHelper.SetBool("IsOnPlanet", false);
+		}
+
 		void Update()
 		{
 			m_stateMachine.Update(this);
