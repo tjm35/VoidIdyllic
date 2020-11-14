@@ -15,6 +15,7 @@ namespace Moonshot.Photos
 		public Material m_linearToGammaMat;
 		public bool m_usePrefillPhotos;
 		public List<PrefillPhoto> m_prefillPhotos;
+		public GoalNotifications m_notifications;
 
 		[Serializable]
 		public struct PrefillPhoto
@@ -77,6 +78,7 @@ namespace Moonshot.Photos
 			var completedGoals = m_evaluator.EvaluateGoals(i_context);
 			foreach (var goal in completedGoals)
 			{
+				m_notifications.NotifyGoal(goal, m_completedGoals.Contains(goal) == false);
 				m_completedGoals.Add(goal);
 			}
 
