@@ -15,6 +15,14 @@ namespace Moonshot.UI
 			m_toggle = GetComponent<Toggle>();
 		}
 
+		void OnEnable()
+		{
+			if (EventSystem.current.currentSelectedGameObject == gameObject)
+			{
+				m_toggle.isOn = true;
+			}
+		}
+
 		void OnDisable()
 		{
 			m_toggle.isOn = false;
