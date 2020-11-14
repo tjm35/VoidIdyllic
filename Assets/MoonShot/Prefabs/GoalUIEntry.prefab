@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 6264183635096020304}
   - component: {fileID: 4890681341889260259}
   - component: {fileID: 6050842931552308645}
+  - component: {fileID: 7541070856733964449}
   m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
@@ -298,6 +299,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 0
+--- !u!114 &7541070856733964449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481378278934604475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf6e3762505d7c46a01aaa938368beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorType: 0
+  SetupOnStart: 1
 --- !u!1 &5657207524552588773
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +324,7 @@ GameObject:
   - component: {fileID: 8054592903225475270}
   - component: {fileID: 5930756341067691286}
   - component: {fileID: 7265888590858095382}
+  - component: {fileID: 2104440455466899083}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -432,6 +448,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2104440455466899083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657207524552588773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf6e3762505d7c46a01aaa938368beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorType: 0
+  SetupOnStart: 1
 --- !u!1 &6792827474675712117
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +473,7 @@ GameObject:
   - component: {fileID: 632931786194541992}
   - component: {fileID: 6549490753003619765}
   - component: {fileID: 7298433521747161685}
+  - component: {fileID: 3212249592456954210}
   m_Layer: 11
   m_Name: Panel
   m_TagString: Untagged
@@ -507,6 +538,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3212249592456954210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792827474675712117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf6e3762505d7c46a01aaa938368beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColorType: 0
+  SetupOnStart: 1
 --- !u!1 &6920962224870704585
 GameObject:
   m_ObjectHideFlags: 0
