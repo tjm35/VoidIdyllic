@@ -6,7 +6,6 @@ namespace Moonshot.Photos
 {
 	public class GoalUIList : MonoBehaviour
 	{
-		public Transform GoalsList;
 		public GameObject GoalUIPrefab;
 
 		private void OnEnable()
@@ -14,10 +13,7 @@ namespace Moonshot.Photos
 			FullPhotoUI fpu = transform.GetComponentInAncestors<FullPhotoUI>();
 
 			IEnumerable<Goal> goals = null;
-			if (GoalsList)
-			{
-				goals = GoalsList.GetComponentsInChildren<Goal>();
-			}
+			goals = PhotoSystem.Instance?.m_evaluator?.m_globalGoals?.GetComponentsInChildren<Goal>();
 
 			if (fpu)
 			{

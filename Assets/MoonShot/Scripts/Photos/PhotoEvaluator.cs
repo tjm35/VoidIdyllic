@@ -52,7 +52,7 @@ namespace Moonshot.Photos
 
 		public IEnumerable<Goal> EvaluateGoals(Context i_context)
 		{
-			var goals = m_globalGoals.GetComponentsInChildren<Goal>();
+			var goals = m_globalGoals.GetComponentsInChildren<Goal>().Where(g => g.isActiveAndEnabled);
 
 			if (c_verboseDebug)
 			{
