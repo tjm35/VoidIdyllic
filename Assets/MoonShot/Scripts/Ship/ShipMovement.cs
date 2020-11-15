@@ -23,6 +23,9 @@ namespace Moonshot.Ship
 		public float m_decelSpeedHalfLife = 2.0f;
 		public float m_minDecel = 1.0f;
 
+		public float m_minMaxSpeed = 10.0f;
+		public float m_maxSpeedByDistance = 1.0f;
+
 		void Start()
 		{
 			m_controls = GetComponent<ShipControls>();
@@ -85,6 +88,50 @@ namespace Moonshot.Ship
 
 				m_controller.WorldVelocity = oldVelocityIntended + newVelocityUnintended + accelDelta;
 			}
+
+			if (GetMaxSpeed(out float maxSpeed))
+			{
+				if (m_controller.WorldVelocity.magnitude > maxSpeed)
+				{
+					m_controller.WorldVelocity = m_controller.WorldVelocity.normalized * maxSpeed;
+				}
+			}
+
+			//UI.QuickDebug.Print($"Ship speed: {m_controller.WorldVelocity.magnitude}");
+		}
+
+		private bool GetMaxSpeed(out float o_maxSpeed)
+		{
+			if (GetProminentBodyDistance(out float distance))
+			{
+				o_maxSpeed = Mathf.Max(m_minMaxSpeed, distance * m_maxSpeedByDistance);
+				return true;
+			}
+			else
+			{
+				o_maxSpeed = 1.0f;
+				return false;
+			}
+		}
+
+		private bool GetProminentBodyDistance(out float o_distance)
+		{
+			Vector3 globalPos = LocalFrame.TransformPointToGlobal(LocalFrame.Get(transform), transform.position);
+			IGravityProvider prominent = m_gravityProvider.GetMostProminent(globalPos);
+			if (prominent is Component)
+			{
+				Vector3 prominentPos = ((Component)prominent).transform.position;
+				o_distance = (prominentPos - globalPos).magnitude;
+
+				if (prominent is PlanetGravityProvider)
+				{
+					o_distance -= ((PlanetGravityProvider)prominent).m_radius;
+				}
+
+				return true;
+			}
+			o_distance = 0.0f;
+			return false;
 		}
 
 		private Vector3 GetAccel()
