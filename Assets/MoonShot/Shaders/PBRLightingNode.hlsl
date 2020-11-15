@@ -26,7 +26,7 @@ void PBRLightingNode_float(float3 PositionWS, float3 NormalWS, float3 ViewDirWS,
     inputData.shadowCoord = float4(0, 0, 0, 0);
 
     inputData.fogCoord = 0.0f;
-    inputData.vertexLighting = float3(0,0,0);
+    inputData.vertexLighting = VertexLighting(PositionWS, NormalWS);
     inputData.bakedGI = SAMPLE_GI(float2(0,0), float3(1,1,1), inputData.normalWS);
 
     half4 colorInt = UniversalFragmentPBR(inputData, Albedo, Metallic, float3(0,0,0), Smoothness, Occlusion, Emission, AlphaIn);
