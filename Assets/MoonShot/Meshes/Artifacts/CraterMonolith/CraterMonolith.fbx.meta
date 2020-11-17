@@ -3,7 +3,22 @@ guid: 4f5882ac339c0e04680c192b09d6848c
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlowRing
+    second: {fileID: 2100000, guid: aa72dad804cb62446a087275eb3937a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 965dc14afa481e541b5559013c4239e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 7a58e3b9810fb6742acca016ba56415d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
