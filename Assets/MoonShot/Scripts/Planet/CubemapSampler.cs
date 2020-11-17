@@ -38,8 +38,8 @@ namespace Moonshot.Planet
 			}
 
 			face = (CubemapFace)bestFace;
-			x = (int)((0.5f + bestAddress[0]) * i_map.width);
-			y = (int)((0.5f + bestAddress[1]) * i_map.width);
+			x = (int)((0.5f + 0.5f * bestAddress[0]) * i_map.width);
+			y = (int)((0.5f + 0.5f * bestAddress[1]) * i_map.width);
 		}
 
 		private static Vector3[,] s_faceAxes = new Vector3[,] {
