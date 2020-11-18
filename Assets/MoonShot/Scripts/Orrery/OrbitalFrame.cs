@@ -15,12 +15,7 @@ namespace Moonshot.Orrery
 
 		void Start()
 		{
-			Transform t = transform;
-			while (t != null && m_timeSource == null)
-			{
-				m_timeSource = t.GetComponent<OrreryTimeSource>();
-				t = t.parent;
-			}
+			m_timeSource = transform.GetComponentInAncestors<OrreryTimeSource>() ?? OrreryTimeSource.Global;
 
 			m_Elookup = GenerateELookup(m_eccentricity);
 		}

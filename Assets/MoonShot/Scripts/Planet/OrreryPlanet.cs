@@ -5,6 +5,7 @@ using Moonshot.World;
 using Moonshot.Photos;
 using Moonshot.Props;
 using System;
+using System.Linq;
 using UnityEngine.Animations;
 
 namespace Moonshot.Planet
@@ -54,7 +55,7 @@ namespace Moonshot.Planet
 		private void RebuildPropList()
 		{
 			OrreryProps.Clear();
-			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>());
+			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>().Where(p => p.transform.GetComponentInAncestors<OrreryPlanet>() == this));
 		}
 
 		[ContextMenu("Rebuild Orrery Lighting")]

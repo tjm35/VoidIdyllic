@@ -13,12 +13,7 @@ namespace Moonshot.Orrery
 		// Start is called before the first frame update
 		void Start()
 		{
-			Transform t = transform;
-			while (t != null && m_timeSource == null)
-			{
-				m_timeSource = t.GetComponent<OrreryTimeSource>();
-				t = t.parent;
-			}
+			m_timeSource = transform.GetComponentInAncestors<OrreryTimeSource>() ?? OrreryTimeSource.Global;
 		}
 
 		// Update is called once per frame
