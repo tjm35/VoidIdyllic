@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: 7705179100719257014
     second: LightSphere|LightSphereAction
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlowRing
+    second: {fileID: 2100000, guid: aa72dad804cb62446a087275eb3937a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightSphere
+    second: {fileID: 2100000, guid: 1097e4bbc944a1440b8a8dc867a6a5e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 7a58e3b9810fb6742acca016ba56415d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -39,7 +54,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
