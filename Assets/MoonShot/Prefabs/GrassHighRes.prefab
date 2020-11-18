@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3506437794537632101}
   - component: {fileID: 3506437794537632103}
   - component: {fileID: 3506437794537632102}
+  - component: {fileID: 4067813239822484273}
   m_Layer: 0
   m_Name: OrreryGrass
   m_TagString: Untagged
@@ -108,6 +109,18 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4067813239822484273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506437794537632100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a359efd90d67cd4792a45fb58b157d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3506437795347828145
 GameObject:
   m_ObjectHideFlags: 0
