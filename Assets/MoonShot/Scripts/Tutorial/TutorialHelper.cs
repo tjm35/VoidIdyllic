@@ -12,7 +12,7 @@ namespace Moonshot.Tutorial
 
 		public static void SetBool(string i_name, bool i_value = true)
 		{
-			Instance.Set(i_name, i_value);
+			Instance?.Set(i_name, i_value);
 		}
 
 		public void Set(string i_name, bool i_value)
