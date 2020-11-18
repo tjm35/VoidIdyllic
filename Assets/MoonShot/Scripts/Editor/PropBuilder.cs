@@ -18,15 +18,27 @@ namespace Moonshot.Editor
 			foreach (var go in Selection.gameObjects)
 			{
 				Debug.Log($"Making prefabs for {go.name}");
-				var hrp = MakeHighResPrefab(go);
-				MakeOrreryPrefab(go, hrp);
+				var sp = MakeSharedPrefab(go);
+				var hrp = MakeHighResPrefab(sp, go.name);
+				var op = MakeOrreryPrefab(sp, hrp, go.name);
+				var hp = MakeOrreryHookPrefab(op, go.name);
 			}
 		}
 
-		private static GameObject MakeOrreryPrefab(GameObject imported, GameObject hrp)
+		private static GameObject MakeSharedPrefab(GameObject imported)
 		{
-			string name = imported.name + "Orrery";
+			string name = imported.name + "Shared";
 			var go = InstantiateWithEmptyParent(imported, name);
+
+			SetupRenderers(go);
+
+			return MakePrefabAndDelete(go, imported.name);
+		}
+
+		private static GameObject MakeOrreryPrefab(GameObject shared, GameObject hrp, string groupName)
+		{
+			string name = groupName + "Orrery";
+			var go = InstantiateWithEmptyParent(shared, name);
 
 			var poi = go.AddComponent<PointOfInterest>();
 			poi.m_class = PointOfInterest.Class.Artifact;
@@ -35,25 +47,32 @@ namespace Moonshot.Editor
 			op.m_highResPrefab = hrp;
 			op.m_pointOfInterest = poi;
 
-			SetupRenderers(go);
 			ApplySpecialMeshesToDescendents(go, false);
 
-			return MakePrefabAndDelete(go, imported.name);
+			return MakePrefabAndDelete(go, groupName);
 		}
 
-		private static GameObject MakeHighResPrefab(GameObject imported)
+		private static GameObject MakeOrreryHookPrefab(GameObject orreryPrefab, string groupName)
 		{
-			string name = imported.name + "HighRes";
-			var go = InstantiateWithEmptyParent(imported, name);
+			string name = groupName + "Hook";
+			var go = InstantiateWithEmptyParent(orreryPrefab, name);
+			go.transform.GetChild(0).localPosition = 10.0f * Vector3.up;
+
+			return MakePrefabAndDelete(go, groupName);
+		}
+
+		private static GameObject MakeHighResPrefab(GameObject shared, string groupName)
+		{
+			string name = groupName + "HighRes";
+			var go = InstantiateWithEmptyParent(shared, name);
 
 			go.AddComponent<HighResProp>();
 
 			go.AddComponent<POIReference>();
 
-			SetupRenderers(go);
 			ApplySpecialMeshesToDescendents(go, true);
 
-			return MakePrefabAndDelete(go, imported.name);
+			return MakePrefabAndDelete(go, groupName);
 		}
 
 		private static void SetupRenderers(GameObject i_object)

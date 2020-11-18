@@ -17,16 +17,8 @@ namespace Moonshot.Photos
 		{
 			if (m_poi == null)
 			{
-				Transform t = transform;
-				while (t != null && t.GetComponent<IPOIContext>() == null)
-				{
-					t = t.parent;
-				}
-				if (t != null)
-				{
-					m_poi = t.GetComponent<IPOIContext>();
-				}
-				if (m_poi == null)
+				m_poi = transform.GetComponentInAncestors<IPOIContext>();
+				if (m_poi == null && Application.isPlaying)
 				{
 					Debug.LogError("POIRendererSetup: No POI in ancestors; disabling.");
 					enabled = false;
