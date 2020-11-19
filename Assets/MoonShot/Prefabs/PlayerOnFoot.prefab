@@ -175,4 +175,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InFlightPrefab: {fileID: 3937345481483510295, guid: 1175fe02d7e16534fb2df793083a2cf7, type: 3}
   ShipPhantomPrefab: {fileID: 6199313811483764843, guid: 7abfe2424fc144e4d8fd4c1c11ca42ca, type: 3}
-  ShipSummonHeight: 15
+  ShipSummonHeight: 5

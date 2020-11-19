@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 6d447b3dda8b4cf4898ead745d66b18b
+guid: 5606f65eab333ae49b2bd32bc35d40f4
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Console
-    second: {fileID: 2100000, guid: 3168d8c46b5c9e244ade08ba54c02547, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 55da10b498d46ef4688640938b15a13e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ShipInterior
-    second: {fileID: 2100000, guid: 55da10b498d46ef4688640938b15a13e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
