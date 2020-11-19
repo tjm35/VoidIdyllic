@@ -10,7 +10,6 @@ namespace Moonshot.Ship
 	{
 		public GameObject InFlightPrefab;
 		public GameObject ShipPhantomPrefab;
-		public float ShipSummonHeight = 15.0f;
 
 		public bool CanTakeoff()
 		{
@@ -22,7 +21,8 @@ namespace Moonshot.Ship
 		public void RequestTakeoff()
 		{
 			var go = Instantiate(ShipPhantomPrefab, transform.parent);
-			go.transform.position = transform.position + ShipSummonHeight * transform.up;
+			var playerSoul = GetComponent<PlayerVehicle>().PlayerSoul;
+			go.transform.position = playerSoul.transform.position;
 			go.transform.localRotation = transform.localRotation;
 
 			var fsm = go.GetComponent<PlayMakerFSM>();

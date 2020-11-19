@@ -22,6 +22,16 @@ namespace Moonshot.Player
 		public Transform SoulHook;
 		public VehicleType m_type;
 
+		public void AttachPlayerMaintainingPosition(GameObject i_playerSoul)
+		{ 
+			PlayerSoul = i_playerSoul;
+
+			transform.rotation = i_playerSoul.transform.rotation * Quaternion.Inverse(Quaternion.Inverse(transform.rotation) * SoulHook.rotation);
+			transform.position = i_playerSoul.transform.position + (transform.position - SoulHook.position);
+
+			i_playerSoul.transform.SetParent(SoulHook, false);
+		}
+
 		private void Awake()
 		{
 			if (m_playerSoul)

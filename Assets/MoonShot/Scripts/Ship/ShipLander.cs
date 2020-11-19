@@ -62,9 +62,7 @@ namespace Moonshot.Ship
 			go.transform.localRotation = transform.localRotation;
 
 			var playerSoul = GetComponent<PlayerVehicle>().PlayerSoul;
-			go.GetComponent<PlayerVehicle>().PlayerSoul = playerSoul;
-
-			playerSoul.transform.SetParent(go.GetComponent<PlayerVehicle>().SoulHook, false);
+			go.GetComponent<PlayerVehicle>().AttachPlayerMaintainingPosition(playerSoul);
 		}
 
 		private void MakeShipPhantom()
