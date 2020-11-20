@@ -100,7 +100,7 @@ namespace Moonshot.Ship
 			//UI.QuickDebug.Print($"Ship speed: {m_controller.WorldVelocity.magnitude}");
 		}
 
-		private bool GetMaxSpeed(out float o_maxSpeed)
+		public bool GetMaxSpeed(out float o_maxSpeed)
 		{
 			if (GetProminentBodyDistance(out float distance))
 			{
