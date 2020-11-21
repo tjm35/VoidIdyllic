@@ -17,10 +17,11 @@ public class PropagateCameraState : MonoBehaviour
 	public float LensShiftY { get; set; } = 0;
 	public float AperturePower { get; set; } = 0;
 	public float ISOPower { get; set; } = 0;
+	public float Temperature { get; set; } = 0;
 
-    void LateUpdate()
-    {
-        foreach (var target in m_targets)
+	void LateUpdate()
+	{
+		foreach (var target in m_targets)
 		{
 			target.focalLength = FocalLength;
 			target.lensShift = new Vector2(LensShiftX, LensShiftY);
@@ -45,6 +46,15 @@ public class PropagateCameraState : MonoBehaviour
 			}
 			adjust.active = true;
 			adjust.postExposure.Override((2.0f * AperturePower) + ISOPower);
+		}
+
+		{
+			if (!profile.TryGet<WhiteBalance>(out var white))
+			{
+				white = profile.Add<WhiteBalance>(false);
+			}
+			white.active = true;
+			white.temperature.Override(Temperature);
 		}
 
 		m_cameraProcessingVolume.profile = profile;

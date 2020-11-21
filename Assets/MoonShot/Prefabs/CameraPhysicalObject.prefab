@@ -1282,6 +1282,18 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PropagateCameraState, Moonshot
       objectReference: {fileID: 0}
+    - target: {fileID: 4661339188836179571, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6154858795025370786}
+    - target: {fileID: 4661339188836179571, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_Temperature
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661339188836179571, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PropagateCameraState, Moonshot
+      objectReference: {fileID: 0}
     - target: {fileID: 4793408713917764442, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
