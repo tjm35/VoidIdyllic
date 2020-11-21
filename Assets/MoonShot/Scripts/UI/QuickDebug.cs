@@ -9,6 +9,8 @@ namespace Moonshot.UI
 	[RequireComponent(typeof(TMP_Text))]
 	public class QuickDebug : MonoBehaviour
 	{
+		public bool m_showFPS = true;
+
 		public static void Print(string i_text)
 		{
 			if (s_instance)
@@ -30,7 +32,13 @@ namespace Moonshot.UI
 
 		private void LateUpdate()
 		{
-			m_text.text = m_stringBuilder.ToString();
+			string fps = "";
+
+			if (m_showFPS)
+			{
+				fps = "FPS: " + (1.0f / Time.unscaledDeltaTime).ToString() + "\n";
+			}
+			m_text.text = fps + m_stringBuilder.ToString();
 			m_stringBuilder.Clear();
 		}
 
