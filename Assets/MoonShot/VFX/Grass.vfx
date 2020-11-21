@@ -15501,7 +15501,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.Transform, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: 
-    m_Space: 2147483647
+    m_Space: 0
   m_Property:
     name: LocalToWorld
     m_serializedType:
