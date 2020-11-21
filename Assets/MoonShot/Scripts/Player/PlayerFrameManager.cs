@@ -113,6 +113,10 @@ namespace Moonshot.Player
 				var newFrame = nearestPlanet.ConstructLocalFrame();
 				if (newFrame)
 				{
+					if (FrameLightingManager.Instance)
+					{
+						FrameLightingManager.Instance.EnterPlanetFrame(nearestPlanet, newFrame);
+					}
 					return newFrame;
 				}
 			}
@@ -132,6 +136,11 @@ namespace Moonshot.Player
 			var frame = frameObject.AddComponent<LocalFrame>();
 			frame.GlobalLocation = globalHook.transform;
 			frame.GlobalLocationIsTemporary = true;
+
+			if (FrameLightingManager.Instance)
+			{
+				FrameLightingManager.Instance.EnterSpaceFrame(globalHook.transform, frame);
+			}
 
 			return frame;
 		}

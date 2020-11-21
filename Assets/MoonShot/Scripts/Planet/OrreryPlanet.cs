@@ -45,10 +45,39 @@ namespace Moonshot.Planet
 			frame.GlobalLocation = transform;
 
 			CreateHighResPlanet(frame);
-			SetupLighting(frame);
 			PopulateObjects(frame);
 
 			return frame;
+		}
+
+		public Light SetupLightForLocalFrames(Transform parent)
+		{
+			GameObject lightObject = Instantiate(LightPrefab, parent, false);
+			lightObject.name = gameObject.name + " Light";
+
+			Light light = lightObject.GetComponent<Light>();
+			light.color = PlanetColor;
+			light.intensity = PlanetIntensity; // TODO: Intensity falloff by distance
+
+			LookAtConstraint lac = lightObject.GetComponent<LookAtConstraint>();
+			if (lac == null)
+			{
+				lac = lightObject.AddComponent<LookAtConstraint>();
+			}
+			ConstraintSource cs = new ConstraintSource();
+			cs.sourceTransform = parent;
+			cs.weight = 1.0f;
+			lac.AddSource(cs);
+			lac.constraintActive = true;
+
+			CrossFramePositionConstraint cfpc = lightObject.GetComponent<CrossFramePositionConstraint>();
+			if (cfpc == null)
+			{
+				cfpc = lightObject.AddComponent<CrossFramePositionConstraint>();
+			}
+			cfpc.m_target = transform;
+
+			return light;
 		}
 
 		[ContextMenu("Rebuild Prop List")]
@@ -90,14 +119,6 @@ namespace Moonshot.Planet
 			hrp.OrreryPlanet = this;
 		}
 
-		private void SetupLighting(LocalFrame frame)
-		{
-			foreach (var planet in LightSources)
-			{
-				planet.SetupLightForOtherLocalFrame(frame);
-			}
-		}
-
 		private void PopulateObjects(LocalFrame frame)
 		{
 			foreach (var prop in OrreryProps)
@@ -107,34 +128,6 @@ namespace Moonshot.Planet
 					prop.CreateHighResProp(frame);
 				}
 			}
-		}
-
-		private void SetupLightForOtherLocalFrame(LocalFrame frame)
-		{
-			GameObject lightObject = Instantiate(LightPrefab, frame.transform, false);
-			lightObject.name = gameObject.name + " Light";
-
-			Light light = lightObject.GetComponent<Light>();
-			light.color = PlanetColor;
-			light.intensity = PlanetIntensity; // TODO: Intensity falloff by distance
-
-			LookAtConstraint lac = lightObject.GetComponent<LookAtConstraint>();
-			if (lac == null)
-			{
-				lac = lightObject.AddComponent<LookAtConstraint>();
-			}
-			ConstraintSource cs = new ConstraintSource();
-			cs.sourceTransform = frame.transform;
-			cs.weight = 1.0f;
-			lac.AddSource(cs);
-			lac.constraintActive = true;
-
-			CrossFramePositionConstraint cfpc = lightObject.GetComponent<CrossFramePositionConstraint>();
-			if (cfpc == null)
-			{
-				cfpc = lightObject.AddComponent<CrossFramePositionConstraint>();
-			}
-			cfpc.m_target = transform;
 		}
 
 		private void SetupSelfLightForOrrery(Transform i_lightContainer)
