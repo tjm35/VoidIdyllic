@@ -426,6 +426,7 @@ MonoBehaviour:
   - {fileID: 5235872701820685962}
   - {fileID: 5235872702147598722}
   - {fileID: 5235872702268060629}
+  m_cameraProcessingVolume: {fileID: 0}
 --- !u!1 &5235872702147598725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1270,18 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PropagateCameraState, Moonshot
       objectReference: {fileID: 0}
+    - target: {fileID: 1023197356441174052, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6154858795025370786}
+    - target: {fileID: 1023197356441174052, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_AperturePower
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023197356441174052, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PropagateCameraState, Moonshot
+      objectReference: {fileID: 0}
     - target: {fileID: 4793408713917764442, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1312,6 +1325,18 @@ PrefabInstance:
     - target: {fileID: 6775867565728977504, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: set_LensShiftY
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617513029519115032, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6154858795025370786}
+    - target: {fileID: 8617513029519115032, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_ISOPower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8617513029519115032, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PropagateCameraState, Moonshot
       objectReference: {fileID: 0}
     - target: {fileID: 9053483762510684944, guid: 09354428ef530404baac4da4160cc3c2, type: 3}
       propertyPath: m_IsActive
