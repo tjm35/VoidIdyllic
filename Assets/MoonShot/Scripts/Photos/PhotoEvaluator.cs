@@ -10,6 +10,7 @@ namespace Moonshot.Photos
 	public class PhotoEvaluator : MonoBehaviour
 	{
 		public Transform m_globalGoals;
+		public bool m_verboseDebug = false;
 
 		public class Context
 		{
@@ -67,7 +68,7 @@ namespace Moonshot.Photos
 		{
 			var goals = m_globalGoals.GetComponentsInChildren<Goal>().Where(g => g.isActiveAndEnabled);
 
-			if (c_verboseDebug)
+			if (m_verboseDebug)
 			{
 				// Debugging
 				foreach (var goal in goals)
@@ -126,7 +127,7 @@ namespace Moonshot.Photos
 				if (poi != null)
 				{
 					i_context.m_visibility[poi] = kvp.Value;
-					if (c_verboseDebug)
+					if (m_verboseDebug)
 					{
 						Debug.Log($"PhotoEvaluator: {kvp.Value} pixels of {poi.gameObject.name} found.");
 					}
@@ -152,7 +153,5 @@ namespace Moonshot.Photos
 
 			return readableSaveTexture;
 		}
-
-		private const bool c_verboseDebug = false;
 	}
 }
