@@ -2169,14 +2169,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlanetColor: {r: 0.262, g: 0.262, b: 0.262, a: 1}
   PlanetIntensity: 0.1
-  Radius: 20
+  Radius: 15
   SurfaceMaterial: {fileID: 2100000, guid: 410af9701c91b5b40b07c4d833999b2b, type: 2}
-  HeightMap: {fileID: 0}
-  HeightMapScale: 10
+  HeightMap: {fileID: 8900000, guid: 44c3b694fa064e24188e2790ef41cc27, type: 3}
+  HeightMapScale: 5
   HighResPlanetPrefab: {fileID: 4526006896129044001, guid: 559246d3a0e30f846a6ee4fd1b0c09f7, type: 3}
   LightPrefab: {fileID: 1425007914231666427, guid: 1cb5947706094e94f87f6fd9a825dce1, type: 3}
   OrreryMeshFilter: {fileID: 1286140333733425181}
-  OrrerySubDivs: 2
+  OrrerySubDivs: 3
   OrreryMeshSmoothness: 0
   m_pointOfInterest: {fileID: 0}
   LightSources:
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_radius: 20
-  m_surfaceGravityGs: 0.2
+  m_surfaceGravityGs: 0.05
 --- !u!114 &1286140333792872833
 MonoBehaviour:
   m_ObjectHideFlags: 0
