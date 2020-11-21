@@ -19,6 +19,8 @@ namespace Moonshot.Photos
 
 		public Class m_class = Class.None;
 
+		public bool IsOfClass(Class i_class) => (m_class & i_class) == i_class;
+
 		public void Start()
 		{
 			m_id = s_intGenerator.GetNextInt();

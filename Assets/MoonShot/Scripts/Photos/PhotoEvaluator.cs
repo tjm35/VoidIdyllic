@@ -13,21 +13,27 @@ namespace Moonshot.Photos
 
 		public class Context
 		{
-			public Camera m_analysisCamera;
-			public bool m_ready;
 			public Transform m_globalLocation;
 			public Dictionary<PointOfInterest, int> m_visibility;
+			public Vector3 m_globalCameraPos;
+			public bool m_ready;
+		}
+
+		private class BuildingContext : Context
+		{ 
+			public Camera m_analysisCamera;
 		}
 
 		public Context ConstructContext(Camera i_viewCamera)
 		{
-			var context = new Context();
+			var context = new BuildingContext();
 			context.m_analysisCamera = i_viewCamera.GetComponent<POIAnalysisCameraRef>().m_poiAnalysisCamera;
 			var lf = LocalFrame.Get(i_viewCamera.transform);
 			if (lf)
 			{
 				context.m_globalLocation = lf.GlobalLocation;
 			}
+			context.m_globalCameraPos = LocalFrame.TransformPointToGlobal(lf, i_viewCamera.transform.position);
 			context.m_ready = false;
 			StartCoroutine(PrepareContextCoroutine(context));
 			return context;
@@ -50,6 +56,13 @@ namespace Moonshot.Photos
 			return i_context.m_visibility.Where(kvp => kvp.Value >= i_minVisibility).Select(kvp => kvp.Key);
 		}
 
+		public Vector3 GetGlobalPOIPosition(PointOfInterest i_poi, Context i_context)
+		{
+			// TODO - Cache positions in the context since they might have changed since the photo was taken.
+			// For now just return the current positiion.
+			return LocalFrame.GetGlobalPosition(i_poi.transform);
+		}
+
 		public IEnumerable<Goal> EvaluateGoals(Context i_context)
 		{
 			var goals = m_globalGoals.GetComponentsInChildren<Goal>().Where(g => g.isActiveAndEnabled);
@@ -66,7 +79,7 @@ namespace Moonshot.Photos
 			return goals.Where(goal => goal.Check(this, i_context));
 		}
 
-		private IEnumerator PrepareContextCoroutine(Context i_context)
+		private IEnumerator PrepareContextCoroutine(BuildingContext i_context)
 		{
 			yield return new WaitForEndOfFrame();
 
