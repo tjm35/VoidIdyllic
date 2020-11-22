@@ -5,15 +5,14 @@ using UnityEngine;
 
 namespace Moonshot.Props
 {
-	public class VaryFlora : MonoBehaviour
+	public class VaryFlora : VaryBase
 	{
 		[Required]
 		public SkinnedMeshRenderer m_source;
-		public int m_additionalSeed = 0;
 		public Vector3 m_angleRange = new Vector3(10.0f, 5.0f, 10.0f);
 
 		[Button]
-		public void ApplyVariation()
+		public override void ApplyVariation()
 		{
 			UnbakeMesh();
 
@@ -49,7 +48,7 @@ namespace Moonshot.Props
 		}
 
 		[Button]
-		public void BakeMesh()
+		public override void BakeMesh()
 		{
 			Mesh m = new Mesh();
 
@@ -77,7 +76,7 @@ namespace Moonshot.Props
 		}
 
 		[Button]
-		public void UnbakeMesh()
+		public override void UnbakeMesh()
 		{
 			var mr = GetComponent<MeshRenderer>();
 			if (mr)
@@ -86,30 +85,6 @@ namespace Moonshot.Props
 			}
 			var smr = m_source;
 			smr.gameObject.SetActive(true);
-		}
-
-		[Button]
-		public void RerollAdditionalSeedAndVary()
-		{
-			m_additionalSeed = Random.Range(int.MinValue, int.MaxValue);
-			ApplyVariation();
-		}
-
-		private static Vector3 RandEuler(System.Random i_rand, Vector3 i_angleRange)
-		{
-			return new Vector3(Rand(i_rand, -i_angleRange.x, i_angleRange.x),Rand(i_rand, -i_angleRange.y, i_angleRange.y),Rand(i_rand, -i_angleRange.z, i_angleRange.z));
-		}
-
-		private static float Rand(System.Random i_rand, float i_min, float i_max)
-		{
-			return ((float)i_rand.NextDouble() * (i_max - i_min)) + i_min;
-		}
-
-		private System.Random MakeRandomiser()
-		{
-			int seedFromPos = transform.position.GetHashCode();
-			int seed = seedFromPos ^ m_additionalSeed;
-			return new System.Random(seed);
 		}
 
 	}
