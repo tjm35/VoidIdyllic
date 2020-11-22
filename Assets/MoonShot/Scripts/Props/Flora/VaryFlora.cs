@@ -80,13 +80,12 @@ namespace Moonshot.Props
 		public void UnbakeMesh()
 		{
 			var mr = GetComponent<MeshRenderer>();
-			if (mr && mr.enabled)
+			if (mr)
 			{
 				mr.enabled = false;
-
-				var smr = m_source;
-				smr.gameObject.SetActive(true);
 			}
+			var smr = m_source;
+			smr.gameObject.SetActive(true);
 		}
 
 		[Button]
