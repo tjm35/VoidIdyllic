@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Moonshot.Photos;
+using Moonshot.World;
 
 namespace Moonshot.Props
 {
@@ -17,6 +18,7 @@ namespace Moonshot.Props
 				if (enabled)
 				{
 					m_orreryProp.EnableHighRes(this);
+					m_isEnabledOnOrreryProp = true;
 				}
 				if (GetComponent<POIReference>())
 				{
@@ -28,28 +30,42 @@ namespace Moonshot.Props
 
 		private void OnEnable()
 		{
+			Debug.Assert(!m_isEnabledOnOrreryProp);
 			if (m_orreryProp)
 			{
 				m_orreryProp.EnableHighRes(this);
+				m_isEnabledOnOrreryProp = true;
+			}
+		}
+
+		private void OnExitLocalFrame(LocalFrame i_localFrame)
+		{
+			if (m_orreryProp && m_isEnabledOnOrreryProp)
+			{
+				m_orreryProp.DisableHighRes(this);
+				m_isEnabledOnOrreryProp = false;
 			}
 		}
 
 		private void OnDisable()
 		{
-			if (m_orreryProp)
+			if (m_orreryProp && m_isEnabledOnOrreryProp)
 			{
 				m_orreryProp.DisableHighRes(this);
+				m_isEnabledOnOrreryProp = false;
 			}
 		}
 
 		private void OnDestroy()
 		{
-			if (m_orreryProp && enabled)
+			if (m_orreryProp && m_isEnabledOnOrreryProp)
 			{
 				m_orreryProp.DisableHighRes(this);
+				m_isEnabledOnOrreryProp = false;
 			}
 		}
 
 		private OrreryProp m_orreryProp = null;
+		private bool m_isEnabledOnOrreryProp = false;
 	}
 }

@@ -14,18 +14,14 @@ namespace Moonshot.Props
 
 		public void EnableHighRes(HighResProp i_highResObject)
 		{
-			m_highResProps.Add(i_highResObject);
-			gameObject.SetActive(false);
+			m_highResProp = i_highResObject;
 		}
 
 		public void DisableHighRes(HighResProp i_highResObject)
 		{
-			Debug.Assert(m_highResProps.Contains(i_highResObject));
-			m_highResProps.Remove(i_highResObject);
-			if (m_highResProps.Count == 0)
-			{
-				gameObject.SetActive(true);
-			}
+			Debug.Assert(m_highResProp == i_highResObject);
+			m_highResProp = null;
+			gameObject.SetActive(true);
 			if (m_moveToHighResObject)
 			{
 				m_moveToHighResObject.transform.SetParent(transform, false);
@@ -41,11 +37,6 @@ namespace Moonshot.Props
 			go.transform.localScale = transform.localScale;
 			Debug.Assert(go.GetComponent<HighResProp>());
 			go.GetComponent<HighResProp>().OrreryProp = this;
-			if (m_moveToHighResObject)
-			{
-				m_moveToHighResObject.transform.SetParent(go.transform, false);
-				m_moveToHighResObject.layer = go.layer;
-			}
 			return go;
 		}
 
@@ -57,6 +48,19 @@ namespace Moonshot.Props
 			}
 		}
 
-		private HashSet<HighResProp> m_highResProps = new HashSet<HighResProp>();
+		private void Update()
+		{
+			if (m_moveToHighResObject && m_highResProp)
+			{
+				m_moveToHighResObject.transform.SetParent(m_highResProp.transform, false);
+				m_moveToHighResObject.layer = m_highResProp.gameObject.layer;
+			}
+			if (m_highResProp)
+			{
+				gameObject.SetActive(false);
+			}
+		}
+
+		private HighResProp m_highResProp = null;
 	}
 }
