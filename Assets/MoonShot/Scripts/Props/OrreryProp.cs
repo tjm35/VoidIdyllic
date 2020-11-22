@@ -10,6 +10,7 @@ namespace Moonshot.Props
 	{
 		public GameObject m_highResPrefab;
 		public PointOfInterest m_pointOfInterest;
+		public GameObject m_moveToHighResObject;
 
 		public void EnableHighRes(HighResProp i_highResObject)
 		{
@@ -25,6 +26,11 @@ namespace Moonshot.Props
 			{
 				gameObject.SetActive(true);
 			}
+			if (m_moveToHighResObject)
+			{
+				m_moveToHighResObject.transform.SetParent(transform, false);
+				m_moveToHighResObject.layer = gameObject.layer;
+			}
 		}
 
 		public GameObject CreateHighResProp(LocalFrame i_frame)
@@ -35,6 +41,11 @@ namespace Moonshot.Props
 			go.transform.localScale = transform.localScale;
 			Debug.Assert(go.GetComponent<HighResProp>());
 			go.GetComponent<HighResProp>().OrreryProp = this;
+			if (m_moveToHighResObject)
+			{
+				m_moveToHighResObject.transform.SetParent(go.transform, false);
+				m_moveToHighResObject.layer = go.layer;
+			}
 			return go;
 		}
 
