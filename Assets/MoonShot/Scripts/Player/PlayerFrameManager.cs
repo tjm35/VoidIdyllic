@@ -16,6 +16,7 @@ namespace Moonshot.Player
 
 		void Start()
 		{
+			m_planets = FindObjectsOfType<OrreryPlanet>();
 			UpdateFrame(true);
 		}
 
@@ -86,10 +87,8 @@ namespace Moonshot.Player
 
 		private OrreryPlanet GetIdealFramePlanet(LocalFrame currentFrame)
 		{
-			IEnumerable<OrreryPlanet> planets = FindObjectsOfType<OrreryPlanet>();
-
 			Vector3 globalPos = LocalFrame.TransformPointToGlobal(currentFrame, transform.position);
-			var nearestPlanet = planets.Where(p => p.CanConstructFrame).OrderBy(p => (p.transform.position - globalPos).magnitude - p.Radius).FirstOrDefault();
+			var nearestPlanet = m_planets.Where(p => p.CanConstructFrame).OrderBy(p => (p.transform.position - globalPos).magnitude - p.Radius).FirstOrDefault();
 
 			if (nearestPlanet)
 			{
@@ -174,5 +173,7 @@ namespace Moonshot.Player
 				BroadcastMessage("OnEnterLocalFrame", newFrame, SendMessageOptions.DontRequireReceiver);
 			}
 		}
+
+		private IEnumerable<OrreryPlanet> m_planets;
 	}
 }
