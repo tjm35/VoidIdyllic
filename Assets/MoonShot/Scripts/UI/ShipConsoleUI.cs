@@ -97,7 +97,7 @@ namespace Moonshot.UI
 				{
 					float newHeight = Mathf.Abs(Mathf.Sin((Time.timeSinceLevelLoad * m_analyserFrequency) + m_analysers[i].m_phase)) * totalSpeedScaled * m_visualiserMaxHeight;
 					m_analysers[i].m_rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newHeight);
-					m_analysers[i].m_graphic.color = Color.Lerp(m_lowColor, m_highColor, totalSpeedScaled);
+					m_analysers[i].m_graphic.color = Color.Lerp(m_lowColor, m_highColor, newHeight / m_visualiserMaxHeight);
 				}
 			}
 
