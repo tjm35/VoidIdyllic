@@ -18,6 +18,6 @@ namespace Moonshot.Props
 		public float m_forcedFacingWeight = 0.0f;
 		public Vector3 m_forcedFacingDirection = Vector3.up;
 		public Vector3 m_forcedFacingAxis = Vector3.up;
-
+		public bool m_ignoreTwistLimits = false;
 	}
 }

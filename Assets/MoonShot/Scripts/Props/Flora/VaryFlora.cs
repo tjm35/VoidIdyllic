@@ -56,10 +56,13 @@ namespace Moonshot.Props
 						bone.rotation = Quaternion.Lerp(bone.rotation, axisLookGlobalRotation, constraint.m_forcedFacingWeight);
 
 						float twistMag = Mathf.Abs(Mathf.DeltaAngle(0.0f, bone.localEulerAngles.y));
-						if (twistMag > m_maxValidTwist && m_forceRerollIfInvalid)
+						if (twistMag > m_maxValidTwist && !constraint.m_ignoreTwistLimits)
 						{
-							Debug.Log($"Twist limit exceeded on {bone.gameObject.name}, rerolling.");
-							needsRevary = true;
+							Debug.Log($"Twist limit exceeded on {bone.gameObject.name} ({twistMag} > {m_maxValidTwist}).");
+							if (m_forceRerollIfInvalid)
+							{
+								needsRevary = true;
+							}
 						}
 					}
 					else
