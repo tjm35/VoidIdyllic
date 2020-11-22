@@ -32,6 +32,8 @@ namespace Moonshot.World
 		{
 			foreach (var light in AllLights)
 			{
+				var oldFrame = light.m_lightObject.GetComponent<CrossFramePositionConstraint>().m_overrideOwnFrame;
+				LocalFrame.Transplant(light.m_lightObject.transform, oldFrame, i_newFrame);
 				light.m_lightObject.GetComponent<CrossFramePositionConstraint>().m_overrideOwnFrame = i_newFrame;
 			}
 		}
