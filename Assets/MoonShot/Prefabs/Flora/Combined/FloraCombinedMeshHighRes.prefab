@@ -64,9 +64,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6184087385129683404}
     m_Modifications:
+    - target: {fileID: 24734227523960758, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50692637633229972, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1295716948024731539, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
       propertyPath: m_Name
       value: FloraCombinedMeshShared
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959715239968286823, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452940637963870897, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755139388765722020, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4396501594507221456, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110,6 +130,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4396501594507221456, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641590381104273723, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150735890456458149, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568384314017168187, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145388498722053607, guid: a71456f6f4fb20f4f960fe5d7609c69a, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

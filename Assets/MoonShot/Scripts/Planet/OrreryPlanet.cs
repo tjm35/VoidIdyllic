@@ -84,7 +84,7 @@ namespace Moonshot.Planet
 		private void RebuildPropList()
 		{
 			OrreryProps.Clear();
-			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>().Where(p => p.transform.GetComponentInAncestors<OrreryPlanet>() == this));
+			OrreryProps.AddRange(transform.GetComponentsInDescendents<OrreryProp>().Where(p => p.transform.GetComponentInAncestors<OrreryPlanet>() == this && p.gameObject.activeInHierarchy));
 		}
 
 		[ContextMenu("Rebuild Orrery Lighting")]
