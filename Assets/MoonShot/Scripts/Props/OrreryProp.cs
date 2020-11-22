@@ -32,6 +32,7 @@ namespace Moonshot.Props
 			var go = Instantiate(m_highResPrefab, i_frame.transform, false);
 			go.transform.position = i_frame.TransformPointToLocal(transform.position);
 			go.transform.rotation = i_frame.TransformRotationToLocal(transform.rotation);
+			go.transform.localScale = transform.localScale;
 			Debug.Assert(go.GetComponent<HighResProp>());
 			go.GetComponent<HighResProp>().OrreryProp = this;
 			return go;
