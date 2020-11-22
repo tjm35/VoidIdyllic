@@ -81,6 +81,10 @@ namespace Moonshot.Props
 			var smr = m_source;
 			smr.BakeMesh(m);
 			m.name = "Baked " + smr.gameObject.name;
+
+			transform.position = smr.transform.position;
+			transform.rotation = smr.transform.rotation;
+
 			smr.gameObject.SetActive(false);
 
 			var mf = GetComponent<MeshFilter>();
