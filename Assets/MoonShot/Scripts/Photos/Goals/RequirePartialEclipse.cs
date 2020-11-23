@@ -9,11 +9,14 @@ namespace Moonshot.Photos.Requirements
 		public OrreryPlanet m_eclipsee;
 		public int m_minEclipseeVisibility = 1;
 		public int m_minEclipsorVisibility = 1;
+		[Tooltip("The eclipsor's visibility must be at least this multiple of the eclipsee's (as well as its usual limit).")]
+		public float m_minVisibilityRatio = 0.0f;
 
 		public bool Check(PhotoEvaluator i_evaluator, PhotoEvaluator.Context i_context)
 		{
 			// Eclipsee must be visibile.
-			if (i_evaluator.GetVisibility(m_eclipsee.m_pointOfInterest, i_context) < m_minEclipseeVisibility)
+			int eclipseeVisibility = i_evaluator.GetVisibility(m_eclipsee.m_pointOfInterest, i_context);
+			if (eclipseeVisibility < m_minEclipseeVisibility)
 			{
 				return false;
 			}
@@ -23,7 +26,9 @@ namespace Moonshot.Photos.Requirements
 			float cameraToEclipseeDistance = cameraToEclipsee.magnitude;
 			Vector3 cameraToEclipseeDirection = cameraToEclipsee.normalized;
 
-			var eclipsors = i_evaluator.GetVisiblePOIs(m_minEclipsorVisibility, i_context).Where(poi => poi.GetComponent<OrreryPlanet>() != null && poi.gameObject != m_eclipsee.gameObject);
+			int minEclipsorVisibility = Mathf.Max(m_minEclipsorVisibility, (int)(m_minVisibilityRatio * (float)(eclipseeVisibility)));
+
+			var eclipsors = i_evaluator.GetVisiblePOIs(minEclipsorVisibility, i_context).Where(poi => poi.GetComponent<OrreryPlanet>() != null && poi.gameObject != m_eclipsee.gameObject);
 			foreach (PointOfInterest eclipsor in eclipsors)
 			{
 				Vector3 eclipsorPos = i_evaluator.GetGlobalPOIPosition(eclipsor, i_context);
