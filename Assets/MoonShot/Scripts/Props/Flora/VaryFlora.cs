@@ -85,6 +85,9 @@ namespace Moonshot.Props
 			transform.position = smr.transform.position;
 			transform.rotation = smr.transform.rotation;
 
+			// SkinnedMeshRenderer.BakeMesh bakes into *world* scale, so we need to undo that in our own scaling.
+			transform.localScale = new Vector3(1.0f / smr.transform.lossyScale.x, 1.0f / smr.transform.lossyScale.y, 1.0f / smr.transform.lossyScale.z);
+
 			smr.gameObject.SetActive(false);
 
 			var mf = GetComponent<MeshFilter>();
