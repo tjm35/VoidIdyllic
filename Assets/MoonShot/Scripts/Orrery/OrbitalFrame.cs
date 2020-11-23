@@ -13,6 +13,18 @@ namespace Moonshot.Orrery
 		public Vector3 m_semimajorAxis = 100.0f * Vector3.right;
 		public float m_offsetAngle = 0.0f;
 
+		public void CopySettings(OrbitalFrame i_other)
+		{
+			m_axis = i_other.m_axis;
+			m_period = i_other.m_period;
+			m_eccentricity = i_other.m_eccentricity;
+			m_semimajorAxis = i_other.m_semimajorAxis;
+			m_offsetAngle = i_other.m_offsetAngle;
+
+			// Copy the eccentricity table by reference rather than rebuilding it.
+			m_Elookup = i_other.m_Elookup;
+		}
+
 		void Start()
 		{
 			m_timeSource = transform.GetComponentInAncestors<OrreryTimeSource>() ?? OrreryTimeSource.Global;

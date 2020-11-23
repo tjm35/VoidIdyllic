@@ -10,6 +10,12 @@ namespace Moonshot.Orrery
 		public Vector3 m_axis = Vector3.up;
 		public float m_period = 10.0f;
 
+		public void CopySettings(RotatingFrame i_other)
+		{
+			m_axis = i_other.m_axis;
+			m_period = i_other.m_period;
+		}
+
 		// Start is called before the first frame update
 		void Start()
 		{
