@@ -5,9 +5,10 @@ using UnityEngine;
 namespace Moonshot.Photos
 {
 	[RequireComponent(typeof(Renderer))]
-	[ExecuteAlways]
 	public class POIRendererSetup : MonoBehaviour
 	{
+		public bool m_everyFrame = false;
+
 		void Start()
 		{
 			m_renderer = GetComponent<Renderer>();
@@ -25,13 +26,21 @@ namespace Moonshot.Photos
 				}
 			}
 
-			if (m_block == null)
-			{
-				m_block = new MaterialPropertyBlock();
-			}
+			if (m_poi != null)
+			{ 
+				if (m_block == null)
+				{
+					m_block = new MaterialPropertyBlock();
+					m_poi.SetupMaterial(m_block);
+				}
 
-			m_renderer.SetPropertyBlock(m_block);
-			m_poi?.SetupMaterial(m_block);
+				if (m_everyFrame)
+				{
+					m_poi.SetupMaterial(m_block);
+				}
+
+				m_renderer.SetPropertyBlock(m_block);
+			}
 		}
 
 		private IPOIContext m_poi = null;
