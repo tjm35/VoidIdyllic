@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_highResPrefab: {fileID: 2579418387507670288, guid: 3ceb3e17adfd8ee408d1ac13ded7180f, type: 3}
   m_pointOfInterest: {fileID: 5291810220471692837}
+  m_moveToHighResObject: {fileID: 5290090546464900177}
 --- !u!114 &2017762659154878740
 MonoBehaviour:
   m_ObjectHideFlags: 0
