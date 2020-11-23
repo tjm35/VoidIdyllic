@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8976191374645333888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3500714376679109878}
+  - component: {fileID: 6944457059434982498}
+  - component: {fileID: 7014301564543205060}
+  m_Layer: 0
+  m_Name: DrillOrrery
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3500714376679109878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976191374645333888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6007669998946698842}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6944457059434982498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976191374645333888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41dbd83eee0da3d4884644451a3b1a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_class: 16
+--- !u!114 &7014301564543205060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976191374645333888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6903c550550a91342a0849dab463da84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_highResPrefab: {fileID: 3049331441573651019, guid: 8b92dc973e4c777418b9b6699a4cff3a, type: 3}
+  m_pointOfInterest: {fileID: 6944457059434982498}
+  m_moveToHighResObject: {fileID: 0}
+--- !u!1001 &6707998709149778906
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3500714376679109878}
+    m_Modifications:
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753947486595772313, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026866248859964881, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_Name
+      value: DrillShared
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166329688647269456, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903070500527688522, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+--- !u!4 &6007669998946698842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1029091488448611712, guid: 16c38a9cbcb7cd143872f8908c91ebb1, type: 3}
+  m_PrefabInstance: {fileID: 6707998709149778906}
+  m_PrefabAsset: {fileID: 0}
