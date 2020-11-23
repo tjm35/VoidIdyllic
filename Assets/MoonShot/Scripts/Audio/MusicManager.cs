@@ -25,6 +25,7 @@ namespace Moonshot.Audio
 		public float m_minDelayTime = 1.0f;
 		public float m_maxDelayTime = 5.0f;
 
+		public float m_fadeInTime = 1.0f;
 		public float m_fadeOutTime = 1.0f;
 
 		// Start is called before the first frame update
@@ -66,6 +67,10 @@ namespace Moonshot.Audio
 					}
 				case State.Playing:
 					{
+						if (m_fadeInTime > 0.0f)
+						{
+							m_source.volume += Mathf.Min(m_source.volume + Time.deltaTime / m_fadeInTime, 1.0f);
+						}
 						if (m_currentMusic != GetMusicForCurrentFramePlanet())
 						{
 							Stop();
@@ -104,7 +109,14 @@ namespace Moonshot.Audio
 			Debug.Assert(pm != null);
 
 			m_source.clip = pm.m_music;
-			m_source.volume = 1.0f;
+			if (m_fadeInTime > 0.0f)
+			{
+				m_source.volume = 0.0f;
+			}
+			else
+			{
+				m_source.volume = 1.0f;
+			}
 			m_source.Play();
 
 			m_state = State.Playing;
