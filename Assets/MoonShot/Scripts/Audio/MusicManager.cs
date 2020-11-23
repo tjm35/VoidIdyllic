@@ -69,7 +69,7 @@ namespace Moonshot.Audio
 					{
 						if (m_fadeInTime > 0.0f)
 						{
-							m_source.volume += Mathf.Min(m_source.volume + Time.deltaTime / m_fadeInTime, 1.0f);
+							m_source.volume = Mathf.Min(m_source.volume + Time.deltaTime / m_fadeInTime, 1.0f);
 						}
 						if (m_currentMusic != GetMusicForCurrentFramePlanet())
 						{
