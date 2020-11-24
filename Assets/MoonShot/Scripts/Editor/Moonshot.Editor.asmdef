@@ -2,7 +2,8 @@
     "name": "Moonshot.Editor",
     "references": [
         "GUID:8d45c027b5bb5c84d8582e95fd30602c",
-        "GUID:39f89aec21c6a8345a6c38bf83ef5f3f"
+        "GUID:39f89aec21c6a8345a6c38bf83ef5f3f",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [
         "Editor"
