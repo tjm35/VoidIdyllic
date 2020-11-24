@@ -10,10 +10,28 @@ namespace Moonshot.Tutorial
 		public PlayMakerFSM m_stateMachine;
 		public string m_variableName;
 		public bool m_unsetOnDisable;
+		public float m_minLingerTime = 0.5f;
 
 		private void OnEnable()
 		{
-			TutorialHelper.SetBool(m_variableName, true);
+			if (m_minLingerTime == 0.0f)
+			{
+				TutorialHelper.SetBool(m_variableName, true);
+				m_hasSet = true;
+			}
+		}
+
+		private void Update()
+		{
+			if (!m_hasSet)
+			{
+				m_lingerTime += Time.deltaTime;
+				if (m_lingerTime > m_minLingerTime)
+				{
+					TutorialHelper.SetBool(m_variableName, true);
+					m_hasSet = true;
+				}
+			}
 		}
 
 		private void OnDisable()
@@ -22,7 +40,11 @@ namespace Moonshot.Tutorial
 			{
 				TutorialHelper.SetBool(m_variableName, false);
 			}
+			m_lingerTime = 0.0f;
+			m_hasSet = false;
 		}
 
+		private float m_lingerTime = 0.0f;
+		private bool m_hasSet = false;
 	}
 }

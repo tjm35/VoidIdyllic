@@ -3845,6 +3845,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: HasSeenGoals
   m_unsetOnDisable: 0
+  m_minLingerTime: 0.5
 --- !u!1 &4648208722732876404
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,6 +3942,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: IsInMenu
   m_unsetOnDisable: 1
+  m_minLingerTime: 0
 --- !u!114 &1675682881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,6 +3958,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: HasStartedGame
   m_unsetOnDisable: 0
+  m_minLingerTime: 0.5
 --- !u!1 &4758276464958771871
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +4270,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: HasSeenMap
   m_unsetOnDisable: 0
+  m_minLingerTime: 0.5
 --- !u!1 &5848230353156805329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,6 +4867,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: HasSeenGallery
   m_unsetOnDisable: 0
+  m_minLingerTime: 0.5
 --- !u!1 &7570274683464087360
 GameObject:
   m_ObjectHideFlags: 0
@@ -5644,6 +5649,7 @@ MonoBehaviour:
   m_stateMachine: {fileID: 0}
   m_variableName: HasSeenCloud
   m_unsetOnDisable: 0
+  m_minLingerTime: 0.5
 --- !u!1 &8738691162895301145
 GameObject:
   m_ObjectHideFlags: 0
