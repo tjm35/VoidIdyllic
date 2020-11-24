@@ -3,6 +3,7 @@
     Properties
     {
         _WriteInt ("WriteInt", Int) = 0
+		_Transparent ("Transparent", Int) = 0
     }
     SubShader
     {
@@ -31,6 +32,7 @@
             };
 
             int _WriteInt;
+			int _Transparent;
 
             v2f vert (appdata v)
             {
@@ -41,6 +43,10 @@
 
             int frag (v2f i) : SV_Target
             {
+				if (_WriteInt == 0 && _Transparent != 0)
+				{
+					discard;
+				}
                 return _WriteInt;
             }
             ENDCG

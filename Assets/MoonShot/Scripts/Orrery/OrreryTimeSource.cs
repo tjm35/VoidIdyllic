@@ -9,6 +9,9 @@ namespace Moonshot.Orrery
 		public bool m_advancing = true;
 		public float TimeElapsed = 0.0f;
 		public bool m_isGlobal = true;
+		public float m_playRate = 1.0f;
+		// A hack to avoid storing data in props for now.
+		public bool m_gameplayPaused = false;
 
 		public static OrreryTimeSource Global;
 
@@ -33,7 +36,7 @@ namespace Moonshot.Orrery
 		{
 			if (m_advancing)
 			{
-				TimeElapsed += Time.deltaTime;
+				TimeElapsed += m_playRate * Time.deltaTime;
 			}
 		}
 	}

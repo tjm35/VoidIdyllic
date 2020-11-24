@@ -77,6 +77,7 @@ namespace Moonshot.Photos
 				yield return new WaitForEndOfFrame();
 			}
 
+			m_evaluator.NotifyPhotoTaken(i_context);
 			var completedGoals = m_evaluator.EvaluateGoals(i_context);
 			foreach (var goal in completedGoals)
 			{

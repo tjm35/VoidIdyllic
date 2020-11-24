@@ -11,6 +11,9 @@ namespace Moonshot.Photos
 	{
 		public Transform m_globalGoals;
 		public bool m_verboseDebug = false;
+		public bool m_backgroundEvaluation = true;
+		public Camera m_backgroundEvaluationCamera;
+		public int m_backgroundEvaluationVisibilityThreshold = 1;
 
 		public class Context
 		{
@@ -18,6 +21,59 @@ namespace Moonshot.Photos
 			public Dictionary<PointOfInterest, int> m_visibility;
 			public Vector3 m_globalCameraPos;
 			public bool m_ready;
+		}
+
+		private void Update()
+		{
+			if (m_backgroundEvaluation)
+			{
+				if (m_backgroundContext == null)
+				{
+					if (m_backgroundEvaluationCamera.isActiveAndEnabled)
+					{
+						m_backgroundContext = ConstructContext(m_backgroundEvaluationCamera);
+					}
+					else
+					{
+						foreach (var poi in m_backgroundVisiblePoIs)
+						{
+							if (poi)
+							{
+								poi.SendMessage("OnExitedViewfinder", poi, SendMessageOptions.DontRequireReceiver);
+							}
+						}
+						m_backgroundVisiblePoIs.Clear();
+					}
+				}
+				if (m_backgroundContext != null && m_backgroundContext.m_ready)
+				{
+					var visiblePoIs = GetVisiblePOIs(m_backgroundEvaluationVisibilityThreshold, m_backgroundContext).ToArray();
+					foreach (var poi in visiblePoIs)
+					{
+						if (!m_backgroundVisiblePoIs.Contains(poi))
+						{
+							poi.SendMessage("OnEnteredViewfinder", poi, SendMessageOptions.DontRequireReceiver);
+							m_backgroundVisiblePoIs.Add(poi);
+						}
+					}
+					var deadList = new List<PointOfInterest>();
+					foreach (var poi in m_backgroundVisiblePoIs)
+					{
+						if (poi && !visiblePoIs.Contains(poi))
+						{
+							poi.SendMessage("OnExitedViewfinder", poi, SendMessageOptions.DontRequireReceiver);
+							deadList.Add(poi);
+						}
+					}
+					foreach (var poi in deadList)
+					{
+						m_backgroundVisiblePoIs.Remove(poi);
+					}
+					m_backgroundVisiblePoIs.Remove(null);
+
+					m_backgroundContext = null;
+				}
+			}
 		}
 
 		private class BuildingContext : Context
@@ -78,6 +134,14 @@ namespace Moonshot.Photos
 			}
 
 			return goals.Where(goal => goal.Check(this, i_context));
+		}
+
+		public void NotifyPhotoTaken(Context i_context)
+		{
+			foreach (var poi in GetVisiblePOIs(m_backgroundEvaluationVisibilityThreshold, i_context))
+			{
+				poi.SendMessage("OnPhotoTaken", poi, SendMessageOptions.DontRequireReceiver);
+			}
 		}
 
 		private IEnumerator PrepareContextCoroutine(BuildingContext i_context)
@@ -153,5 +217,8 @@ namespace Moonshot.Photos
 
 			return readableSaveTexture;
 		}
+
+		private Context m_backgroundContext;
+		private HashSet<PointOfInterest> m_backgroundVisiblePoIs = new HashSet<PointOfInterest>();
 	}
 }

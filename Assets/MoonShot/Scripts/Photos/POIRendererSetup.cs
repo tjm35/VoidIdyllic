@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NaughtyAttributes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Moonshot.Photos
 			if (m_poi == null)
 			{
 				m_poi = transform.GetComponentInAncestors<IPOIContext>();
+				m_poiObject = m_poi as Object;
 				if (m_poi == null && Application.isPlaying)
 				{
 					Debug.LogError("POIRendererSetup: No POI in ancestors; disabling.");
@@ -42,6 +44,10 @@ namespace Moonshot.Photos
 				m_renderer.SetPropertyBlock(m_block);
 			}
 		}
+
+		[ReadOnly]
+		[SerializeField]
+		private Object m_poiObject;
 
 		private IPOIContext m_poi = null;
 		private Renderer m_renderer = null;
