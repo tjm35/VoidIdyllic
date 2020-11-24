@@ -17,7 +17,7 @@ namespace Moonshot.Photos
 			set
 			{
 				m_goal = value;
-				m_text.text = m_goal.m_description;
+				m_text.text = m_goal.GetDescription();
 			}
 		}
 

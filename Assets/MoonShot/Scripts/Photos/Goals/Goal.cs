@@ -12,6 +12,8 @@ namespace Moonshot.Photos
 		}
 
 		public string m_description;
+		public bool m_isBonus = false;
+		public int m_number = 0;
 
 		public bool Check(PhotoEvaluator i_evaluator, PhotoEvaluator.Context i_context)
 		{
@@ -34,11 +36,36 @@ namespace Moonshot.Photos
 			return true;
 		}
 
+		public string GetDescription()
+		{
+			if (m_isBonus)
+			{
+				bool done = PhotoSystem.Instance.IsGoalComplete(this);
+				if (done)
+				{
+					return m_description;
+				}
+				else
+				{
+					return "Bonus #" + m_number.ToString() + ": ?????";
+				}
+			}
+			else
+			{
+				return m_description;
+			}
+		}
+
 		private void Start()
 		{
 			m_requirements = GetComponents<IRequirement>();
 
 			Debug.Assert(m_requirements != null && m_requirements.Length > 0, "Goal: Must have at least one requirement.");
+		}
+
+		private void OnValidate()
+		{
+			gameObject.name = (m_isBonus ? "Bonus #" : "Goal #") + m_number.ToString() + " " + m_description;
 		}
 
 		private IRequirement[] m_requirements;
