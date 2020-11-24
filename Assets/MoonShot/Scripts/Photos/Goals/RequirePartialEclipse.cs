@@ -1,4 +1,5 @@
 ﻿using Moonshot.Planet;
+using Moonshot.Player;
 using System.Linq;
 using UnityEngine;
 
@@ -31,6 +32,12 @@ namespace Moonshot.Photos.Requirements
 			var eclipsors = i_evaluator.GetVisiblePOIs(minEclipsorVisibility, i_context).Where(poi => poi.GetComponent<OrreryPlanet>() != null && poi.gameObject != m_eclipsee.gameObject);
 			foreach (PointOfInterest eclipsor in eclipsors)
 			{
+				if (eclipsor.transform == i_context.m_globalLocation && PlayerVehicle.Current.m_type == PlayerVehicle.VehicleType.OnFoot)
+				{
+					// Disqualify the eclipsor you're currently standing on.
+					continue;
+				}
+
 				Vector3 eclipsorPos = i_evaluator.GetGlobalPOIPosition(eclipsor, i_context);
 
 				Vector3 cameraToEclipsor = eclipsorPos - cameraPos;
