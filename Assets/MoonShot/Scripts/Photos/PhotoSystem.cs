@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 using UnityEngine.Rendering.Universal;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System;
+using Unity.Collections;
 
 namespace Moonshot.Photos
 {
@@ -69,7 +72,9 @@ namespace Moonshot.Photos
 		{
 			yield return new WaitForEndOfFrame();
 
+			Profiler.BeginSample("RecordCamera");
 			RenderTexture gpuTexture = RecordCameraToNewGPUTexture(i_camera);
+			Profiler.EndSample();
 			i_camera.enabled = i_wasEnabled;
 
 			while (!i_context.m_ready)
@@ -96,9 +101,24 @@ namespace Moonshot.Photos
 				Tutorial.TutorialHelper.SetBool("IsHasMultiplePhotos");
 			}
 
+			// Some very aggressive delays to try to minimise the chance of stalling waiting for the GPU.
 			{
-				Texture2D readableSaveTexture = GammaCorrectAndRecordTextureToNewReadableTexture(gpuTexture);
-				EditorSavePicture(readableSaveTexture);
+				Profiler.BeginSample("GammaCorrect");
+				RenderTexture gammaTexture = GammaCorrectToNewGPUTexture(gpuTexture);
+				Profiler.EndSample();
+				yield return new WaitForEndOfFrame();
+				yield return new WaitForEndOfFrame();
+				yield return new WaitForEndOfFrame();
+				Profiler.BeginSample("RecordTexture");
+				Texture2D readableSaveTexture = RecordTextureToNewReadableTexture(gammaTexture);
+				Profiler.EndSample();
+				gammaTexture.Release();
+				yield return new WaitForEndOfFrame();
+				yield return new WaitForEndOfFrame();
+				yield return new WaitForEndOfFrame();
+				Profiler.BeginSample("SavePicture");
+				SavePicture(readableSaveTexture);
+				Profiler.EndSample();
 			}
 		}
 
@@ -154,7 +174,7 @@ namespace Moonshot.Photos
 			return gpuTexture;
 		}
 
-		private Texture2D GammaCorrectAndRecordTextureToNewReadableTexture(Texture i_source)
+		private RenderTexture GammaCorrectToNewGPUTexture(Texture i_source)
 		{
 			int width = i_source.width;
 			int height = i_source.height;
@@ -162,33 +182,59 @@ namespace Moonshot.Photos
 
 			Graphics.Blit(i_source, gammaTexture, m_linearToGammaMat);
 
+			return gammaTexture;
+		}
+
+		private Texture2D RecordTextureToNewReadableTexture(RenderTexture i_source)
+		{
+			int width = i_source.width;
+			int height = i_source.height;
 			Texture2D readableSaveTexture = new Texture2D(width, height, TextureFormat.RGBAFloat, false);
 
-			Graphics.SetRenderTarget(gammaTexture);
+			Graphics.SetRenderTarget(i_source);
 			readableSaveTexture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
 			Graphics.SetRenderTarget(null);
 			readableSaveTexture.Apply();
-			gammaTexture.Release();
 
 			return readableSaveTexture;
 		}
 
-		private void EditorSavePicture(Texture2D i_readableTexture)
+		private void SavePicture(Texture2D i_readableTexture)
 		{
-			if (Application.isEditor)
+			string screenshotsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "VoidIdyllic");
+			if (!Directory.Exists(screenshotsPath))
 			{
-				string screenshotsPath = Path.Combine(Application.dataPath, "..", "Screenshots");
-				if (!Directory.Exists(screenshotsPath))
-				{
-					Directory.CreateDirectory(screenshotsPath);
-				}
-				DateTime now = DateTime.Now;
-				string filename = Application.productName + " " + now.ToString("yyyyMMdd HHmmss") + ".png";
-				string savePath = Path.Combine(screenshotsPath, filename);
-
-				byte[] pngData = i_readableTexture.EncodeToPNG();
-				File.WriteAllBytes(savePath, pngData);
+				Directory.CreateDirectory(screenshotsPath);
 			}
+			DateTime now = DateTime.Now;
+			string filename = Application.productName + " " + now.ToString("yyyyMMdd HHmmss") + ".png";
+			string savePath = Path.Combine(screenshotsPath, filename);
+			Color32[] colorData = i_readableTexture.GetPixels32(0);
+			int width = i_readableTexture.width;
+			int height = i_readableTexture.height;
+
+			// Perform PNG encoding on a fire-and-forget thread to avoid stalling the game.
+			// This operates purely on copies of data and we never need to access the result so no synchronisation is needed.
+			new Thread
+			(
+				() =>
+				{
+					var builder = BigGustave.PngBuilder.Create(width, height, false);
+					for (int y = 0; y < height; ++y)
+					{
+						for (int x = 0; x < width; ++x)
+						{
+							Color32 col = colorData[y * width + x];
+							builder.SetPixel(col.r, col.g, col.b, x, y);
+						}
+					}
+
+					using (var file = new FileStream(savePath, FileMode.CreateNew))
+					{
+						builder.Save(file);
+					}
+				}
+			).Start();
 		}
 
 		private HashSet<Goal> m_completedGoals = new HashSet<Goal>();
