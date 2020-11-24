@@ -16,16 +16,7 @@ namespace Moonshot.Player
 
 		void Update()
 		{
-			Transform t = transform;
-			while (t != null && t.GetComponent<PlayerVehicle>() == null)
-			{
-				t = t.parent;
-			}
-			var vehicle = t.GetComponent<PlayerVehicle>();
-			if (vehicle)
-			{
-				m_vehicleTypeVariable.Value = vehicle.m_type;
-			}
+			m_vehicleTypeVariable.Value = PlayerVehicle.Current.m_type;
 		}
 
 		private FsmEnum m_vehicleTypeVariable;
