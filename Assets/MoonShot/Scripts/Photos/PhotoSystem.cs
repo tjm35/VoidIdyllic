@@ -106,7 +106,6 @@ namespace Moonshot.Photos
 				Profiler.BeginSample("GammaCorrect");
 				RenderTexture gammaTexture = GammaCorrectToNewGPUTexture(gpuTexture);
 				Profiler.EndSample();
-				gpuTexture.Release();
 				yield return new WaitForEndOfFrame();
 				yield return new WaitForEndOfFrame();
 				yield return new WaitForEndOfFrame();
@@ -226,7 +225,7 @@ namespace Moonshot.Photos
 						for (int x = 0; x < width; ++x)
 						{
 							Color32 col = colorData[y * width + x];
-							builder.SetPixel(col.r, col.g, col.b, x, y);
+							builder.SetPixel(col.r, col.g, col.b, x, height - y - 1);
 						}
 					}
 
