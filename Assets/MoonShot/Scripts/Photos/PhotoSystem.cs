@@ -106,6 +106,7 @@ namespace Moonshot.Photos
 				Profiler.BeginSample("GammaCorrect");
 				RenderTexture gammaTexture = GammaCorrectToNewGPUTexture(gpuTexture);
 				Profiler.EndSample();
+				gpuTexture.Release();
 				yield return new WaitForEndOfFrame();
 				yield return new WaitForEndOfFrame();
 				yield return new WaitForEndOfFrame();
