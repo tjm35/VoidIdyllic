@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Moonshot.UI
 {
+	[RequireComponent(typeof(Slider))]
 	public class ParticleLODSetting : MonoBehaviour
 	{
 		public int m_maxQuality = 4;
@@ -14,6 +16,12 @@ namespace Moonshot.UI
 			set { ParticleLOD = Mathf.RoundToInt(m_maxQuality - value); }
 		}
 
-		public static int ParticleLOD = 0;
+		public void Start()
+		{
+			GetComponent<Slider>().maxValue = m_maxQuality;
+			GetComponent<Slider>().value = ParticleQuality;
+		}
+
+		public static int ParticleLOD = 1;
 	}
 }
