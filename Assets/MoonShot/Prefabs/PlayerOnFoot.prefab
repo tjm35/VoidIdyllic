@@ -139,7 +139,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cameraBone: {fileID: 2568280817859697864}
   m_speed: 6
-  m_fallSpeed: 3
+  m_fallSpeed: 6
+  m_fallAccelTime: 6
+  m_fallSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.25
+      inSlope: 1
+      outSlope: 0.75
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.75
+      outSlope: 1
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_xRotSpeed: 90
   m_yRotSpeed: 90
   m_dragTurnMultiplier: 1
@@ -205,6 +230,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  m_maxGravityEffect: 1
+  m_minGravityEffect: 0.25
   debug_State: 
 --- !u!114 &2568280818149458767
 MonoBehaviour:

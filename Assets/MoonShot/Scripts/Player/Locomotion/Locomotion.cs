@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Totality.StateMachine;
+using Moonshot.World;
 
 namespace Moonshot.Player.Locomotion
 {
@@ -15,12 +16,16 @@ namespace Moonshot.Player.Locomotion
 		public Transform m_cameraBone;
 		public float m_speed = 3.0f;
 		public float m_fallSpeed = 3.0f;
+		public float m_fallAccelTime = 3.0f;
+		public AnimationCurve m_fallSpeedCurve;
 		public float m_xRotSpeed = 120.0f;
 		public float m_yRotSpeed = 270.0f;
 		public float m_dragTurnMultiplier = 1.0f;
 		public float m_jumpBoostTime = 3.0f;
 		public float m_jumpBoostSpeed = 3.0f;
 		public AnimationCurve m_jumpBoostCurve;
+		public float m_maxGravityEffect = 1.0f;
+		public float m_minGravityEffect = 0.25f;
 
 		public string debug_State = "Unset";
 
@@ -66,9 +71,11 @@ namespace Moonshot.Player.Locomotion
 			io_velocityWS += flattenedMoveInput * m_speed;
 		}
 
-		public void ApplyFalling(ref Vector3 io_velocityWS)
+		public void ApplyFalling(ref Vector3 io_velocityWS, float i_fallTime)
 		{
-			io_velocityWS -= CharacterController.UpWS * m_fallSpeed;
+			//UI.QuickDebug.Print($"Gravity magnitude: {GlobalGravityProvider.Instance.GetGravity(LocalFrame.GetGlobalPosition(transform)).magnitude}");
+
+			io_velocityWS -= CharacterController.UpWS * GetFallSpeed(i_fallTime);
 		}
 
 		public void ApplyJumpBoost(ref Vector3 io_velocityWS, float i_timeProp)
@@ -106,7 +113,17 @@ namespace Moonshot.Player.Locomotion
 
 		private float GetJumpSpeed(float i_timeProp)
 		{
-			return m_jumpBoostSpeed * m_jumpBoostCurve.Evaluate(i_timeProp);
+			return m_jumpBoostSpeed * m_jumpBoostCurve.Evaluate(i_timeProp) / GetGravityEffect();
+		}
+
+		private float GetFallSpeed(float i_fallTime)
+		{
+			return m_fallSpeed * m_fallSpeedCurve.Evaluate(Mathf.Clamp01(i_fallTime / m_fallAccelTime)) * GetGravityEffect();
+		}
+
+		private float GetGravityEffect()
+		{
+			return Mathf.Clamp(GlobalGravityProvider.Instance.GetGravity(LocalFrame.GetGlobalPosition(transform)).magnitude, m_minGravityEffect, m_maxGravityEffect);
 		}
 
 		private StateMachine<Locomotion> m_stateMachine;

@@ -7,6 +7,11 @@ namespace Moonshot.Player.Locomotion
 {
 	public class FreefallState : State<Locomotion>
 	{
+		public FreefallState(float i_currentFallTime = 0.0f)
+		{
+			m_fallTime = i_currentFallTime;
+		}
+
 		public override void UpdateState(StateMachine<Locomotion> i_machine, Locomotion i_locomotion)
 		{
 			if (i_locomotion.CharacterController.IsGrounded)
@@ -21,11 +26,15 @@ namespace Moonshot.Player.Locomotion
 
 		public override void FixedUpdate(Locomotion i_locomotion)
 		{
+			m_fallTime += Time.fixedDeltaTime;
+
 			Vector3 velWS = i_locomotion.GetBaseVelocityIntentionWS();
 			i_locomotion.ApplyStickMovement(ref velWS);
-			i_locomotion.ApplyFalling(ref velWS);
+			i_locomotion.ApplyFalling(ref velWS, m_fallTime);
 			i_locomotion.ConfirmVelocity(velWS);
 			i_locomotion.UpdatePlayerLook();
 		}
+
+		private float m_fallTime = 0.0f;
 	}
 }
