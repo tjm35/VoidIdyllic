@@ -42,11 +42,11 @@ namespace Totality.PlayMakerIntegration.InputSystem
 
 		private void SetActive(bool i_active)
 		{ 
-			if (i_active && InputActionMap.enabled == false)
+			if (i_active)
 			{
 				InputActionMap.Enable();
 			}
-			else if (!i_active && InputActionMap.enabled == true)
+			else if (!i_active)
 			{
 				InputActionMap.Disable();
 			}
