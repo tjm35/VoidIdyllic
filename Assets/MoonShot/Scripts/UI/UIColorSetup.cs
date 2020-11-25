@@ -14,7 +14,7 @@ namespace Moonshot.UI
 		public void SetupColors(UIColors i_colors)
 		{
 			var col = i_colors.Get(ColorType);
-			ApplyColor(col);
+			ApplyColor(col, i_colors);
 		}
 
 		private void Start()
@@ -29,12 +29,28 @@ namespace Moonshot.UI
 			}
 		}
 
-		private void ApplyColor(Color i_col)
+		private void ApplyColor(Color i_col, UIColors i_colors)
 		{
 			var graphic = GetComponent<Graphic>();
-			if (graphic)
+			var selectable = GetComponent<Selectable>();
+			if (graphic && !selectable)
 			{
 				graphic.color = i_col;
+			}
+
+			if (selectable)
+			{
+				var cb = new ColorBlock();
+				cb.normalColor = i_colors.Get(UIColors.ColorType.Borders);
+				cb.highlightedColor = i_colors.Get(UIColors.ColorType.Primary);
+				cb.selectedColor = i_colors.Get(UIColors.ColorType.Selected);
+				cb.pressedColor = i_colors.Get(UIColors.ColorType.Pressed);
+				var disabledColor = i_colors.Get(UIColors.ColorType.Borders);
+				disabledColor.a *= 0.25f;
+				cb.disabledColor = disabledColor;
+				cb.colorMultiplier = 1.0f;
+
+				selectable.colors = cb;
 			}
 		}
 	}
