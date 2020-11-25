@@ -207,8 +207,18 @@ namespace Moonshot.Photos
 				Directory.CreateDirectory(screenshotsPath);
 			}
 			DateTime now = DateTime.Now;
-			string filename = Application.productName + " " + now.ToString("yyyyMMdd HHmmss") + ".png";
+			string filename = Application.productName + " " + now.ToString("yyyyMMdd HHmmss");
 			string savePath = Path.Combine(screenshotsPath, filename);
+			if (File.Exists(savePath + ".png"))
+			{
+				int i = 1;
+				while (File.Exists(savePath + " " + i.ToString() + ".png") && i < 1000)
+				{
+					i++;
+				}
+				savePath += " " + i.ToString();
+			}
+			savePath += ".png";
 			Color32[] colorData = i_readableTexture.GetPixels32(0);
 			int width = i_readableTexture.width;
 			int height = i_readableTexture.height;
