@@ -33,28 +33,16 @@ namespace Moonshot.Player.Locomotion
 		{
 			m_remainingBoostTime -= Time.fixedDeltaTime;
 
-			//i_locomotion.UpdateDragTurning();
-			i_locomotion.UpdateStickMovement(false, m_remainingBoostTime > 0.0f);
+			Vector3 velWS = i_locomotion.GetBaseVelocityIntentionWS();
+			i_locomotion.ApplyStickMovement(ref velWS);
 
-			//i_fpc.FixedUpdatePlayerLook();
-			//i_fpc.FixedUpdatePlayerMove(i_fpc.Cfg.m_inAirMoveAccel);
-			//i_fpc.FixedUpdateCrouching(true);
+			if (m_remainingBoostTime > 0.0f)
+			{
+				i_locomotion.ApplyJumpBoost(ref velWS, 1.0f - (m_remainingBoostTime / i_locomotion.m_jumpBoostTime));
+			}
 
-			//if (CanJump(i_fpc) && i_fpc.PlayerControls.PullJump())
-			//{
-			//	i_fpc.FixedUpdateDoJump();
-			//}
-
-			//i_fpc.DSt.debug_canMantle = i_fpc.CanMantle();
-			//if (i_fpc.PlayerControls.Jump && i_fpc.CanMantle())
-			//{
-			//	i_fpc.FixedUpdateApplyFalling(true);
-			//	i_fpc.FixedUpdateDoMantling();
-			//}
-			//else
-			//{
-			//	i_fpc.FixedUpdateApplyFalling(false);
-			//}
+			i_locomotion.ConfirmVelocity(velWS);
+			i_locomotion.UpdatePlayerLook();
 		}
 
 		private float m_remainingBoostTime;

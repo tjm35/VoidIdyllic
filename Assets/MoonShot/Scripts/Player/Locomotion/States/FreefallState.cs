@@ -21,28 +21,11 @@ namespace Moonshot.Player.Locomotion
 
 		public override void FixedUpdate(Locomotion i_locomotion)
 		{
-			//i_locomotion.UpdateDragTurning();
-			i_locomotion.UpdateStickMovement(true, false);
-
-			//i_fpc.FixedUpdatePlayerLook();
-			//i_fpc.FixedUpdatePlayerMove(i_fpc.Cfg.m_inAirMoveAccel);
-			//i_fpc.FixedUpdateCrouching(true);
-
-			//if (CanJump(i_fpc) && i_fpc.PlayerControls.PullJump())
-			//{
-			//	i_fpc.FixedUpdateDoJump();
-			//}
-
-			//i_fpc.DSt.debug_canMantle = i_fpc.CanMantle();
-			//if (i_fpc.PlayerControls.Jump && i_fpc.CanMantle())
-			//{
-			//	i_fpc.FixedUpdateApplyFalling(true);
-			//	i_fpc.FixedUpdateDoMantling();
-			//}
-			//else
-			//{
-			//	i_fpc.FixedUpdateApplyFalling(false);
-			//}
+			Vector3 velWS = i_locomotion.GetBaseVelocityIntentionWS();
+			i_locomotion.ApplyStickMovement(ref velWS);
+			i_locomotion.ApplyFalling(ref velWS);
+			i_locomotion.ConfirmVelocity(velWS);
+			i_locomotion.UpdatePlayerLook();
 		}
 	}
 }

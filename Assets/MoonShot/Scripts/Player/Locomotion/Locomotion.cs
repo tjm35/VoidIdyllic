@@ -20,6 +20,7 @@ namespace Moonshot.Player.Locomotion
 		public float m_dragTurnMultiplier = 1.0f;
 		public float m_jumpBoostTime = 3.0f;
 		public float m_jumpBoostSpeed = 3.0f;
+		public AnimationCurve m_jumpBoostCurve;
 
 		public string debug_State = "Unset";
 
@@ -44,33 +45,40 @@ namespace Moonshot.Player.Locomotion
 		void Update()
 		{
 			m_stateMachine.Update(this);
+			debug_State = m_stateMachine.CurrentState.ToString();
 		}
 
 		void FixedUpdate()
 		{
 			m_stateMachine.FixedUpdate(this);
+			debug_State = m_stateMachine.CurrentState.ToString();
 		}
 
-		public void UpdateStickMovement(bool i_falling, bool i_jumpBoost)
+		public Vector3 GetBaseVelocityIntentionWS()
+		{
+			return Vector3.zero;
+		}
+
+		public void ApplyStickMovement(ref Vector3 io_velocityWS)
 		{
 			Vector3 moveInputVector = LocomotionControls.MoveInstructionWS;
 			Vector3 flattenedMoveInput = moveInputVector - CharacterController.UpWS * Vector3.Dot(CharacterController.UpWS, moveInputVector);
-			Vector3 moveVelocity = flattenedMoveInput * m_speed;
+			io_velocityWS += flattenedMoveInput * m_speed;
+		}
 
-			if (i_falling)
-			{
-				moveVelocity -= CharacterController.UpWS * m_fallSpeed;
-			}
-			if (i_jumpBoost)
-			{
-				moveVelocity += CharacterController.UpWS * m_jumpBoostSpeed;
-			}
+		public void ApplyFalling(ref Vector3 io_velocityWS)
+		{
+			io_velocityWS -= CharacterController.UpWS * m_fallSpeed;
+		}
 
-			CharacterController.MoveWorldVelocity(moveVelocity);
+		public void ApplyJumpBoost(ref Vector3 io_velocityWS, float i_timeProp)
+		{
+			io_velocityWS += CharacterController.UpWS * GetJumpSpeed(i_timeProp);
+		}
 
-			UpdatePlayerLook();
-
-			debug_State = m_stateMachine.CurrentState.ToString();
+		public void ConfirmVelocity(Vector3 i_velocityWS)
+		{
+			CharacterController.MoveWorldVelocity(i_velocityWS);
 		}
 
 		public void UpdatePlayerLook()
@@ -94,6 +102,11 @@ namespace Moonshot.Player.Locomotion
 			}
 
 			transform.Rotate(CharacterController.UpWS, lookTurn.x * m_yRotSpeed * Time.fixedDeltaTime, Space.World);
+		}
+
+		private float GetJumpSpeed(float i_timeProp)
+		{
+			return m_jumpBoostSpeed * m_jumpBoostCurve.Evaluate(i_timeProp);
 		}
 
 		private StateMachine<Locomotion> m_stateMachine;

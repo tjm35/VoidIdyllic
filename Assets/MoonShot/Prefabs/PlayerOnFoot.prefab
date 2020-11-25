@@ -143,9 +143,69 @@ MonoBehaviour:
   m_xRotSpeed: 90
   m_yRotSpeed: 90
   m_dragTurnMultiplier: 1
-  m_jumpBoostTime: 3
-  m_jumpBoostSpeed: 3
-  debug_State: Unset
+  m_jumpBoostTime: 2
+  m_jumpBoostSpeed: 6
+  m_jumpBoostCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00000060815364
+      value: 0.5011324
+      inSlope: 11.2971325
+      outSlope: 11.2971325
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.017704643
+    - serializedVersion: 3
+      time: 0.05203811
+      value: 1.0072178
+      inSlope: -0.010097043
+      outSlope: -0.010097043
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.482092
+      outWeight: 0.321729
+    - serializedVersion: 3
+      time: 0.63866395
+      value: 0.27509874
+      inSlope: -4.171922
+      outSlope: -4.171922
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14752524
+      outWeight: 0.21759295
+    - serializedVersion: 3
+      time: 0.80663043
+      value: -0.14874685
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9201173
+      value: 0.030441295
+      inSlope: -0.022449845
+      outSlope: -0.022449845
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  debug_State: 
 --- !u!114 &2568280818149458767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,4 +235,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InFlightPrefab: {fileID: 3937345481483510295, guid: 1175fe02d7e16534fb2df793083a2cf7, type: 3}
   ShipPhantomPrefab: {fileID: 6199313811483764843, guid: 7abfe2424fc144e4d8fd4c1c11ca42ca, type: 3}
-  ShipSummonHeight: 5
