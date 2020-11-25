@@ -415,11 +415,11 @@ public partial class AudioManager : MonoBehaviour {
 	PlaySound()
 	-----------------------
 	*/
-	static public int PlaySound( SoundFX soundFX, EmitterChannel src = EmitterChannel.Any, float delay = 0.0f ) {
+	static public int PlaySound( SoundFX soundFX, EmitterChannel src = EmitterChannel.Any, float delay = 0.0f, float volumeOverride = 1.0f ) {
 		if ( !SoundEnabled ) {
 			return -1;
 		}
-		return PlaySoundAt( ( staticListenerPosition != null ) ? staticListenerPosition.position : Vector3.zero, soundFX, src, delay );
+		return PlaySoundAt( ( staticListenerPosition != null ) ? staticListenerPosition.position : Vector3.zero, soundFX, src, delay, volumeOverride, 1.0f, 0.0f );
 	}
 
 	/*
@@ -427,7 +427,7 @@ public partial class AudioManager : MonoBehaviour {
 	PlaySoundAt()
 	-----------------------
 	*/
-	static public int PlaySoundAt( Vector3 position, SoundFX soundFX, EmitterChannel src = EmitterChannel.Any, float delay = 0.0f, float volumeOverride = 1.0f, float pitchMultiplier = 1.0f ) {
+	static public int PlaySoundAt( Vector3 position, SoundFX soundFX, EmitterChannel src = EmitterChannel.Any, float delay = 0.0f, float volumeOverride = 1.0f, float pitchMultiplier = 1.0f, float spatialBlend = 1.0f ) {
 		if ( !SoundEnabled ) {
 			return -1;
 		}
@@ -475,7 +475,7 @@ public partial class AudioManager : MonoBehaviour {
 		audioSource.volume = Mathf.Clamp01( Mathf.Clamp01( theAudioManager.volumeSoundFX * soundFX.volume ) * volumeOverride * soundFX.GroupVolumeOverride );
 		audioSource.pitch = soundFX.GetPitch() * pitchMultiplier;
 		audioSource.time = 0.0f;
-		audioSource.spatialBlend = 1.0f;
+		audioSource.spatialBlend = spatialBlend;
 		audioSource.rolloffMode = soundFX.falloffCurve;
 		if ( soundFX.falloffCurve == AudioRolloffMode.Custom ) {
 			audioSource.SetCustomCurve( AudioSourceCurveType.CustomRolloff, soundFX.volumeFalloffCurve );

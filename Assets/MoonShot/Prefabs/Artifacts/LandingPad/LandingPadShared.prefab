@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!114 &3690837825692697599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24,6 +26,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &5789675462274470032
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LandingPad
       objectReference: {fileID: 0}
+    - target: {fileID: 2797483690925327435, guid: 755aab7c4c4d61a43b60a754355ac20d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755aab7c4c4d61a43b60a754355ac20d, type: 3}
 --- !u!4 &6638043289617193137 stripped

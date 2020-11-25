@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 6285085021412584862}
   - component: {fileID: 5892378527979801885}
   - component: {fileID: 7176451184324686367}
-  - component: {fileID: 8854200018776847070}
   - component: {fileID: 64597355962903071}
   m_Layer: 0
   m_Name: CameraStack
@@ -136,14 +135,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &8854200018776847070
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7499355163398873845}
-  m_Enabled: 1
 --- !u!114 &64597355962903071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +448,7 @@ GameObject:
   - component: {fileID: 7972906218962469589}
   - component: {fileID: 3714667344522650495}
   - component: {fileID: 7972906218962469591}
+  - component: {fileID: 5997496026642371921}
   m_Layer: 0
   m_Name: LocalCamera
   m_TagString: MainCamera
@@ -567,6 +559,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &5997496026642371921
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7972906218962469590}
+  m_Enabled: 1
 --- !u!1001 &2741845059018636289
 PrefabInstance:
   m_ObjectHideFlags: 0

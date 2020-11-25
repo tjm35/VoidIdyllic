@@ -15,6 +15,12 @@ namespace Moonshot.Player.Locomotion
 			{
 				Tutorial.TutorialHelper.SetBool("HasBoosted");
 			}
+			i_locomotion.LocomotionAudio.StartJetpack(i_fromJump);
+		}
+
+		public override void ExitState(Locomotion i_locomotion)
+		{
+			i_locomotion.LocomotionAudio.StopJetpack();
 		}
 
 		public override void UpdateState(StateMachine<Locomotion> i_machine, Locomotion i_locomotion)

@@ -29,6 +29,7 @@ namespace Moonshot.Player
 		#region Public State
 		public Vector3 Velocity { get; private set; } = Vector3.zero;
 		public bool IsGrounded { get; private set; } = true;
+		public PhysicMaterial LastGroundMaterial { get; private set; } = null;
 
 		public Vector3 UpWS
 		{
@@ -114,6 +115,14 @@ namespace Moonshot.Player
 				if (groundHitInfo.collider && groundHitInfo.collider.attachedRigidbody)
 				{
 					groundHitInfo.collider.attachedRigidbody.AddForceAtPosition(m_playerWeightForce * -UpWS, groundPos);
+				}
+				if (groundHitInfo.collider)
+				{
+					LastGroundMaterial = groundHitInfo.collider.sharedMaterial;
+				}
+				else
+				{
+					LastGroundMaterial = null;
 				}
 			}
 			else

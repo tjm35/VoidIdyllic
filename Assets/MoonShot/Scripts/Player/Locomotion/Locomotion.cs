@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Totality.StateMachine;
+using Moonshot.Audio;
 using Moonshot.World;
 
 namespace Moonshot.Player.Locomotion
 {
 	[RequireComponent(typeof(LocomotionControls))]
 	[RequireComponent(typeof(CharacterController))]
+	[RequireComponent(typeof(LocomotionAudio))]
 	public class Locomotion : MonoBehaviour
 	{
 		public LocomotionControls LocomotionControls { get; private set; }
 		public CharacterController CharacterController { get; private set; }
+		public LocomotionAudio LocomotionAudio { get; private set; }
 
 		public Transform m_cameraBone;
 		public float m_speed = 3.0f;
@@ -26,6 +29,7 @@ namespace Moonshot.Player.Locomotion
 		public AnimationCurve m_jumpBoostCurve;
 		public float m_maxGravityEffect = 1.0f;
 		public float m_minGravityEffect = 0.25f;
+		public float m_footfallRate = 0.6f;
 
 		public string debug_State = "Unset";
 
@@ -33,6 +37,7 @@ namespace Moonshot.Player.Locomotion
 		{
 			LocomotionControls = GetComponent<LocomotionControls>();
 			CharacterController = GetComponent<CharacterController>();
+			LocomotionAudio = GetComponent<LocomotionAudio>();
 
 			m_stateMachine = new StateMachine<Locomotion>(new InitialState(), this);
 		}

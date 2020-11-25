@@ -25,6 +25,19 @@ namespace Moonshot.Player.Locomotion
 			i_locomotion.ApplyStickMovement(ref velWS);
 			i_locomotion.ConfirmVelocity(velWS);
 			i_locomotion.UpdatePlayerLook();
+
+			float speedProp = velWS.magnitude / i_locomotion.m_speed;
+			if (speedProp > 0.05f)
+			{
+				m_footfallTime += Time.fixedDeltaTime;
+				if (m_footfallTime * speedProp > i_locomotion.m_footfallRate)
+				{
+					m_footfallTime -= i_locomotion.m_footfallRate;
+					i_locomotion.LocomotionAudio.DoFootfall(i_locomotion.CharacterController.LastGroundMaterial, speedProp);
+				}
+			}
 		}
+
+		private float m_footfallTime = 0.0f;
 	}
 }

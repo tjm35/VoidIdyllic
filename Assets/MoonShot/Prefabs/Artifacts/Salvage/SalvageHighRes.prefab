@@ -69,6 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1001 &7497864447443180708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Salvage
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: 986587d581afc3946bd259e0aaea9c66, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: f81c4ab10c51f3447b90b3d06494d109, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 986587d581afc3946bd259e0aaea9c66, type: 3}
 --- !u!1 &7263367408082788853 stripped

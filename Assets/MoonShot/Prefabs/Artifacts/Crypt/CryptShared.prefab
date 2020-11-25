@@ -91,7 +91,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32520283833905363}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &62658859137033600
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &1194593723192686873
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +253,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194593723192686873}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -268,6 +272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &1773619920768206749
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +365,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773619920768206749}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -378,6 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &2951674045133668509
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +477,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2951674045133668509}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -488,6 +496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &3083241492767085291
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +589,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3083241492767085291}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -598,6 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &3538189823431837476
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +701,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3538189823431837476}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -708,6 +720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &4755939575318630822
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +813,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755939575318630822}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -818,6 +832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!114 &1356609108837694250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +846,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &5642964819863216691
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +939,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5642964819863216691}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -940,6 +958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &6908610131187983546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1087,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7670018820064790269}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1086,6 +1106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &7900776776736105408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1230,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7964258939806798628}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1227,6 +1249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &8745000478036354111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1342,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8745000478036354111}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1337,6 +1361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &8775294570218095150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1454,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8775294570218095150}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1447,6 +1473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!114 &8769877025630552128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,6 +1487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1001 &7877176438713301772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1514,6 +1544,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -776845277574781102, guid: cb1b90ea084aea142b977c5e953d83f3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
+    - target: {fileID: 431980586301623958, guid: cb1b90ea084aea142b977c5e953d83f3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
     - target: {fileID: 919132149155446097, guid: cb1b90ea084aea142b977c5e953d83f3, type: 3}
       propertyPath: m_Name
       value: Crypt

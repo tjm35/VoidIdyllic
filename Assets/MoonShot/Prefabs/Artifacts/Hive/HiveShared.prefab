@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d6a0b2d8c29e74d8aff138ffb24401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_everyFrame: 0
+  m_poiObject: {fileID: 0}
 --- !u!1 &7243037204454575539
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hive
       objectReference: {fileID: 0}
+    - target: {fileID: 3451118302482216456, guid: d64cfdb13b6dead46a3b5e6e537c8802, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d64cfdb13b6dead46a3b5e6e537c8802, type: 3}
 --- !u!1 &5601422345851247074 stripped
