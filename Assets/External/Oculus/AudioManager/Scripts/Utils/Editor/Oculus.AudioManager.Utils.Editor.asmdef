@@ -1,0 +1,17 @@
+{
+    "name": "Oculus.AudioManager.Utils.Editor",
+    "references": [
+        "GUID:4d12deaea87186449bf62dd80833a50d"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
