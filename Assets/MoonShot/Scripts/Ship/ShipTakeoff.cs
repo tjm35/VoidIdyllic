@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Moonshot.Ship
 {
 	[RequireComponent(typeof(PlayerVehicle))]
+	[RequireComponent(typeof(Moonshot.Player.CharacterController))]
 	public class ShipTakeoff : MonoBehaviour
 	{
 		public GameObject InFlightPrefab;
@@ -26,7 +27,8 @@ namespace Moonshot.Ship
 			go.transform.localRotation = transform.localRotation;
 
 			var fsm = go.GetComponent<PlayMakerFSM>();
-			fsm.FsmVariables.FindFsmGameObject	("TargetPlayer").Value = gameObject;
+			fsm.FsmVariables.FindFsmGameObject("TargetPlayer").Value = gameObject;
+			fsm.FsmVariables.FindFsmBool("ForcePickup").Value = !GetComponent<Moonshot.Player.CharacterController>().IsGrounded;
 			fsm.SetState("Summon");
 
 			Tutorial.TutorialHelper.SetBool("HasLaunched");
