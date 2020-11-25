@@ -15,7 +15,6 @@ namespace Moonshot.World
 
 		public void EnterPlanetFrame(OrreryPlanet i_planet, LocalFrame i_newFrame)
 		{
-			UpdateLightFrames(i_newFrame);
 			SetAllLightsToDecay();
 			foreach (OrreryPlanet planet in i_planet.LightSources)
 			{
@@ -26,6 +25,8 @@ namespace Moonshot.World
 			// TODO: This might be better handled with ambient or even hemispherical lighting.
 			var selfLightData = EnsurePlanetSelfLightForLocalFrame(i_planet);
 			selfLightData.m_targetWeight = 1.0f;
+
+			UpdateLightFrames(i_newFrame);
 		}
 
 		private void UpdateLightFrames(LocalFrame i_newFrame)
