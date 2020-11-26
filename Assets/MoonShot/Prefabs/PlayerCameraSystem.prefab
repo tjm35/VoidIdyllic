@@ -195,9 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792f5aeb1ff004e4fa88760fd52f7ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxAngles: {x: 3, y: 1, z: 1}
+  m_maxAngles: {x: 1, y: 3, z: 1}
   m_bankPropWhenTurning: -0.4
   m_turnBlendRate: 0.08
+  m_maxOffsets: {x: 0.05, y: 0.05, z: 0.03}
 --- !u!1 &7972906218641567252
 GameObject:
   m_ObjectHideFlags: 0
