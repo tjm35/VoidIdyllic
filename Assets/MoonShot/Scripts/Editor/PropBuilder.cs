@@ -1,9 +1,11 @@
 ﻿using Moonshot.Photos;
+using Moonshot.Planet;
 using Moonshot.Props;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Totality;
 using UnityEditor;
 using UnityEngine;
@@ -25,6 +27,19 @@ namespace Moonshot.Editor
 			}
 		}
 
+		[MenuItem("GameObject/Make prop prefabs for combined", false, 0)]
+		public static void MakePropPrefabForCombined(MenuCommand i_command)
+		{
+			foreach (var go in Selection.gameObjects)
+			{
+				Debug.Log($"Making prefabs for {go.name}");
+				var sp = MakeSharedPrefabForCombined(go);
+				var hrp = MakeHighResPrefab(sp, go.name);
+				var op = MakeOrreryPrefab(sp, hrp, go.name);
+				var hp = MakeOrreryHookPrefab(op, go.name);
+			}
+		}
+
 		private static GameObject MakeSharedPrefab(GameObject imported)
 		{
 			string name = imported.name + "Shared";
@@ -33,6 +48,40 @@ namespace Moonshot.Editor
 			SetupRenderers(go);
 
 			return MakePrefabAndDelete(go, imported.name);
+		}
+
+		private static GameObject MakeSharedPrefabForCombined(GameObject imported)
+		{
+			string name = imported.name + "Shared";
+			var go = DuplicateWithEmptyParent(imported, name);
+
+			// Record transforms.
+			var instantiated = go.transform.GetChild(0);
+			instantiated.SetParent(imported.transform);
+			instantiated.localPosition = Vector3.zero;
+			instantiated.localRotation = Quaternion.identity;
+			instantiated.localScale = Vector3.one;
+
+			var planetParent = imported.transform.GetComponentInAncestors<OrreryPlanet>();
+			instantiated.SetParent((planetParent != null ? planetParent.transform : null), true);
+			instantiated.SetParent(go.transform, false);
+
+			SetupRenderers(go);
+			RemoveCached(go);
+
+			return MakePrefabAndDelete(go, imported.name);
+		}
+
+		private static void RemoveCached(GameObject go)
+		{
+			var allComponents = go.transform.GetComponentsInDescendents<MonoBehaviour>().ToArray();
+			foreach (var c in allComponents)
+			{
+				if (c.name == "CachedComponents")
+				{
+					Component.DestroyImmediate(c);
+				}
+			}
 		}
 
 		private static GameObject MakeOrreryPrefab(GameObject shared, GameObject hrp, string groupName)
@@ -116,6 +165,15 @@ namespace Moonshot.Editor
 		{
 			var go = new GameObject(parentName);
 			var placed = PrefabUtility.InstantiatePrefab(imported);
+			var placedTransform = ((GameObject)placed).transform;
+			placedTransform.SetParent(go.transform);
+			return go;
+		}
+
+		private static GameObject DuplicateWithEmptyParent(GameObject imported, string parentName)
+		{
+			var go = new GameObject(parentName);
+			var placed = GameObject.Instantiate(imported);
 			var placedTransform = ((GameObject)placed).transform;
 			placedTransform.SetParent(go.transform);
 			return go;

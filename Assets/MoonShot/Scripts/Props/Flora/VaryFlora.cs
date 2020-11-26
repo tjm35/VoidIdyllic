@@ -13,61 +13,65 @@ namespace Moonshot.Props
 		public float m_maxValidTwist = 30.0f;
 		public bool m_forceRerollIfInvalid = true;
 		public int m_maxRerolls = 3;
+		public bool m_bakeOnly = false;
 
 		[Button]
 		public override void ApplyVariation()
 		{
-			UnbakeMesh();
-
-			int rolls = 0;
-			bool needsRevary = true;
-
-			while (rolls < m_maxRerolls && needsRevary)
+			if (!m_bakeOnly)
 			{
-				if (rolls > 0)
-				{
-					m_additionalSeed = Random.Range(int.MinValue, int.MaxValue);
-				}
-				rolls++;
-				needsRevary = false;
-				
-				var rand = MakeRandomiser();
+				UnbakeMesh();
 
-				var smr = m_source;
+				int rolls = 0;
+				bool needsRevary = true;
 
-				for (int i = 0; i < smr.bones.Length; ++i)
+				while (rolls < m_maxRerolls && needsRevary)
 				{
-					var bone = smr.bones[i];
-					var constraint = bone.GetComponent<VaryConstraint>();
-					if (constraint)
+					if (rolls > 0)
 					{
-						Vector3 ranges = m_angleRange;
-						if (constraint.m_useCustomAngleRange)
+						m_additionalSeed = Random.Range(int.MinValue, int.MaxValue);
+					}
+					rolls++;
+					needsRevary = false;
+
+					var rand = MakeRandomiser();
+
+					var smr = m_source;
+
+					for (int i = 0; i < smr.bones.Length; ++i)
+					{
+						var bone = smr.bones[i];
+						var constraint = bone.GetComponent<VaryConstraint>();
+						if (constraint)
 						{
-							ranges = constraint.m_customAngleRange;
-						}
-						var anglesRotation = Quaternion.Euler(RandEuler(rand, ranges));
-						bone.localRotation = anglesRotation * constraint.m_baseRotation;
-
-						var globalLook = transform.TransformDirection(constraint.m_forcedFacingDirection);
-						var forwardLookGlobalRotation = Quaternion.LookRotation(globalLook, bone.up);
-						var axisLookGlobalRotation = forwardLookGlobalRotation * Quaternion.FromToRotation(constraint.m_forcedFacingAxis, Vector3.forward);
-
-						bone.rotation = Quaternion.Lerp(bone.rotation, axisLookGlobalRotation, constraint.m_forcedFacingWeight);
-
-						float twistMag = Mathf.Abs(Mathf.DeltaAngle(0.0f, bone.localEulerAngles.y));
-						if (twistMag > m_maxValidTwist && !constraint.m_ignoreTwistLimits)
-						{
-							Debug.Log($"Twist limit exceeded on {bone.gameObject.name} ({twistMag} > {m_maxValidTwist}).");
-							if (m_forceRerollIfInvalid)
+							Vector3 ranges = m_angleRange;
+							if (constraint.m_useCustomAngleRange)
 							{
-								needsRevary = true;
+								ranges = constraint.m_customAngleRange;
+							}
+							var anglesRotation = Quaternion.Euler(RandEuler(rand, ranges));
+							bone.localRotation = anglesRotation * constraint.m_baseRotation;
+
+							var globalLook = transform.TransformDirection(constraint.m_forcedFacingDirection);
+							var forwardLookGlobalRotation = Quaternion.LookRotation(globalLook, bone.up);
+							var axisLookGlobalRotation = forwardLookGlobalRotation * Quaternion.FromToRotation(constraint.m_forcedFacingAxis, Vector3.forward);
+
+							bone.rotation = Quaternion.Lerp(bone.rotation, axisLookGlobalRotation, constraint.m_forcedFacingWeight);
+
+							float twistMag = Mathf.Abs(Mathf.DeltaAngle(0.0f, bone.localEulerAngles.y));
+							if (twistMag > m_maxValidTwist && !constraint.m_ignoreTwistLimits)
+							{
+								Debug.Log($"Twist limit exceeded on {bone.gameObject.name} ({twistMag} > {m_maxValidTwist}).");
+								if (m_forceRerollIfInvalid)
+								{
+									needsRevary = true;
+								}
 							}
 						}
-					}
-					else
-					{
-						bone.localRotation = Quaternion.Euler(RandEuler(rand, m_angleRange));
+						else
+						{
+							bone.localRotation = Quaternion.Euler(RandEuler(rand, m_angleRange));
+						}
 					}
 				}
 			}
