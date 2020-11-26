@@ -1,4 +1,5 @@
-﻿using Moonshot.Photos;
+﻿using OVR;
+using Moonshot.Photos;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Moonshot.Orrery
 
 		public ControlType m_controlType;
 		public Renderer m_iconRenderer;
+		public SoundFXRef m_ruinFX;
+		public float m_audioFadeTime = 0.25f;
 
 		public void OnEnteredViewfinder(PointOfInterest i_poi)
 		{
@@ -27,6 +30,15 @@ namespace Moonshot.Orrery
 			if (m_controlType == ControlType.Rwnd)
 			{
 				OrreryTimeSource.Global.m_playRate = -8.0f;
+				m_fxID = m_ruinFX.PlaySound();
+			}
+			if (m_controlType != ControlType.Pause)
+			{
+				if (m_fxID == -1)
+				{
+					m_fxID = m_ruinFX.PlaySound();
+				}
+				AudioManager.FadeInSound(m_fxID, m_audioFadeTime);
 			}
 			m_inViewfinder = true;
 		}
@@ -45,6 +57,13 @@ namespace Moonshot.Orrery
 					OrreryTimeSource.Global.m_playRate = 1.0f;
 				}
 			}
+			if (m_controlType != ControlType.Pause)
+			{
+				if (m_fxID != -1)
+				{
+					AudioManager.FadeOutSound(m_fxID, m_audioFadeTime);
+				}
+			}
 			m_inViewfinder = false;
 		}
 
@@ -57,10 +76,12 @@ namespace Moonshot.Orrery
 				if (OrreryTimeSource.Global.m_gameplayPaused)
 				{
 					OrreryTimeSource.Global.m_playRate = 0.0f;
+					m_ruinFX.PlaySound();
 				}
 				else
 				{
 					OrreryTimeSource.Global.m_playRate = 1.0f;
+					m_ruinFX.PlaySound();
 				}
 				UpdateIcon();
 			}
@@ -88,5 +109,6 @@ namespace Moonshot.Orrery
 		}
 
 		private bool m_inViewfinder = false;
+		private int m_fxID = -1;
 	}
 }
