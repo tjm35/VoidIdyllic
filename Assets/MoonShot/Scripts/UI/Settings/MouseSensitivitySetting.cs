@@ -30,6 +30,12 @@ namespace Moonshot.UI
 
 		private float m_sensitivityPower = 0;
 
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		static void RegisterSensitivityProcessor()
+		{
+			InputSystem.RegisterProcessor<SensitivityProcessor>();
+		}
+
 		public class SensitivityProcessor : InputProcessor<Vector2>
 		{
 			public override Vector2 Process(Vector2 value, InputControl control)
