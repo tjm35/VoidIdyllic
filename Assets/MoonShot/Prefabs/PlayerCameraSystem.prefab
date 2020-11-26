@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxAngles: {x: 1, y: 3, z: 1}
   m_bankPropWhenTurning: -0.4
-  m_turnBlendRate: 0.08
+  m_turnBlendRate: 0.04
   m_maxOffsets: {x: 0.05, y: 0.05, z: 0.03}
 --- !u!1 &7972906218641567252
 GameObject:

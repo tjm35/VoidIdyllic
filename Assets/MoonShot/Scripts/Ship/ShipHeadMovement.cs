@@ -30,7 +30,7 @@ namespace Moonshot.Ship
 			targetAngles.Scale(m_maxAngles);
 
 			// TODO: Better blending
-			m_currentAngles = Vector3.Lerp(m_currentAngles, targetAngles, 0.01f);
+			m_currentAngles = Vector3.Lerp(m_currentAngles, targetAngles, m_turnBlendRate);
 
 			m_currentAngles.x = Mathf.Clamp(m_currentAngles.x, -m_maxAngles.x, m_maxAngles.x);
 			m_currentAngles.y = Mathf.Clamp(m_currentAngles.y, -m_maxAngles.y, m_maxAngles.y);
@@ -38,7 +38,7 @@ namespace Moonshot.Ship
 
 			transform.localEulerAngles = m_currentAngles;
 
-			transform.localPosition = Vector3.Lerp(transform.localPosition, targetOffset, 0.01f);
+			transform.localPosition = Vector3.Lerp(transform.localPosition, targetOffset, m_turnBlendRate);
 		}
 
 		private Vector3 m_currentAngles = Vector3.zero;
