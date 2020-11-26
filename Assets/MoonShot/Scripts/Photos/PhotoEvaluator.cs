@@ -90,7 +90,11 @@ namespace Moonshot.Photos
 			{
 				context.m_globalLocation = lf.GlobalLocation;
 			}
-			context.m_globalCameraPos = LocalFrame.TransformPointToGlobal(lf, i_viewCamera.transform.position);
+
+			// Camera should be positioned in global frame, so we do *not* need to frame transform it.
+			Debug.Assert(i_viewCamera.GetComponent<PositionInGlobalFrame>());
+			context.m_globalCameraPos = i_viewCamera.transform.position;
+
 			context.m_ready = false;
 			StartCoroutine(PrepareContextCoroutine(context));
 			return context;
