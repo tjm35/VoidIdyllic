@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using OVR;
+using System.Collections;
 using System.Collections.Generic;
 using Moonshot.UI;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Moonshot.Photos
 	public class GoalNotifications : MonoBehaviour
 	{
 		public GameObject GoalUIPrefab;
+		public SoundFXRef NewGoalCompleteSound;
 
 		public void NotifyGoal(Goal i_goal, bool i_firstTime)
 		{
@@ -22,6 +24,11 @@ namespace Moonshot.Photos
 				}
 				m_currentDisplayed.Add(i_goal);
 				m_queue.RegisterNotification(gu);
+				if (i_firstTime)
+				{
+					NewGoalCompleteSound.PlaySound();
+					gue.FirstTimeComplete = true;
+				}
 			}
 			m_queue.PokeNotification();
 		}
