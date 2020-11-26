@@ -51,6 +51,7 @@ namespace Moonshot.Photos
 				m_onShutterClicked.Invoke();
 				if (m_shutterAnimation)
 				{
+					m_shutterAnimation.Stop();
 					m_shutterAnimation.Play();
 				}
 
