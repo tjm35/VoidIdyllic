@@ -271,7 +271,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -40, y: -28}
+  m_SizeDelta: {x: -60, y: -28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37204830624143669
 CanvasRenderer:
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -706,7 +706,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -40, y: -28}
+  m_SizeDelta: {x: -60, y: -28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37204831150701544
 CanvasRenderer:
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u03B2 Caridae III"
+  m_text: Beta Caridae III
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fead22841fe8a84ea2b1d92cab34d33, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 99bb7ce8a642feb43be342983e4702b5, type: 2}
@@ -771,7 +771,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1946,8 +1946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37204831300102571
 CanvasRenderer:
@@ -2154,7 +2154,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -40, y: -28}
+  m_SizeDelta: {x: -60, y: -28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37204831540863363
 CanvasRenderer:
@@ -2221,7 +2221,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2362,8 +2362,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: -40, y: -28}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -60, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &37204831913977486
 CanvasRenderer:
@@ -2395,13 +2395,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Hi Kate,\r\n\rYou know the drill; we\u2019ve got to convince the next
     round of buyers that the six hunks of rock in this system are the primest real
-    estate this side of <i>\u03B1 Scorpii</i>.\n\rWe need eight photos for the brochure.
-    I\u2019ve attached a list of items the clients <i>really</i> want to show off;
-    get as many of them as you can, and if you\u2019ve space left over do your stuff
-    and squeeze in some shots that\u2019ll make these moons <i>sing</i>.\n\rOh, and
-    <i>please</i> keep an eye on your O<sub>2</sub> this time. You\u2019re the best
-    photographer in this business, I\u2019d hate for your last photos ever to be
-    of a dump like this.\r\nSafe travels,\r\n\r - Mark\r\n"
+    estate this side of <i>Alpha Scorpii</i>.\n\rWe need eight photos for the brochure.
+    I\u2019ve attached a list of items the clients want to show off; get as many
+    of them as you can, and if you\u2019ve space left over do your stuff and squeeze
+    in some shots that\u2019ll make these moons really sing.\nSafe travels,\r\n\r
+    - Mark\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fead22841fe8a84ea2b1d92cab34d33, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 99bb7ce8a642feb43be342983e4702b5, type: 2}
@@ -5533,7 +5531,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283739135
+    rgba: 4294960871
   m_fontColor: {r: 0.9074074, g: 0.9, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5563,7 +5561,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -20
+  m_lineSpacing: -16
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
