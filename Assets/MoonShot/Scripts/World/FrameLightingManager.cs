@@ -102,13 +102,14 @@ namespace Moonshot.World
 
 		public void EnterSpaceFrame(Transform i_globalLocation, LocalFrame i_newFrame)
 		{
-			UpdateLightFrames(i_newFrame);
 			SetAllLightsToDecay();
 			foreach (var sunLightData in EnsureSunLights())
 			{
 				sunLightData.m_targetWeight = 1.0f;
 			}
 			// TODO - Enable other lights if we're close enough?
+
+			UpdateLightFrames(i_newFrame);
 		}
 
 		private IEnumerable<LightData> EnsureSunLights()
