@@ -35,7 +35,10 @@ namespace Moonshot.Photos
 
 		void TakePhoto(InputAction.CallbackContext i_context)
 		{
-			m_photoRequested = true;
+			if (isActiveAndEnabled)
+			{
+				m_photoRequested = true;
+			}
 		}
 
 		private void Update()
