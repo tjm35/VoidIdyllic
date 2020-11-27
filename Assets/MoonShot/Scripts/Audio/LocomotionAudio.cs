@@ -16,12 +16,16 @@ namespace Moonshot.Audio
 		public float m_startHoverFadeTime = 0.5f;
 		public float m_stopFadeTime = 0.5f;
 		public Transform m_jetpackLocation;
+		public float m_landingMaxSpeed = 3.0f;
+		public float m_landingMinVolume = 0.2f;
+		public float m_landMinDelay = 0.5f;
 
 		[Serializable]
 		public class FootfallSound
 		{
 			public PhysicMaterial m_material;
 			public SoundFXRef m_sound;
+			public SoundFXRef m_landSound;
 		}
 
 		public List<FootfallSound> m_footfalls;
@@ -59,20 +63,41 @@ namespace Moonshot.Audio
 
 		public void DoFootfall(PhysicMaterial i_material, float i_volume)
 		{
-			var sound = m_footfalls.First(s => s.m_material == i_material);
-			if (sound == null)
-			{
-				sound = m_footfalls.First(s => s.m_material == null);
-			}
+			var sound = FindFootfall(i_material);
 			if (sound != null)
 			{
 				sound.m_sound.PlaySoundAt(transform.position, 0, i_volume);
 			}
 		}
 
+		public void DoLanding(PhysicMaterial i_material, float i_speed)
+		{
+			if (m_sinceLastLand > m_landMinDelay)
+			{
+				var sound = FindFootfall(i_material);
+				if (sound != null)
+				{
+					float volume = Mathf.Lerp(m_landingMinVolume, 1.0f, Mathf.Clamp01(i_speed / m_landingMaxSpeed));
+					sound.m_landSound.PlaySoundAt(transform.position, 0, volume);
+				}
+				m_sinceLastLand = 0.0f;
+			}
+		}
+
+		private FootfallSound FindFootfall(PhysicMaterial i_material)
+		{
+			var sound = m_footfalls.First(s => s.m_material == i_material);
+			if (sound == null)
+			{
+				sound = m_footfalls.First(s => s.m_material == null);
+			}
+			return sound;
+		}
+
 		// Update is called once per frame
 		private void Update()
 		{
+			m_sinceLastLand += Time.deltaTime;
 			if (m_jetpackOn)
 			{
 				m_jetpackTime += Time.unscaledDeltaTime;
@@ -110,5 +135,6 @@ namespace Moonshot.Audio
 		private float m_jetpackTime = 0.0f;
 		private int m_boostPlayingIndex = -1;
 		private int m_hoverPlayingIndex = -1;
+		private float m_sinceLastLand = 99.0f;
 	}
 }

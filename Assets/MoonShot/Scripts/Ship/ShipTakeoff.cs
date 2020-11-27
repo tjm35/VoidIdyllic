@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using OVR;
+using System.Collections;
 using System.Collections.Generic;
 using Moonshot.Player;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Moonshot.Ship
 	{
 		public GameObject InFlightPrefab;
 		public GameObject ShipPhantomPrefab;
+		public SoundFXRef m_hatchSFX;
 
 		public bool CanTakeoff()
 		{
@@ -48,6 +50,8 @@ namespace Moonshot.Ship
 			go.GetComponent<PlayerVehicle>().PlayerSoul = playerSoul;
 
 			playerSoul.transform.SetParent(go.GetComponent<PlayerVehicle>().SoulHook, false);
+
+			m_hatchSFX.PlaySound();
 
 			Destroy(gameObject);
 		}

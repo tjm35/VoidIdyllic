@@ -16,6 +16,10 @@ namespace Moonshot.Player.Locomotion
 		{
 			if (i_locomotion.CharacterController.IsGrounded)
 			{
+				float verticalImpactVelocity = -Vector3.Dot(i_locomotion.CharacterController.Velocity, i_locomotion.CharacterController.UpWS);
+				float totalImpactVelocity = i_locomotion.CharacterController.Velocity.magnitude;
+				float impactVelocity = Mathf.Lerp(totalImpactVelocity, verticalImpactVelocity, 0.8f);
+				i_locomotion.LocomotionAudio.DoLanding(i_locomotion.CharacterController.LastGroundMaterial, impactVelocity);
 				i_machine.SwitchToState(new LocomotingState(), i_locomotion);
 			}
 			if (i_locomotion.LocomotionControls.Jump == true)

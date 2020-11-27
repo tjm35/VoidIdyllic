@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using OVR;
+using System.Collections;
 using System.Collections.Generic;
 using HutongGames.PlayMaker;
 using Moonshot.Player;
@@ -13,11 +14,15 @@ namespace Moonshot.Ship
 		public GameObject OnFootPrefab;
 		public GameObject ShipPhantomPrefab;
 		public float m_maxRightTime = 1.0f;
+		public SoundFXRef m_impactSFX;
+		public SoundFXRef m_hatchSFX;
 
 		public void OnShipCollided(Object i_collider)
 		{
 			if (!m_landing)
 			{
+				m_impactSFX.PlaySound();
+
 				// TODO - Check if safe to land
 
 				m_landing = true;
@@ -47,6 +52,7 @@ namespace Moonshot.Ship
 				}
 			}
 
+			m_hatchSFX.PlaySound();
 			MakeOnFootPlayer();
 			MakeShipPhantom();
 

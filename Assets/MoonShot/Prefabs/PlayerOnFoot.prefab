@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InFlightPrefab: {fileID: 3937345481483510295, guid: 1175fe02d7e16534fb2df793083a2cf7, type: 3}
   ShipPhantomPrefab: {fileID: 6199313811483764843, guid: 7abfe2424fc144e4d8fd4c1c11ca42ca, type: 3}
+  m_hatchSFX:
+    soundFXName: ship_takeoff_hatch
 --- !u!114 &4294392931565388152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,16 +287,26 @@ MonoBehaviour:
   m_startHoverFadeTime: 0.5
   m_stopFadeTime: 0.5
   m_jetpackLocation: {fileID: 0}
+  m_landingMaxSpeed: 3
+  m_landingMinVolume: 0.2
   m_footfalls:
   - m_material: {fileID: 0}
     m_sound:
       soundFXName: player_walk_dustrock
+    m_landSound:
+      soundFXName: player_land
   - m_material: {fileID: 13400000, guid: 32ca4bcce46156b43935dfb867a7dcdb, type: 2}
     m_sound:
       soundFXName: player_walk_dustrock
+    m_landSound:
+      soundFXName: player_land
   - m_material: {fileID: 13400000, guid: 329380469a555844bb026e5a9d259000, type: 2}
     m_sound:
       soundFXName: player_walk_stone
+    m_landSound:
+      soundFXName: player_land
   - m_material: {fileID: 13400000, guid: f81c4ab10c51f3447b90b3d06494d109, type: 2}
     m_sound:
       soundFXName: player_walk_metal
+    m_landSound:
+      soundFXName: player_land
