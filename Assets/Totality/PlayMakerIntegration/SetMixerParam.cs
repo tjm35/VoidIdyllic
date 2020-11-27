@@ -27,9 +27,9 @@ namespace Totality.PlayMakerIntegration.Mixer
 
 		public override void OnEnter()
 		{
+			m_mixer.SetFloat(m_paramName.Value, m_value.Value);
 			if (!m_everyFrame)
 			{
-				m_mixer.SetFloat(m_paramName.Value, m_value.Value);
 				Finish();
 			}
 		}
