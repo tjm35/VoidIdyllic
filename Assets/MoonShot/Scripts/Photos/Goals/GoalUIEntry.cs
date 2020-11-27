@@ -11,6 +11,7 @@ namespace Moonshot.Photos
 		public TMP_Text m_text;
 		public Toggle m_toggle;
 		public RectTransform m_checkmarkMask;
+		public GameObject m_firstCompleteHighlight;
 		public float m_checkmarkMaskWidth = 120.0f;
 		public float m_completeAnimationDuration = 1.5f;
 		public float m_completeAnimationDelay = 0.5f;
@@ -61,6 +62,10 @@ namespace Moonshot.Photos
 					width *= Mathf.Clamp01((m_completeAnimationPlayTime - m_completeAnimationDelay) / m_completeAnimationDuration);
 				}
 				m_checkmarkMask.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+			}
+			if (m_firstCompleteHighlight)
+			{
+				m_firstCompleteHighlight.SetActive(m_firstTimeComplete);
 			}
 		}
 

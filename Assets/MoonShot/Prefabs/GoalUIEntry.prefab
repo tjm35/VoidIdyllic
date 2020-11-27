@@ -128,6 +128,7 @@ MonoBehaviour:
   m_text: {fileID: 7265888590858095382}
   m_toggle: {fileID: 8069207139201321719}
   m_checkmarkMask: {fileID: 7631185133124096402}
+  m_firstCompleteHighlight: {fileID: 2660650014868439348}
   m_checkmarkMaskWidth: 120
   m_completeAnimationDuration: 1
   m_completeAnimationDelay: 0.5
@@ -299,7 +300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8450731480317731534
 RectTransform:
   m_ObjectHideFlags: 0
