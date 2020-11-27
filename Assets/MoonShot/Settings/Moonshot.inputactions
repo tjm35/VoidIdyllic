@@ -942,6 +942,17 @@
                 },
                 {
                     "name": "",
+                    "id": "441b6a11-d54c-48b4-a308-672efc51aa70",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ToggleMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b234f23a-36ec-4d08-9273-eb90cae289cc",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
