@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using HutongGames.PlayMaker;
+using Moonshot.Audio;
 using Moonshot.Player;
 using Moonshot.World;
 using UnityEngine;
@@ -22,10 +23,14 @@ namespace Moonshot.Ship
 			if (!m_landing)
 			{
 				m_impactSFX.PlaySound();
-
 				// TODO - Check if safe to land
 
 				m_landing = true;
+				if (GetComponent<ShipAudio>() != null)
+				{
+					GetComponent<ShipAudio>().Active = false;
+				}
+
 				StartCoroutine(PerformLanding());
 			}
 		}
