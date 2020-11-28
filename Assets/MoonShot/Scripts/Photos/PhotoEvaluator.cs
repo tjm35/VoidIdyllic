@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Moonshot.World;
 using UnityEngine;
+using UnityEngine.Rendering;
 using System.Linq;
 
 namespace Moonshot.Photos
@@ -14,6 +15,8 @@ namespace Moonshot.Photos
 		public bool m_backgroundEvaluation = true;
 		public Camera m_backgroundEvaluationCamera;
 		public int m_backgroundEvaluationVisibilityThreshold = 1;
+		public ComputeShader m_analysisRecordingShader;
+		public Texture POIAnalysisTexture;
 
 		public class Context
 		{
@@ -21,6 +24,11 @@ namespace Moonshot.Photos
 			public Dictionary<PointOfInterest, int> m_visibility;
 			public Vector3 m_globalCameraPos;
 			public bool m_ready;
+		}
+
+		private void Start()
+		{
+			m_analysisOutputBuffer = new ComputeBuffer(POIAnalysisTexture.width * POIAnalysisTexture.height, 4);
 		}
 
 		private void Update()
@@ -150,41 +158,48 @@ namespace Moonshot.Photos
 
 		private IEnumerator PrepareContextCoroutine(BuildingContext i_context)
 		{
-			yield return new WaitForEndOfFrame();
+			while (m_computeBufferInUse)
+			{
+				yield return new WaitForEndOfFrame();
+			}
 
-			Texture2D readableSaveTexture = RecordCameraToNewReadableTexture(i_context.m_analysisCamera);
+			m_analysisRecordingShader.SetTexture(0, "AnalysisImage", i_context.m_analysisCamera.targetTexture);
+			m_analysisRecordingShader.SetBuffer(0, "AnalysisImageBuffer", m_analysisOutputBuffer);
+			m_analysisRecordingShader.Dispatch(0, i_context.m_analysisCamera.targetTexture.width / 8, i_context.m_analysisCamera.targetTexture.height / 8, 1);
+			m_computeBufferInUse = true;
 
-			yield return new WaitForEndOfFrame();
-			yield return new WaitForEndOfFrame();
-			yield return new WaitForEndOfFrame();
+			var readbackRequest = AsyncGPUReadback.Request(m_analysisOutputBuffer);
 
-			AnalysePOIs(readableSaveTexture, i_context);
+			while (!readbackRequest.done && !readbackRequest.hasError)
+			{
+				yield return new WaitForEndOfFrame();
+			}
 
-			Destroy(readableSaveTexture);
+			if (readbackRequest.hasError == false)
+			{
+				AnalysePOIs(readbackRequest, i_context);
+			}
+
+			m_computeBufferInUse = false;
 
 			i_context.m_ready = true;
 		}
 
-		private void AnalysePOIs(Texture2D i_readableTexture, Context i_context)
+		private void AnalysePOIs(AsyncGPUReadbackRequest i_readbackRequest, Context i_context)
 		{
 			var lookup = new Dictionary<int, int>();
 
-			var pixels = i_readableTexture.GetRawTextureData<int>();
-			int pixelCount = i_readableTexture.height * i_readableTexture.width;
-			int stride = pixels.Length / pixelCount;
-			for (int y = 0; y < i_readableTexture.height; ++y)
+			var pixels = i_readbackRequest.GetData<int>();
+			for (int i = 0; i < pixels.Length; ++i)
 			{
-				for (int x = 0; x < i_readableTexture.width; ++x)
+				var px = pixels[i];
+				if (px != 0)
 				{
-					var px = pixels[((y * i_readableTexture.width) + x) * stride];
-					if (px != 0)
+					if (!lookup.ContainsKey(px))
 					{
-						if (!lookup.ContainsKey(px))
-						{
-							lookup[px] = 0;
-						}
-						lookup[px]++;
+						lookup[px] = 0;
 					}
+					lookup[px]++;
 				}
 			}
 
@@ -197,7 +212,7 @@ namespace Moonshot.Photos
 					i_context.m_visibility[poi] = kvp.Value;
 					if (m_verboseDebug)
 					{
-						Debug.Log($"PhotoEvaluator: {kvp.Value} pixels of {poi.gameObject.name} found.");
+						UI.QuickDebug.Print($"PhotoEvaluator: {kvp.Value} pixels of {poi.gameObject.name} found.");
 					}
 				}
 				else
@@ -224,5 +239,7 @@ namespace Moonshot.Photos
 
 		private Context m_backgroundContext;
 		private HashSet<PointOfInterest> m_backgroundVisiblePoIs = new HashSet<PointOfInterest>();
+		private ComputeBuffer m_analysisOutputBuffer;
+		private bool m_computeBufferInUse = false;
 	}
 }
