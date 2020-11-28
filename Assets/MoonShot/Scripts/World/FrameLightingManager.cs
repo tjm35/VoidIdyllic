@@ -26,6 +26,8 @@ namespace Moonshot.World
 			var selfLightData = EnsurePlanetSelfLightForLocalFrame(i_planet);
 			selfLightData.m_targetWeight = 1.0f;
 
+			DisablePlanetLightImmediate(i_planet);
+
 			UpdateLightFrames(i_newFrame);
 		}
 
@@ -48,6 +50,16 @@ namespace Moonshot.World
 			else
 			{
 				return CreatePlanetLightForPlanet(planet, false);
+			}
+		}
+
+		private void DisablePlanetLightImmediate(OrreryPlanet planet)
+		{
+			if (m_lights.TryGetValue(planet, out var lightData))
+			{
+				lightData.m_targetWeight = 0.0f;
+				lightData.m_weight = 0.0f;
+				lightData.m_lightObject.intensity = 0.0f;
 			}
 		}
 
@@ -137,6 +149,7 @@ namespace Moonshot.World
 			foreach (var lightData in AllLights)
 			{
 				UpdateLightBlending(lightData);
+				UpdateLightDirection(lightData);
 			}
 		}
 
@@ -155,6 +168,21 @@ namespace Moonshot.World
 			lightData.m_lightObject.intensity = lightData.m_baseIntensity * attenuation * lightData.m_weight;
 
 			lightData.m_lightObject.gameObject.SetActive(lightData.m_weight > 0.0f);
+		}
+
+		private void UpdateLightDirection(LightData lightData)
+		{
+			if (lightData.m_lightObject.type == LightType.Directional)
+			{
+				Vector3 localLightPos = lightData.m_lightObject.transform.position;
+				Vector3 localLightTarget = Vector3.zero;
+				Vector3 localLookDirection = localLightTarget - localLightPos;
+				if (localLookDirection.sqrMagnitude > 0.01f)
+				{
+					var localLook = Quaternion.LookRotation(localLightTarget - localLightPos);
+					lightData.m_lightObject.transform.rotation = localLook;
+				}
+			}
 		}
 
 		private IEnumerable<LightData> AllLights => m_lights.Values.Concat(m_selfLights.Values);

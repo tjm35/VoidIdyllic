@@ -60,17 +60,6 @@ namespace Moonshot.Planet
 			light.color = PlanetColor;
 			light.intensity = PlanetIntensity; // TODO: Intensity falloff by distance
 
-			LookAtConstraint lac = lightObject.GetComponent<LookAtConstraint>();
-			if (lac == null)
-			{
-				lac = lightObject.AddComponent<LookAtConstraint>();
-			}
-			ConstraintSource cs = new ConstraintSource();
-			cs.sourceTransform = parent;
-			cs.weight = 1.0f;
-			lac.AddSource(cs);
-			lac.constraintActive = true;
-
 			CrossFramePositionConstraint cfpc = lightObject.GetComponent<CrossFramePositionConstraint>();
 			if (cfpc == null)
 			{
