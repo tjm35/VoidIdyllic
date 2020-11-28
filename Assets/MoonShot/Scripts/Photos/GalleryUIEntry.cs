@@ -33,6 +33,11 @@ namespace Moonshot.Photos
 			}
 		}
 
+		private void Update()
+		{
+			UpdateToggle();
+		}
+
 		private void OnButtonPressed()
 		{
 			if (List != null)
