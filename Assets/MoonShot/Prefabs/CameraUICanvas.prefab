@@ -3465,7 +3465,7 @@ MonoBehaviour:
   - Primary: {r: 0.09019607, g: 0.15499115, b: 0.2627451, a: 1}
     Background: {r: 0.7607843, g: 0.78068715, b: 1, a: 0.5019608}
     ReversePrimary: {r: 0.7490196, g: 0.83043706, b: 1, a: 1}
-    Borders: {r: 0.2646129, g: 0.631, b: 0.56121194, a: 0.6392157}
+    Borders: {r: 0.21176471, g: 0.50980395, b: 0.45490196, a: 0.9490196}
     Selected: {r: 0, g: 0, b: 0, a: 1}
     Pressed: {r: 0.78699994, g: 0.78699994, b: 0.78699994, a: 1}
     Alarm: {r: 0.5943396, g: 0, b: 0.054305155, a: 1}
@@ -4052,6 +4052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_targetGroup: {fileID: 6960147858815840071}
   m_preferredToggle: {fileID: 8601717582735385784}
+  m_triggerDelayFrames: 1
 --- !u!114 &1675682880
 MonoBehaviour:
   m_ObjectHideFlags: 0
