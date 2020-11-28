@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.IO;
 using System.Linq;
@@ -106,19 +107,18 @@ namespace Moonshot.Photos
 				Profiler.BeginSample("GammaCorrect");
 				RenderTexture gammaTexture = GammaCorrectToNewGPUTexture(gpuTexture);
 				Profiler.EndSample();
-				yield return new WaitForEndOfFrame();
-				yield return new WaitForEndOfFrame();
-				yield return new WaitForEndOfFrame();
-				Profiler.BeginSample("RecordTexture");
-				Texture2D readableSaveTexture = RecordTextureToNewReadableTexture(gammaTexture);
-				Profiler.EndSample();
-				gammaTexture.Release();
-				yield return new WaitForEndOfFrame();
-				yield return new WaitForEndOfFrame();
-				yield return new WaitForEndOfFrame();
-				Profiler.BeginSample("SavePicture");
-				SavePicture(readableSaveTexture);
-				Profiler.EndSample();
+				var readbackRequest = AsyncGPUReadback.Request(gammaTexture, 0);
+				while (readbackRequest.done == false && readbackRequest.hasError == false)
+				{
+					yield return new WaitForEndOfFrame();
+				}
+
+				if (readbackRequest.hasError == false)
+				{
+					Profiler.BeginSample("SavePicture");
+					SavePicture(readbackRequest);
+					Profiler.EndSample();
+				}
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace Moonshot.Photos
 			return readableSaveTexture;
 		}
 
-		private void SavePicture(Texture2D i_readableTexture)
+		private void SavePicture(AsyncGPUReadbackRequest i_readbackRequest)
 		{
 			string screenshotsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "VoidIdyllic");
 			if (!Directory.Exists(screenshotsPath))
@@ -219,9 +219,9 @@ namespace Moonshot.Photos
 				savePath += " " + i.ToString();
 			}
 			savePath += ".png";
-			Color32[] colorData = i_readableTexture.GetPixels32(0);
-			int width = i_readableTexture.width;
-			int height = i_readableTexture.height;
+			Color[] colorData = i_readbackRequest.GetData<Color>().ToArray();
+			int width = i_readbackRequest.width;
+			int height = i_readbackRequest.height;
 
 			// Perform PNG encoding on a fire-and-forget thread to avoid stalling the game.
 			// This operates purely on copies of data and we never need to access the result so no synchronisation is needed.
