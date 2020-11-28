@@ -25,6 +25,7 @@ namespace Moonshot.Planet
 		public MeshFilter OrreryMeshFilter;
 		public int OrrerySubDivs = 4;
 		public float OrreryMeshSmoothness = 0.0f;
+		public float OrreryVertexJitter = 0.01f;
 		public PointOfInterest m_pointOfInterest;
 
 		public List<OrreryPlanet> LightSources;
@@ -196,7 +197,9 @@ namespace Moonshot.Planet
 
 		public void NudgeDirection(ref Vector3 io_direction)
 		{
-			// Do nothing
+			var rand = new System.Random(io_direction.GetHashCode());
+			io_direction += OrreryVertexJitter * (2.0f * new Vector3((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble()) - Vector3.one);
+			io_direction.Normalize();
 		}
 
 		public float GetRadiusInDirection(Vector3 i_direction)

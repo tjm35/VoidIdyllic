@@ -1514,6 +1514,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140334297118103}
   OrrerySubDivs: 5
   OrreryMeshSmoothness: 0.75
+  OrreryVertexJitter: 0.02
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -1710,6 +1711,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140334721012482}
   OrrerySubDivs: 5
   OrreryMeshSmoothness: 0
+  OrreryVertexJitter: 0.02
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -2191,6 +2193,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140334590689128}
   OrrerySubDivs: 4
   OrreryMeshSmoothness: 0.3
+  OrreryVertexJitter: 0.04
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -2510,6 +2513,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140333454793001}
   OrrerySubDivs: 5
   OrreryMeshSmoothness: 0.6
+  OrreryVertexJitter: 0.005
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -2918,6 +2922,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140333733425181}
   OrrerySubDivs: 3
   OrreryMeshSmoothness: 0
+  OrreryVertexJitter: 0
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -3380,6 +3385,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140333810149914}
   OrrerySubDivs: 6
   OrreryMeshSmoothness: 0.1
+  OrreryVertexJitter: 0.01
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -4953,6 +4959,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140333236493563}
   OrrerySubDivs: 6
   OrreryMeshSmoothness: 0.9
+  OrreryVertexJitter: 0
   m_pointOfInterest: {fileID: 0}
   LightSources:
   - {fileID: 1286140334699513014}
@@ -5160,6 +5167,7 @@ MonoBehaviour:
   OrreryMeshFilter: {fileID: 1286140334104666862}
   OrrerySubDivs: 2
   OrreryMeshSmoothness: 0
+  OrreryVertexJitter: 0.01
   m_pointOfInterest: {fileID: 0}
   LightSources: []
   OrreryProps: []
