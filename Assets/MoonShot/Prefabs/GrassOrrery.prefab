@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4548537688197414061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2929278226245581327}
+  m_Layer: 19
+  m_Name: Grass_Fallback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2929278226245581327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548537688197414061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8016483741945441986}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8016483740069351958
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_highResPrefab: {fileID: 3506437795347828145, guid: 0dd78741d3533d34cbd2797fa38315ad, type: 3}
   m_pointOfInterest: {fileID: 0}
+  m_moveToHighResObject: {fileID: 0}
 --- !u!1 &8016483741945441987
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +88,8 @@ GameObject:
   - component: {fileID: 8016483741945441986}
   - component: {fileID: 8016483741945441984}
   - component: {fileID: 8016483741945441985}
+  - component: {fileID: 7122040004475916746}
+  - component: {fileID: 6869809526223762991}
   m_Layer: 19
   m_Name: OrreryGrass
   m_TagString: Untagged
@@ -74,7 +107,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2929278226245581327}
   m_Father: {fileID: 8016483740069351957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,7 +131,10 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 286.19443, y: 0, z: 2007.9276}
+        m_Name: LightPosLocal
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -154,3 +191,32 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7122040004475916746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8016483741945441987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adcca59f6c12914fbdc2c3a1bb4309f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6869809526223762991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8016483741945441987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eed99bbf41b2a4681045501d090a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lods:
+  - {fileID: 8926484042661614526, guid: 4c6275dd15a1c9143bc7350c518b2fd7, type: 3}
+  - {fileID: 8926484042661614526, guid: 01b3c47b5ae5d63438256f6129454e86, type: 3}
+  - {fileID: 8926484042661614526, guid: 7e401b907e46e4a49b3482e89e52c382, type: 3}
+  m_fallback: {fileID: 4548537688197414061}

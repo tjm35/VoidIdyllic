@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3506437794537632103}
   - component: {fileID: 3506437794537632102}
   - component: {fileID: 5852638028313659797}
+  - component: {fileID: 4987023239556648889}
   m_Layer: 0
   m_Name: OrreryGrass
   m_TagString: Untagged
@@ -29,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3700012123648495321}
   m_Father: {fileID: 3506437795347828146}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -124,6 +126,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2adcca59f6c12914fbdc2c3a1bb4309f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4987023239556648889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506437794537632100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20eed99bbf41b2a4681045501d090a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lods:
+  - {fileID: 8926484042661614526, guid: 4c6275dd15a1c9143bc7350c518b2fd7, type: 3}
+  - {fileID: 8926484042661614526, guid: 01b3c47b5ae5d63438256f6129454e86, type: 3}
+  - {fileID: 8926484042661614526, guid: 7e401b907e46e4a49b3482e89e52c382, type: 3}
+  m_fallback: {fileID: 5468394644533798442}
 --- !u!1 &3506437795347828145
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,3 +187,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d621fc3ad44785e45a737faae0fee23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5468394644533798442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3700012123648495321}
+  m_Layer: 0
+  m_Name: Grass_Fallback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3700012123648495321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5468394644533798442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3506437794537632101}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
