@@ -16,7 +16,9 @@ namespace Moonshot.Planet
 		public float PlanetIntensity = 1;
 		public float Radius = 100.0f;
 		public Material SurfaceMaterial;
+#if UNITY_EDITOR
 		public Cubemap HeightMap;
+#endif
 		public float HeightMapScale = 10.0f;
 
 		public GameObject HighResPlanetPrefab;
@@ -202,6 +204,7 @@ namespace Moonshot.Planet
 
 		private void AdjustRadiusForHeightMap(ref float io_radius, Vector3 i_direction)
 		{
+#if UNITY_EDITOR
 			if (HeightMap)
 			{
 				float mapValue = CubemapSampler.SampleCubemap(HeightMap, i_direction.normalized).r;
@@ -209,6 +212,7 @@ namespace Moonshot.Planet
 
 				io_radius += snormMapValue * HeightMapScale;
 			}
+#endif
 		}
 
 		private bool AdjustRadiusForCutaways(ref float io_radius, Vector3 i_direction)
