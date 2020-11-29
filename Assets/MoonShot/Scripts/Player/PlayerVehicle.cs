@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Moonshot.World;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +31,16 @@ namespace Moonshot.Player
 			transform.position = i_playerSoul.transform.position + (transform.position - SoulHook.position);
 
 			i_playerSoul.transform.SetParent(SoulHook, false);
+		}
+
+		public void TeleportToGlobal(Vector3 i_globalPos, Quaternion i_globalRot)
+		{
+			LocalFrame lf = LocalFrame.Get(transform);
+			Vector3 localPos = LocalFrame.TransformPointToLocal(lf, i_globalPos);
+			Quaternion localRot = LocalFrame.TransformRotationToLocal(lf, i_globalRot);
+
+			transform.position = localPos;
+			transform.rotation = localRot;
 		}
 
 		private void Awake()
