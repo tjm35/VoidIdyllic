@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59af1f1cb3300c4428639a893201a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iconRenderer: {fileID: 6134884169403408829}
   m_core: {fileID: 6349135297204588566}
   m_destID: 1
 --- !u!114 &7550519451907170489
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59af1f1cb3300c4428639a893201a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iconRenderer: {fileID: 4524137733690140970}
   m_core: {fileID: 6349135297204588566}
   m_destID: 0
 --- !u!114 &4963407289191524447
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59af1f1cb3300c4428639a893201a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_iconRenderer: {fileID: 2924753082458108562}
   m_core: {fileID: 6349135297204588566}
   m_destID: 2
 --- !u!1001 &2161358710872074691
@@ -174,11 +177,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d309d36697f53f14f8e7046264bc676d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
 --- !u!1 &2843142017053997802 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4218305849304830761, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+  m_PrefabInstance: {fileID: 2161358710872074691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6134884169403408829 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
   m_PrefabInstance: {fileID: 2161358710872074691}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5100580813283764217
@@ -331,11 +343,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 889682f41414a1b4d8c03bc74685e655, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
 --- !u!1 &6539628335099308485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4218305849304830761, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+  m_PrefabInstance: {fileID: 6938643501356169964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2924753082458108562 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
   m_PrefabInstance: {fileID: 6938643501356169964}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7016738185646414699
@@ -591,10 +612,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c5f48f116a7ff6438773a4d333a0220, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
 --- !u!1 &5521225610665538173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4218305849304830761, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
+  m_PrefabInstance: {fileID: 8508772640998449492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4524137733690140970 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5250578064077539454, guid: 82fd36717aef40249a3631f26c265a28, type: 3}
   m_PrefabInstance: {fileID: 8508772640998449492}
   m_PrefabAsset: {fileID: 0}

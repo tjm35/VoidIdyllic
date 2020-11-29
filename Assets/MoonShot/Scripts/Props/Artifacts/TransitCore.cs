@@ -24,7 +24,13 @@ namespace Moonshot.Props
 			}
 			m_fxID = m_ruinFX.PlaySound();
 			m_activeTimer = 0.0f;
+			m_activeObject = i_dest;
 			m_active = true;
+		}
+
+		public bool IsActive(int i_dest)
+		{
+			return m_activeObject == i_dest;
 		}
 
 		private void Update()
@@ -43,6 +49,7 @@ namespace Moonshot.Props
 						AudioManager.FadeOutSound(m_fxID, m_audioFadeTime);
 					}
 					m_active = false;
+					m_activeObject = -1;
 
 					// TODO: Teleport player if they are in zone.
 				}
@@ -52,5 +59,6 @@ namespace Moonshot.Props
 		private bool m_active = false;
 		private int m_fxID = -1;
 		private float m_activeTimer = 0.0f;
+		private int m_activeObject = -1;
 	}
 }
